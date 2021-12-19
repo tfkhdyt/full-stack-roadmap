@@ -12,7 +12,7 @@ export default function Card({ id, data }) {
             <img src={data.icon} alt={`Foto ${data.title}`} className='h-5' />
             <span>{data.title}</span>
           </p>
-          <p className='leading-tight text-xs md:text-justify'>
+          <p className='leading-tight text-xs lg:text-base md:text-justify'>
             {data.description}
           </p>
           <Buttons
@@ -48,7 +48,7 @@ export default function Card({ id, data }) {
             <img src={data.icon} alt={`Foto ${data.title}`} className='h-5' />
             <span>{data.title}</span>
           </p>
-          <p className='leading-tight text-xs md:text-justify'>
+          <p className='leading-tight text-xs lg:text-base md:text-justify'>
             {data.description}
           </p>
           <Buttons
