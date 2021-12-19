@@ -1,15 +1,15 @@
 import Link from 'next/link'
-import Config from '../../config'
+import Config from '../config'
 
 export default function Header() {
   return (
     <div className='flex flex-col space-y-2'>
-      <p className='flex justify-center font-bold text-4xl text-gray-800'>
+      <p className='font-bold text-xl lg:text-4xl text-gray-800 mx-auto'>
         {Config.title}
       </p>
       <div className='flex justify-center'>
         <div className='group'>
-          <Link href=''>
+          <Link href='https://github.com/tfkhdyt/full-stack-roadmap'>
             <a className='group-hover:text-sky-500 flex items-center space-x-1 transition duration-200 ease-in-out'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'

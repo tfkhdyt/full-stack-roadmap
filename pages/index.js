@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Config from '../config'
-import Header from './components/Header'
-import Roadmap from './components/Roadmap'
+import Header from '../components/Header'
+import Roadmap from '../components/Roadmap'
 
 export default function Home() {
   return (
