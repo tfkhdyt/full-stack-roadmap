@@ -8,6 +8,8 @@ export const data = [
     shadColor: 'shadow-orange-500/50',
     textColor: 'text-white',
     textColorAlt: 'text-orange-500',
+    ringColor: 'ring-white',
+    buttonColor: 'bg-white',
     linkVideo:
       'https://www.youtube.com/playlist?list=PLFIM0718LjIVuONHysfOK0ZtiqUWvrx4F',
     linkDocs: 'https://devdocs.io/html/',
@@ -21,6 +23,8 @@ export const data = [
     shadColor: 'shadow-blue-600/50',
     textColor: 'text-white',
     textColorAlt: 'text-blue-600',
+    ringColor: 'ring-white',
+    buttonColor: 'bg-white',
     linkVideo:
       'https://www.youtube.com/results?sp=mAEA&search_query=Belajar+CSS+WPU',
     linkDocs: 'https://devdocs.io/css/',
@@ -34,8 +38,25 @@ export const data = [
     shadColor: 'shadow-violet-600/50',
     textColor: 'text-white',
     textColorAlt: 'text-violet-600',
+    ringColor: 'ring-white',
+    buttonColor: 'bg-white',
     linkVideo:
       'https://www.youtube.com/playlist?list=PL9E3AWZAtxc5XPAP2-p9Q1JsX2wV5xpAm',
     linkDocs: 'https://getbootstrap.com/docs/5.1/getting-started/introduction/',
+  },
+  {
+    title: 'JavaScript',
+    type: 'Programming Language',
+    description: 'JavaScript (JS) adalah bahasa pemrograman tingkat tinggi, dinamis, multi-paradigm, event-driven, non-blocking, dan asynchronous yang dapat berjalan di front-end maupun back-end.',
+    icon: '/images/logo/js.svg',
+    bgColor: 'bg-amber-300',
+    shadColor: 'shadow-amber-300/50',
+    textColor: 'text-black',
+    textColorAlt: 'text-amber-300',
+    ringColor: 'ring-black',
+    buttonColor: 'bg-black',
+    linkVideo:
+      'https://www.youtube.com/results?sp=mAEA&search_query=Belajar+javascript+WPU',
+    linkDocs: 'https://devdocs.io/javascript/',
   },
 ]

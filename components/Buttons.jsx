@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
-export default function Buttons({ linkVideo, linkDocs, textColorAlt }) {
+export default function Buttons({ linkVideo, linkDocs, textColorAlt, ringColor, buttonColor }) {
   return (
     <div className='flex space-x-2 text-sm'>
       <Link href={linkVideo}>
         <a
           target='_blank'
-          className={`w-1/2 py-2 bg-transparent ring-1 ring-white rounded-md font-semibold flex justify-center items-center space-x-0.5`}
+          className={`w-1/2 py-2 bg-transparent ring-1 ${ringColor} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -26,7 +26,7 @@ export default function Buttons({ linkVideo, linkDocs, textColorAlt }) {
       <Link href={linkDocs}>
         <a
           target='_blank'
-          className={`w-1/2 py-2 bg-white ${textColorAlt} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
+          className={`w-1/2 py-2 ${buttonColor} ${textColorAlt} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

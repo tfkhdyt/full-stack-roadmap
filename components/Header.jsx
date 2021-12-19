@@ -4,7 +4,7 @@ import Config from '../config'
 export default function Header() {
   return (
     <div className='flex flex-col space-y-2'>
-      <p className='font-bold text-xl lg:text-4xl text-gray-800 mx-auto'>
+      <p className='font-bold text-xl md:text-2xl lg:text-4xl text-gray-800 mx-auto'>
         {Config.title}
       </p>
       <div className='flex justify-center'>
