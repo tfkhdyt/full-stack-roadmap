@@ -7,7 +7,9 @@ export default function Roadmap() {
       <div className='mx-3 md:mx-16 lg:mx-56'>
         <div className='flex flex-col md:grid grid-cols-9 mx-auto p-2 text-blue-50'>
           {data.map((e, i) => (
-            <Card id={i + 1} data={e} />
+            <div key={id} className={`flex ${((i+1) % 2 !== 0) ? 'flex-row-reverse' : null } md:contents`}>
+              <Card id={i + 1} data={e} />
+            </div>
           ))}
         </div>
       </div>
