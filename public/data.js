@@ -2,7 +2,7 @@ export const data = [
   {
     title: 'HTML',
     type: 'Markup Language',
-    description: 'Hypertext Markup Language (HTML) adalah bahasa markah standar untuk dokumen yang dirancang untuk ditampilkan di peramban internet.',
+    description: 'Hypertext Markup Language (HTML) adalah bahasa markup standar untuk dokumen yang dirancang untuk ditampilkan di browser. HTML dapat dibantu dengan teknologi seperti Cascading Style Sheets (CSS) dan bahasa scripting seperti JavaScript dan VBScript.',
     icon: '/images/logo/html.svg',
     bgColor: 'bg-orange-500',
     shadColor: 'shadow-orange-500/50',
@@ -15,7 +15,7 @@ export const data = [
   {
     title: 'CSS',
     type: 'Style Sheet Language',
-    description: 'Cascading Style Sheet (CSS) merupakan aturan untuk mengatur beberapa komponen dalam sebuah web sehingga akan lebih terstruktur dan seragam.',
+    description: 'Cascading Style Sheet (CSS) merupakan aturan untuk mengatur beberapa komponen dalam sebuah web sehingga akan lebih terstruktur dan seragam. CSS bukan merupakan bahasa pemrograman.',
     icon: '/images/logo/css.svg',
     bgColor: 'bg-blue-600',
     shadColor: 'shadow-blue-600/50',
@@ -28,7 +28,7 @@ export const data = [
   {
     title: 'Bootstrap',
     type: 'CSS Framework',
-    description: 'Bootstrap adalah kerangka kerja CSS yang sumber terbuka dan bebas untuk merancang situs web dan aplikasi web. ',
+    description: 'Bootstrap adalah framework CSS untuk merancang situs web dan aplikasi web. Framework ini berisi templat desain berbasis HTML dan CSS untuk tipografi, formulir, tombol, navigasi, dan komponen antarmuka lainnya, serta juga ekstensi opsional JavaScript.',
     icon: '/images/logo/bootstrap.svg',
     bgColor: 'bg-violet-600',
     shadColor: 'shadow-violet-600/50',

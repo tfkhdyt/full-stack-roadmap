@@ -7,12 +7,12 @@ export default function Card({ id, data }) {
         <div
           className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2`}
         >
-          <h2 className='font-medium italic text-xs'>{data.type}</h2>
-          <h3 className='font-semibold text-xl flex items-center space-x-1'>
+          <p className='font-medium italic text-xs'>{data.type}</p>
+          <p className='font-semibold text-xl flex items-center space-x-1'>
             <img src={data.icon} alt={`Foto ${data.title}`} className='h-5' />
             <span>{data.title}</span>
-          </h3>
-          <p className='leading-tight text-sm md:text-justify'>{data.description}</p>
+          </p>
+          <p className='leading-tight text-xs md:text-justify'>{data.description}</p>
           <Buttons linkVideo={data.linkVideo} linkDocs={data.linkDocs} textColorAlt={data.textColorAlt}/>
         </div>
         <div className='col-start-5 col-end-6 md:mx-auto relative mr-10'>
@@ -35,12 +35,12 @@ export default function Card({ id, data }) {
         <div
           className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2`}
         >
-          <h2 className='font-medium italic text-xs'>{data.type}</h2>
-          <h3 className='font-semibold text-xl flex items-center space-x-1'>
+          <p className='font-medium italic text-xs'>{data.type}</p>
+          <p className='font-semibold text-xl flex items-center space-x-1'>
             <img src={data.icon} alt={`Foto ${data.title}`} className='h-5' />
             <span>{data.title}</span>
-          </h3>
-          <p className='leading-tight text-sm md:text-justify'>{data.description}</p>
+          </p>
+          <p className='leading-tight text-xs md:text-justify'>{data.description}</p>
           <Buttons linkVideo={data.linkVideo} linkDocs={data.linkDocs} textColorAlt={data.textColorAlt}/>
         </div>
       </>
