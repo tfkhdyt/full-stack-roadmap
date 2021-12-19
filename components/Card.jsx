@@ -12,8 +12,16 @@ export default function Card({ id, data }) {
             <img src={data.icon} alt={`Foto ${data.title}`} className='h-5' />
             <span>{data.title}</span>
           </p>
-          <p className='leading-tight text-xs md:text-justify'>{data.description}</p>
-          <Buttons linkVideo={data.linkVideo} linkDocs={data.linkDocs} textColorAlt={data.textColorAlt} ringColor={data.ringColor} buttonColor={data.buttonColor} />
+          <p className='leading-tight text-xs md:text-justify'>
+            {data.description}
+          </p>
+          <Buttons
+            linkVideo={data.linkVideo}
+            linkDocs={data.linkDocs}
+            textColorAlt={data.textColorAlt}
+            ringColor={data.ringColor}
+            buttonColor={data.buttonColor}
+          />
         </div>
         <div className='col-start-5 col-end-6 md:mx-auto relative mr-10'>
           <div className='h-full w-6 flex items-center justify-center'>
@@ -40,8 +48,16 @@ export default function Card({ id, data }) {
             <img src={data.icon} alt={`Foto ${data.title}`} className='h-5' />
             <span>{data.title}</span>
           </p>
-          <p className='leading-tight text-xs md:text-justify'>{data.description}</p>
-          <Buttons linkVideo={data.linkVideo} linkDocs={data.linkDocs} textColorAlt={data.textColorAlt} ringColor={data.ringColor} buttonColor={data.buttonColor} />
+          <p className='leading-tight text-xs md:text-justify'>
+            {data.description}
+          </p>
+          <Buttons
+            linkVideo={data.linkVideo}
+            linkDocs={data.linkDocs}
+            textColorAlt={data.textColorAlt}
+            ringColor={data.ringColor}
+            buttonColor={data.buttonColor}
+          />
         </div>
       </>
     )
