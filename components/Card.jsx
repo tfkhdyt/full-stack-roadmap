@@ -5,9 +5,9 @@ export default function Card({ id, data }) {
     return (
       <>
         <div
-          className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2`}
+          className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2 selection:bg-gray-800 ${data.textSelection}`}
         >
-          <p className='font-semibold italic text-xs'>{data.type}</p>
+          <p className={`font-semibold italic text-xs`}>{data.type}</p>
           <p className='font-bold text-xl flex items-center space-x-1'>
             <img
               src={data.icon}
@@ -16,7 +16,7 @@ export default function Card({ id, data }) {
             />
             <span>{data.title}</span>
           </p>
-          <p className='leading-tight text-xs lg:text-base md:text-justify'>
+          <p className={`leading-tight text-xs lg:text-base md:text-justify`}>
             {data.description}
           </p>
           <Buttons
@@ -45,9 +45,9 @@ export default function Card({ id, data }) {
           <div className='w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-sky-500 shadow'></div>
         </div>
         <div
-          className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2`}
+          className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 ${data.textSelection}`}
         >
-          <p className='font-semibold italic text-xs'>{data.type}</p>
+          <p className={`font-semibold italic text-xs`}>{data.type}</p>
           <p className='font-bold text-xl flex items-center space-x-1'>
             <img
               src={data.icon}

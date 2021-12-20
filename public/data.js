@@ -8,6 +8,7 @@ export const data = [
     shadColor: 'shadow-orange-400/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-orange-400',
+    textSelection: 'selection:text-orange-400',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -23,6 +24,7 @@ export const data = [
     shadColor: 'shadow-blue-400/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-blue-400',
+    textSelection: 'selection:text-blue-400',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -38,6 +40,7 @@ export const data = [
     shadColor: 'shadow-violet-400/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-violet-400',
+    textSelection: 'selection:text-violet-400',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -53,6 +56,7 @@ export const data = [
     shadColor: 'shadow-red-400/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-red-400',
+    textSelection: 'selection:text-red-400',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -68,6 +72,7 @@ export const data = [
     shadColor: 'shadow-amber-300/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-amber-300',
+    textSelection: 'selection:text-amber-300',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -83,6 +88,7 @@ export const data = [
     shadColor: 'shadow-green-400/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-green-400',
+    textSelection: 'selection:text-green-400',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -98,6 +104,7 @@ export const data = [
     shadColor: 'shadow-zinc-400/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-zinc-400',
+    textSelection: 'selection:text-zinc-400',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -113,6 +120,7 @@ export const data = [
     shadColor: 'shadow-sky-500/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-sky-500',
+    textSelection: 'selection:text-sky-500',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -128,6 +136,7 @@ export const data = [
     shadColor: 'shadow-cyan-600/50',
     textColor: 'text-gray-800',
     textColorAlt: 'text-cyan-600',
+    textSelection: 'selection:text-cyan-600',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -143,6 +152,7 @@ export const data = [
     shadColor: 'shadow-cyan-300/25',
     textColor: 'text-gray-800',
     textColorAlt: 'text-cyan-300',
+    textSelection: 'selection:text-cyan-300',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
