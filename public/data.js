@@ -45,6 +45,21 @@ export const data = [
     linkDocs: 'https://getbootstrap.com/docs/5.1/getting-started/introduction/',
   },
   {
+    title: 'Git',
+    type: 'Version Control System',
+    description: 'Git adalah software pengendali versi atau proyek manajemen kode yang diciptakan oleh Linus Torvalds, yang pada awalnya ditujukan untuk pengembangan kernel Linux.',
+    icon: '/images/logo/git.svg',
+    bgColor: 'bg-red-600',
+    shadColor: 'shadow-red-600/50',
+    textColor: 'text-gray-200',
+    textColorAlt: 'text-red-600',
+    ringColor: 'ring-gray-200',
+    buttonColor: 'bg-gray-200',
+    linkVideo:
+      'https://youtube.com/playlist?list=PLFIM0718LjIVknj6sgsSceMqlq242-jNf',
+    linkDocs: 'https://devdocs.io/git/',
+  },
+  {
     title: 'JavaScript',
     type: 'Programming Language',
     description: 'JavaScript (JS) adalah bahasa pemrograman tingkat tinggi, dinamis, multi-paradigm, event-driven, non-blocking, dan asynchronous yang dapat berjalan di front-end maupun back-end.',

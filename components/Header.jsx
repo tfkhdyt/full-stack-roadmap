@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className='flex flex-col space-y-2 '>
       <p className='font-bold text-xl md:text-2xl lg:text-4xl text-gray-200 mx-auto'>
-        {Config.title}
+        {Config.header}
       </p>
       <div className='flex justify-center'>
         <div className='group text-sm'>

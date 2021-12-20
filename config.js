@@ -1,3 +1,4 @@
 export default {
-  title: "TFKHDYT's Full Stack Roadmap",
+  header: "TFKHDYT's Full Stack Roadmap",
+  title: "Full Stack Roadmap | TFKHDYT",
 }
