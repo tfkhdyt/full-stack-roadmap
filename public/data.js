@@ -74,4 +74,19 @@ export const data = [
       'https://www.youtube.com/results?sp=mAEA&search_query=Belajar+javascript+WPU',
     linkDocs: 'https://devdocs.io/javascript/',
   },
+  {
+    title: 'Node.js',
+    type: 'Runtime Environment',
+    description: 'Node.js adalah runtime environment untuk JavaScript di luar browser yang dibangun di atas V8 JavaScript Engine. Node.js dapat dijalankan pada Windows, Mac OS X, dan Linux.',
+    icon: '/images/logo/node.svg',
+    bgColor: 'bg-green-500',
+    shadColor: 'shadow-green-500/50',
+    textColor: 'text-gray-800',
+    textColorAlt: 'text-green-500',
+    ringColor: 'ring-gray-800',
+    buttonColor: 'bg-gray-800',
+    linkVideo:
+      'https://www.youtube.com/playlist?list=PLFIM0718LjIW-XBdVOerYgKegBtD6rSfD',
+    linkDocs: 'https://devdocs.io/node/',
+  },
 ]
