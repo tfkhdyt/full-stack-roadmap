@@ -89,4 +89,19 @@ export const data = [
       'https://www.youtube.com/playlist?list=PLFIM0718LjIW-XBdVOerYgKegBtD6rSfD',
     linkDocs: 'https://devdocs.io/node/',
   },
+  {
+    title: 'Express',
+    type: 'Back-end Framework',
+    description: 'Express adalah back-end framework untuk Node.js. Express dirancang untuk membangun aplikasi web dan API. Express telah disebut sebagai framework server standar untuk Node.js.',
+    icon: '/images/logo/express.svg',
+    bgColor: 'bg-zinc-400',
+    shadColor: 'shadow-zinc-400/50',
+    textColor: 'text-gray-800',
+    textColorAlt: 'text-zinc-400',
+    ringColor: 'ring-gray-800',
+    buttonColor: 'bg-gray-800',
+    linkVideo:
+      'https://youtube.com/playlist?list=PL9At9z2rvOC-sgzJx7rM_wMDONnEM4E0A',
+    linkDocs: 'https://devdocs.io/express/',
+  },
 ]
