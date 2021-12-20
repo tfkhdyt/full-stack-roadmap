@@ -4,7 +4,7 @@ import { data } from '../public/data'
 export default function Roadmap() {
   return (
     <div className='flex flex-col justify-center'>
-      <div className='mx-3 md:mx-16 lg:mx-56'>
+      <div className='mx-3 md:mx-16 lg:mx-56 xl:mx-64'>
         <div className='flex flex-col md:grid grid-cols-9 mx-auto p-2 text-blue-50'>
           {data.map((e, i) => (
             <div

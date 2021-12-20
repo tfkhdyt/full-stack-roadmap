@@ -7,8 +7,8 @@ export default function Card({ id, data }) {
         <div
           className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2`}
         >
-          <p className='font-medium italic text-xs'>{data.type}</p>
-          <p className='font-semibold text-xl flex items-center space-x-1'>
+          <p className='font-semibold italic text-xs'>{data.type}</p>
+          <p className='font-bold text-xl flex items-center space-x-1'>
             <img
               src={data.icon}
               alt={`Foto ${data.title}`}
@@ -47,8 +47,8 @@ export default function Card({ id, data }) {
         <div
           className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2`}
         >
-          <p className='font-medium italic text-xs'>{data.type}</p>
-          <p className='font-semibold text-xl flex items-center space-x-1'>
+          <p className='font-semibold italic text-xs'>{data.type}</p>
+          <p className='font-bold text-xl flex items-center space-x-1'>
             <img
               src={data.icon}
               alt={`Foto ${data.title}`}
