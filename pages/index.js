@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Config from '../config'
 import Header from '../components/Header'
 import Roadmap from '../components/Roadmap'
+import BackToTop from '../components/BackToTop'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <Header />
         <Roadmap />
       </div>
+      <BackToTop />
     </>
   )
 }

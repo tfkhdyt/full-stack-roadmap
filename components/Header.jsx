@@ -3,7 +3,7 @@ import Config from '../config'
 
 export default function Header() {
   return (
-    <div className='flex flex-col space-y-2 text-center'>
+    <div className='flex flex-col space-y-2 text-center' id='#'>
       <p className='font-extrabold text-lg lg:text-4xl text-gray-200 mx-auto'>
         {Config.header}
       </p>
