@@ -9,7 +9,11 @@ export default function Card({ id, data }) {
         >
           <p className='font-medium italic text-xs'>{data.type}</p>
           <p className='font-semibold text-xl flex items-center space-x-1'>
-            <img src={data.icon} alt={`Foto ${data.title}`} className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`} />
+            <img
+              src={data.icon}
+              alt={`Foto ${data.title}`}
+              className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`}
+            />
             <span>{data.title}</span>
           </p>
           <p className='leading-tight text-xs lg:text-base md:text-justify'>
@@ -45,7 +49,11 @@ export default function Card({ id, data }) {
         >
           <p className='font-medium italic text-xs'>{data.type}</p>
           <p className='font-semibold text-xl flex items-center space-x-1'>
-            <img src={data.icon} alt={`Foto ${data.title}`} className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`} />
+            <img
+              src={data.icon}
+              alt={`Foto ${data.title}`}
+              className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`}
+            />
             <span>{data.title}</span>
           </p>
           <p className='leading-tight text-xs lg:text-base md:text-justify'>
