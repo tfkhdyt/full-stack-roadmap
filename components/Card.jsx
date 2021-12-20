@@ -16,7 +16,7 @@ export default function Card({ id, data }) {
             />
             <span>{data.title}</span>
           </p>
-          <p className={`leading-tight text-xs lg:text-base md:text-justify`}>
+          <p className={`leading-snug text-sm lg:text-base md:text-justify`}>
             {data.description}
           </p>
           <Buttons
@@ -56,7 +56,7 @@ export default function Card({ id, data }) {
             />
             <span>{data.title}</span>
           </p>
-          <p className='leading-tight text-xs lg:text-base md:text-justify'>
+          <p className='leading-snug text-sm lg:text-base md:text-justify'>
             {data.description}
           </p>
           <Buttons
