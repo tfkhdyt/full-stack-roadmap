@@ -79,10 +79,10 @@ export const data = [
     type: 'Runtime Environment',
     description: 'Node.js adalah runtime environment untuk JavaScript di luar browser yang dibangun di atas V8 JavaScript Engine. Node.js dapat dijalankan pada Windows, Mac OS X, dan Linux.',
     icon: '/images/logo/node.svg',
-    bgColor: 'bg-green-500',
-    shadColor: 'shadow-green-500/50',
+    bgColor: 'bg-green-400',
+    shadColor: 'shadow-green-400/50',
     textColor: 'text-gray-800',
-    textColorAlt: 'text-green-500',
+    textColorAlt: 'text-green-400',
     ringColor: 'ring-gray-800',
     buttonColor: 'bg-gray-800',
     linkVideo:
@@ -103,5 +103,20 @@ export const data = [
     linkVideo:
       'https://youtube.com/playlist?list=PL9At9z2rvOC-sgzJx7rM_wMDONnEM4E0A',
     linkDocs: 'https://devdocs.io/express/',
+  },
+  {
+    title: 'React',
+    type: 'Front-end Library',
+    description: 'React adalah front-end JavaScript library untuk membangun user interface yang berdasarkan UI component. React dapat digunakan sebagai basis dalam pengembangan single-page app atau mobile app.',
+    icon: '/images/logo/react2.svg',
+    bgColor: 'bg-sky-500',
+    shadColor: 'shadow-sky-500/50',
+    textColor: 'text-gray-800',
+    textColorAlt: 'text-sky-500',
+    ringColor: 'ring-gray-800',
+    buttonColor: 'bg-gray-800',
+    linkVideo:
+      'https://youtube.com/playlist?list=PLU4DS8KR-LJ03qEsHn9zV4qdhcWtusBqb',
+    linkDocs: 'https://reactjs.org/docs/getting-started.html',
   },
 ]
