@@ -2,16 +2,13 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
 
 import AuthButton from '../../components/AuthButton'
 import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
-
-const MySwal = withReactContent(Swal)
+import { Alert } from '../../config'
 
 function Login() {
   const [email, setEmail] = useState()
@@ -21,13 +18,13 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    MySwal.fire({
+    Alert.fire({
       title: 'Loading...',
       allowEnterKey: false,
       allowEscapeKey: false,
       allowOutsideClick: false,
       didOpen: () => {
-        MySwal.showLoading()
+        Alert.showLoading()
       },
     })
 
@@ -37,12 +34,12 @@ function Login() {
         password,
       })
       .then((res) => {
-        MySwal.close()
+        Alert.close()
         cookie.set('token', res.data.accessToken, {
           path: '/',
           maxAge: 3000000,
         })
-        MySwal.fire({
+        Alert.fire({
           icon: 'success',
           title: 'Login berhasil!',
           text: `Selamat datang, ${res.data.user.fullName}!`,
@@ -53,31 +50,31 @@ function Login() {
         })
       })
       .catch((err) => {
-        MySwal.close()
+        Alert.close()
         switch (err.response.status) {
           case 500:
-            MySwal.fire({
+            Alert.fire({
               icon: 'error',
               title: 'Login gagal!',
               text: 'Terjadi kesalahan pada server',
             })
             break
           case 404:
-            MySwal.fire({
+            Alert.fire({
               icon: 'error',
               title: 'Login gagal!',
               text: 'Akun tidak ditemukan ',
             })
             break
           case 401:
-            MySwal.fire({
+            Alert.fire({
               icon: 'error',
               title: 'Login gagal!',
               text: 'Password salah',
             })
             break
           default:
-            MySwal.fire({
+            Alert.fire({
               icon: 'error',
               title: 'Login gagal!',
             })

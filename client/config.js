@@ -1,6 +1,16 @@
+import Swal from 'sweetalert2'
+
+export const Alert = Swal.mixin({
+  background: '#1f2937',
+  color: '#e5e7eb',
+  allowEnterKey: false,
+  allowEscapeKey: false,
+  allowOutsideClick: false
+})
+
 export default {
   header: "TFKHDYT's Full Stack Roadmap",
-  title: "Full Stack Roadmap | TFKHDYT",
+  title: 'Full Stack Roadmap | TFKHDYT',
   favicon: '/images/favicon.ico',
   link: 'https://roadmap.tfkhdyt.my.id',
   deskripsi:
@@ -13,6 +23,6 @@ export default {
     'Back-end',
     'Developer',
     'Programmer',
-    'Roadmap'
-  ]
+    'Roadmap',
+  ],
 }

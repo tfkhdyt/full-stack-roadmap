@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server'
-import Cookies from 'universal-cookie'
 
 function middleware(req) {
-  const { token, logout } = req.cookies
-  const cookies = new Cookies()
+  const { token } = req.cookies
 
+  if (req.url == '/auth') return NextResponse.redirect('/auth/login')
   if (token) return NextResponse.redirect('/dashboard')
 }
 

@@ -1,7 +1,7 @@
 import Cookies from 'universal-cookie'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import { useRouter } from 'next/router'
+
+import { Alert } from '../../config'
 
 export async function getServerSideProps() {
   return {
@@ -11,16 +11,15 @@ export async function getServerSideProps() {
 
 function Dashboard() {
   const cookies = new Cookies()
-  const MySwal = withReactContent(Swal)
   const router = useRouter()
 
   const handleLogOut = () => {
-    MySwal.fire({
+    Alert.fire({
       icon: 'question',
       title: 'Apakah anda yakin ingin logout?',
       showCancelButton: true,
     }).then((res) => {
-      if (res.isConfirmed || res.isDismissed) {
+      if (res.isConfirmed) {
         cookies.remove('token')
         router.push('/auth/login')
       }

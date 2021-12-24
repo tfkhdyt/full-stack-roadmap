@@ -2,15 +2,12 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
 
 import AuthButton from '../../components/AuthButton'
 import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
-
-const MySwal = withReactContent(Swal)
+import { Alert } from '../../config'
 
 function Register() {
   const [fullName, setFullName] = useState()
@@ -21,13 +18,13 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(password)
-    MySwal.fire({
+    Alert.fire({
       title: 'Loading...',
       allowEnterKey: false,
       allowEscapeKey: false,
       allowOutsideClick: false,
       didOpen: () => {
-        MySwal.showLoading()
+        Alert.showLoading()
       },
     })
 
@@ -38,8 +35,8 @@ function Register() {
         password,
       })
       .then((res) => {
-        MySwal.close()
-        MySwal.fire({
+        Alert.close()
+        Alert.fire({
           icon: 'success',
           title: 'Registrasi berhasil!',
           text: 'Pergi ke halaman login?',
@@ -53,8 +50,8 @@ function Register() {
         })
       })
       .catch((err) => {
-        MySwal.close()
-        MySwal.fire({
+        Alert.close()
+        Alert.fire({
           icon: 'error',
           title: 'Registrasi gagal!',
         })
