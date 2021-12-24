@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server'
 
 function Middleware(req) {
-  const { token } = req.cookies
+  const { token, logout } = req.cookies
 
   if (!token) {
-    const res = NextResponse.redirect('/auth/login')
-    return res.cookie('msg', 'unauthenticated')
+    return NextResponse.redirect('/auth/login')
   }
 }
 

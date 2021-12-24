@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server'
-import Swal from 'sweetalert2'
+import Cookies from 'universal-cookie'
 
 function middleware(req) {
-  const { token, msg } = req.cookies
+  const { token, logout } = req.cookies
+  const cookies = new Cookies()
 
   if (token) return NextResponse.redirect('/dashboard')
 }

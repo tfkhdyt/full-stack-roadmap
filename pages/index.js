@@ -11,7 +11,6 @@ export default function Home() {
       <Head>
         <MetaTags />
         <title>{Config.title}</title>
-        <link rel='shortcut icon' href={Config.favicon} />
       </Head>
       <div className='flex flex-col p-4 space-y-4'>
         <Header />

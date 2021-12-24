@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+import Link from 'next/link'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
-import moment from 'moment'
 
 import AuthButton from '../../components/AuthButton'
 import AuthHeader from '../../components/AuthHeader'
@@ -18,16 +18,6 @@ function Login() {
   const [password, setPassword] = useState()
   const router = useRouter()
   const cookie = new Cookies()
-
-  useEffect(() => {
-    if (cookie.get('msg') == 'unauthenticated') {
-      cookie.remove('msg')
-      MySwal.fire({
-        icon: 'warning',
-        title: 'Anda harus login terlebih dahulu!',
-      })
-    }
-  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -50,13 +40,14 @@ function Login() {
         MySwal.close()
         cookie.set('token', res.data.accessToken, {
           path: '/',
-          maxAge: moment().add(1, 'months'),
+          maxAge: 3000000,
         })
         MySwal.fire({
           icon: 'success',
           title: 'Login berhasil!',
+          text: `Selamat datang, ${res.data.user.fullName}!`,
         }).then((res) => {
-          if (res.isConfirmed) {
+          if (res.isConfirmed || res.isDismissed) {
             router.push('/dashboard')
           }
         })
@@ -96,35 +87,40 @@ function Login() {
   }
 
   return (
-    <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-56'>
-      <div className='flex justify-center'>
-        <AuthHeader>Login</AuthHeader>
-      </div>
-      <div className='px-6'>
-        <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
-          <InputForm
-            label='Email'
-            id='email'
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <InputForm
-            label='Password'
-            id='password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <AuthButton type='login'>Login</AuthButton>
-        </form>
-      </div>
-      <div className='px-6'>
-        <p className='text-gray-200 text-sm mt-4 flex items-center font-light'>
-          Belum punya akun?{' '}
-          <Link href='/auth/register'>
-            <a className='bg-green-600 px-2 py-1 rounded-md text-xs mx-2 font-medium'>
-              Register
-            </a>
-          </Link>{' '}
-          sekarang!
-        </p>
+    <div>
+      <Head>
+        <title>Login | Full Stack Roadmap</title>
+      </Head>
+      <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-56'>
+        <div className='flex justify-center'>
+          <AuthHeader>Login</AuthHeader>
+        </div>
+        <div className='px-6'>
+          <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
+            <InputForm
+              label='Email'
+              id='email'
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <InputForm
+              label='Password'
+              id='password'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <AuthButton type='login'>Login</AuthButton>
+          </form>
+        </div>
+        <div className='px-6'>
+          <p className='text-gray-200 text-sm mt-4 flex items-center font-light'>
+            Belum punya akun?{' '}
+            <Link href='/auth/register'>
+              <a className='bg-green-600 px-2 py-1 rounded-md text-xs mx-2 font-medium'>
+                Register
+              </a>
+            </Link>{' '}
+            sekarang!
+          </p>
+        </div>
       </div>
     </div>
   )
