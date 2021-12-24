@@ -24,10 +24,10 @@ function Login() {
       cookie.remove('msg')
       MySwal.fire({
         icon: 'warning',
-        title: 'Anda harus login terlebih dahulu!'
+        title: 'Anda harus login terlebih dahulu!',
       })
     }
-  }, []) 
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

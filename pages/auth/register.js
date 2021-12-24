@@ -44,13 +44,12 @@ function Register() {
           text: 'Pergi ke halaman login?',
           showCancelButton: true,
           confirmButtonText: 'Ya',
-          cancelButtonText: 'Tidak'
+          cancelButtonText: 'Tidak',
+        }).then((res) => {
+          if (res.isConfirmed) {
+            router.push('/auth/login')
+          }
         })
-          .then((res) => {
-            if (res.isConfirmed) {
-              router.push('/auth/login')
-            }
-          })
       })
       .catch((err) => {
         MySwal.close()
@@ -64,9 +63,7 @@ function Register() {
   return (
     <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-56'>
       <div className='flex justify-center'>
-        <AuthHeader>
-          Registration
-        </AuthHeader>
+        <AuthHeader>Registration</AuthHeader>
       </div>
       <div className='px-6'>
         <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
