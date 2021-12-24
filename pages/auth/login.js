@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
@@ -18,12 +18,16 @@ function Login() {
   const [password, setPassword] = useState()
   const router = useRouter()
   const cookie = new Cookies()
-  const [token] = useState(cookie.get('token') || null)
 
   useEffect(() => {
-    if (token)
-      router.push('/dashboard')
-  }, [token])
+    if (cookie.get('msg') == 'unauthenticated') {
+      cookie.remove('msg')
+      MySwal.fire({
+        icon: 'warning',
+        title: 'Anda harus login terlebih dahulu!'
+      })
+    }
+  }, []) 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
