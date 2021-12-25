@@ -36,7 +36,7 @@ exports.getRoadmaps = async (req, res) => {
 
   if (req.user.role === 'admin') {
     try {
-      const result = await roadmap.find()
+      const result = await roadmap.find().sort('order')
       res.status(200).send({
         message: 'Query berhasil',
         data: result

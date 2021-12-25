@@ -23,8 +23,6 @@ process.on('unhandledRejection', (error) => {
   console.log('unhandledRejection', error.message)
 })
 
-app.use(cors())
-
 // parse requests of content-type - application/json
 app.use(express.json())
 
@@ -34,6 +32,11 @@ app.use(
     extended: true,
   })
 )
+
+app.use(cors({
+  origin: '*',
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}))
 
 //using routes
 app.use(routes)

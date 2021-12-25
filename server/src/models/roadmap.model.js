@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 const roadmapSchema = new Schema({
   order: {
     type: Number,
-    required: [true, 'Tolong masukkan nomor order'],
-    unique: [true, 'Nomor order telah digunakan']
+    unique: [true, 'Nomor order telah digunakan'],
+    default: Date.now
   },
   title: {
     type: String,
