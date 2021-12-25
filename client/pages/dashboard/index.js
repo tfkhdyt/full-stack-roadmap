@@ -2,36 +2,37 @@ import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Axios from 'axios'
-import useSWR from 'swr'
 
 import { Alert } from '../../config'
 import Loading from '../../components/Loading'
 
 const cookies = new Cookies()
-const token = cookies.get('token')
 
-const fetcher = async (url) => {
-  return Axios.get(url, {
+export async function getServerSideProps ({ req }) {
+  const cookies = new Cookies(req.headers.cookie)
+  const res = await Axios.get('http://localhost:4000/roadmap', {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${cookies.get('token')}`
+    }
   }).then((res) => res.data.data)
+  return {
+    props: {
+      res
+    }
+  }
 }
 
-function Dashboard() {
+function Dashboard({ res }) {
   const [accepted, setAccepted] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
-  const { data, error } = useSWR('http://localhost:4000/roadmap', fetcher)
 
   useEffect(() => {
-    if (error) {
-      return Alert.fire({
-        icon: 'error',
-        text: 'Telah terjadi error saat mengambil data dari database',
-      })
-    }
-    if (data) {
+    console.log(res)
+  }, [])
+
+  useEffect(() => {
+    if (res) {
       setIsLoading(false)
     }
   })
@@ -88,8 +89,8 @@ function Dashboard() {
           </div>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          {data &&
-            data
+          {res &&
+            res
               .filter((e) => e.accepted == accepted)
               .map((e, i) => {
                 return (

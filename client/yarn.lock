@@ -800,7 +800,7 @@ convert-source-map@1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-cookie@^0.4.0:
+cookie@^0.4.0, cookie@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.1.tgz#afd713fe26ebd21ba95ceb61f9a8116e50a537d1"
   integrity sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==
@@ -2972,11 +2972,6 @@ sweetalert2@^11.3.0:
   version "11.3.0"
   resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.3.0.tgz#39be4b23a02be479f36441f3a5f16a5d6364aba3"
   integrity sha512-C0TFp0VLxgx+PmhJ0mL8qzx+iYjnCLdDbvQHKY6KAGI+xwawMvLkStPgw2LmJl6itaDhR/qLQStPFIbr1VK9Ow==
-
-swr@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-1.1.1.tgz#f13346cc830d7950183af57b341bfabb4cc90d43"
-  integrity sha512-ZpUHyU3N3snj2QGFeE2Fd3BXl1CVS6YQIQGb1ttPAkTmvwZqDyV3GRMNPsaeAYCBM74tfn4XbKx28FVQR0mS7Q==
 
 tailwindcss@^3.0.0:
   version "3.0.7"
