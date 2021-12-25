@@ -22,7 +22,6 @@ const roadmapSchema = new Schema({
   },
   icon: {
     type: String,
-    required: [true, 'Tolong masukkan icon'],
   },
   color: {
     type: String,

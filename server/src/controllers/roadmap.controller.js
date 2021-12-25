@@ -27,63 +27,42 @@ exports.addRoadmap = async (req, res) => {
   }
 }
 
-exports.getRoadmapsById = async (req, res) => {
+exports.getRoadmaps = async (req, res) => {
   if (!req.user) {
     res.status(401).send({
-      message: 'Invalid JWT Token',
+      message: 'Invalid JWT token'
     })
   }
 
-  console.log(req.user._id)
+  if (req.user.role === 'admin') {
+    try {
+      const result = await roadmap.find()
+      res.status(200).send({
+        message: 'Query berhasil',
+        data: result
+      })
+    } catch (err) {
+      res.status(500).send({
+        message: 'Query gagal',
+        data: err.message
+      })
+    }
+  } else {
+    try {
+      const result = await roadmap.find({
+        userId: req.user._id
+      })
+      res.status(200).send({
+        message: 'Query berhasil',
+        data: result
+      })
+    } catch (err) {
+      res.status(500).send({
+        message: 'Query gagal',
+        data: err.message
+      })
+    }
 
-  try {
-    const result = await roadmap.find({
-      userId: req.user._id
-    })
-    res.status(200).send({
-      message: 'Query berhasil',
-      data: result
-    })
-  } catch (err) {
-    res.status(500).send({
-      message: 'Query gagal',
-      data: err.message
-    })
   }
 }
 
-exports.getRoadmapsByStatus = async (req, res) => {
-  if (!req.user) {
-    res.status(401).send({
-      message: 'Invalid JWT Token',
-    })
-  }
-
-  const { status } = req.params
-
-  let accepted
-  if (status == 'accepted')
-    accepted = true
-  else if (status == 'pending')
-    accepted = false
-  else {
-    res.status(404).send({
-      message: 'Status tidak valid'
-    })
-  }
-
-  try {
-    const result = await roadmap.find({
-      accepted: accepted
-    })
-    res.status(200).send({
-      message: 'Query berhasil',
-      data: result
-    })
-  } catch (err) {
-    res.status(500).send({
-      message: 'Query gagal',
-      data: err.message
-    })
-  }
-}
