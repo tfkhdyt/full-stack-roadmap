@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
-const userRoutes = require('./src/routes/user.route')
+const routes = require('./src/routes/route')
 
 require('dotenv').config()
 
@@ -35,8 +35,8 @@ app.use(
   })
 )
 
-//using user route
-app.use(userRoutes)
+//using routes
+app.use(routes)
 
 //setup server to listen on port 8080
 app.listen(process.env.PORT || 4000, () => {

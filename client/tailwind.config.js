@@ -11,4 +11,10 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(bg|shadow|text|ring)-.+-.+\/.+/,
+      variants: ['selection'],
+    },
+  ],
 }
