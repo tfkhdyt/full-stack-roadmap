@@ -5,12 +5,12 @@ const roadmapSchema = new Schema({
   order: {
     type: Number,
     unique: [true, 'Nomor order telah digunakan'],
-    default: Date.now
+    default: Date.now,
   },
   title: {
     type: String,
     required: [true, 'Tolong masukkan title'],
-    unique: [true, 'Title telah digunakan']
+    unique: [true, 'Title telah digunakan'],
   },
   type: {
     type: String,
@@ -37,12 +37,12 @@ const roadmapSchema = new Schema({
   },
   accepted: {
     type: Boolean,
-    required: [true, 'Tolong masukkan status'], 
+    required: [true, 'Tolong masukkan status'],
   },
   userId: {
     type: String,
-    required: [true, 'Tolong masukkan user id'], 
-  }
+    required: [true, 'Tolong masukkan user id'],
+  },
 })
 
 module.exports = mongoose.model('Roadmap', roadmapSchema)

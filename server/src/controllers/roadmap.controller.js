@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt')
-
 const roadmap = require('../models/roadmap.model')
 
 exports.addRoadmap = async (req, res) => {
@@ -17,12 +15,12 @@ exports.addRoadmap = async (req, res) => {
     })
     res.status(200).send({
       message: 'Input data berhasil',
-      data: result
+      data: result,
     })
   } catch (err) {
     res.status(500).send({
       message: 'Input data gagal',
-      data: err.message
+      data: err.message,
     })
   }
 }
@@ -30,7 +28,7 @@ exports.addRoadmap = async (req, res) => {
 exports.getRoadmaps = async (req, res) => {
   if (!req.user) {
     res.status(401).send({
-      message: 'Invalid JWT token'
+      message: 'Invalid JWT token',
     })
   }
 
@@ -39,30 +37,28 @@ exports.getRoadmaps = async (req, res) => {
       const result = await roadmap.find().sort('order')
       res.status(200).send({
         message: 'Query berhasil',
-        data: result
+        data: result,
       })
     } catch (err) {
       res.status(500).send({
         message: 'Query gagal',
-        data: err.message
+        data: err.message,
       })
     }
   } else {
     try {
       const result = await roadmap.find({
-        userId: req.user._id
+        userId: req.user._id,
       })
       res.status(200).send({
         message: 'Query berhasil',
-        data: result
+        data: result,
       })
     } catch (err) {
       res.status(500).send({
         message: 'Query gagal',
-        data: err.message
+        data: err.message,
       })
     }
-
   }
 }
-

@@ -8,17 +8,17 @@ import Loading from '../../components/Loading'
 
 const cookies = new Cookies()
 
-export async function getServerSideProps ({ req }) {
+export async function getServerSideProps({ req }) {
   const cookies = new Cookies(req.headers.cookie)
   const res = await Axios.get('http://localhost:4000/roadmap', {
     headers: {
-      Authorization: `Bearer ${cookies.get('token')}`
-    }
+      Authorization: `Bearer ${cookies.get('token')}`,
+    },
   }).then((res) => res.data.data)
   return {
     props: {
-      res
-    }
+      res,
+    },
   }
 }
 
