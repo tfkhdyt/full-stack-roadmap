@@ -20,6 +20,7 @@
     "dev": "nodemon app.js"
   },
   "devDependencies": {
-    "eslint": "^8.5.0"
+    "eslint": "^8.5.0",
+    "prettier": "^2.5.1"
   }
 }
