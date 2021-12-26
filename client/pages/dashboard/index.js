@@ -121,7 +121,6 @@ function Dashboard({ status, error, data }) {
                     className={`rounded-md bg-${e.color} shadow-md shadow-${e.color}/50 p-3 flex justify-between items-center`}
                   >
                     <div className='flex items-center space-x-2'>
-                      <p className='font-bold text-gray-800'>({e.order})</p>
                       <img
                         src={e.icon}
                         alt={`Icon ${e.title}`}

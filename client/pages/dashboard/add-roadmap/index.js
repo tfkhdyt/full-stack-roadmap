@@ -8,6 +8,7 @@ import { Alert } from '../../../config'
 import InputForm from '../../../components/InputForm'
 import TextAreaForm from '../../../components/TextAreaForm'
 import FormButton from '../../../components/FormButton'
+import Head from 'next/head'
 
 const cookies = new Cookies()
 
@@ -22,11 +23,75 @@ function AddRoadmap() {
   const [linkDocs, setLinkDocs] = useState()
   const router = useRouter()
 
-  const handleSubmit = () => {}
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    Alert.fire({
+      title: 'Loading...',
+      allowEnterKey: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Alert.showLoading()
+      },
+    })
+
+    Axios.post(
+      'http://localhost:4000/roadmap',
+      {
+        title,
+        type,
+        description,
+        icon,
+        color,
+        linkVideo,
+        linkDocs,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${cookies.get('token')}`,
+        },
+      }
+    )
+      .then((res) => {
+        Alert.close()
+        Alert.fire({
+          icon: 'success',
+          title: 'Add data berhasil!',
+        }).then((res) => {
+          if (res.isConfirmed) {
+            router.push('/dashboard')
+          }
+        })
+      })
+      .catch((err) => {
+        Alert.close()
+        switch (err.response.status) {
+          case 500:
+            Alert.fire({
+              icon: 'error',
+              title: 'Add data gagal!',
+              text: 'Terjadi kesalahan pada server',
+            })
+            break
+          case 401:
+            cookies.remove('token')
+            router.push('/auth/login')
+          default:
+            Alert.fire({
+              icon: 'error',
+              title: 'Add data gagal!',
+            })
+            break
+        }
+      })
+  }
 
   return (
     <div>
-      <div className='px-6 md:px-56 lg:px-64 py-3 pb-12 text-gray-200 space-y-3'>
+      <Head>
+        <title>Add Data | Full Stack Roadmap</title>
+      </Head>
+      <div className='px-6 md:px-56 lg:px-96 py-3 pb-12 text-gray-200 space-y-3'>
         <p className='font-extrabold text-2xl flex justify-center'>
           Add Roadmap
         </p>
