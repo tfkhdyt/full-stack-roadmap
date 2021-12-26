@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import { Alert } from '../../config'
 import Loading from '../../components/Loading'
+import Head from 'next/head'
 
 const cookies = new Cookies()
 
@@ -76,20 +77,23 @@ function Dashboard({ status, error, data }) {
 
   return (
     <div>
+      <Head>
+        <title>Dashboard | Full Stack Roadmap</title>
+      </Head>
       <Loading isLoading={isLoading} />
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-3'>
         <p className='font-extrabold text-2xl flex justify-center'>Dashboard</p>
         <div className='flex flex-wrap justify-center gap-2 text-sm'>
           <Link href='/dashboard/add-roadmap'>
-            <a className='font-semibold px-1.5 py-1 bg-sky-400 rounded shadow-md shadow-sky-400/50 hover:bg-sky-600 transition duration-500 ease-in-out text-gray-800'>
+            <a className='font-semibold px-1.5 py-1 bg-sky-600 rounded shadow-md shadow-sky-600/50 hover:bg-sky-700 transition duration-500 ease-in-out text-gray-200'>
               Add Data
             </a>
           </Link>
-          <button className='font-semibold px-1.5 py-1 bg-purple-400 rounded shadow-md shadow-purple-400/50 hover:bg-purple-600 transition duration-500 ease-in-out text-gray-800'>
+          <button className='font-semibold px-1.5 py-1 bg-purple-500 rounded shadow-md shadow-purple-500/50 hover:bg-purple-600 transition duration-500 ease-in-out text-gray-200'>
             Edit Profile
           </button>
           <button
-            className='font-semibold px-1.5 py-1 bg-red-400 rounded shadow-md shadow-red-400/50 hover:bg-red-500 transition duration-500 ease-in-out text-gray-800'
+            className='font-semibold px-1.5 py-1 bg-red-400 rounded shadow-md shadow-red-400/50 hover:bg-red-500 transition duration-500 ease-in-out text-gray-200'
             onClick={handleLogOut}
           >
             Logout
@@ -100,7 +104,7 @@ function Dashboard({ status, error, data }) {
             <div className='font-semibold'>Filter : </div>
             <button
               onClick={handleStatus}
-              className={`px-2 py-1 transition duration-500 ease-in-out rounded-md shadow-md font-semibold text-gray-800 ${
+              className={`px-2 py-1 transition duration-500 ease-in-out rounded-md shadow-md font-semibold text-gray-200 ${
                 accepted
                   ? 'bg-emerald-600 shadow-emerald-600/50'
                   : 'bg-slate-400 shadow-slate-400/50'

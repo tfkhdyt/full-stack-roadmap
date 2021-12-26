@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Axios from 'axios'
+import Head from 'next/head'
 import Cookies from 'universal-cookie'
-import Link from 'next/link'
 
 import { Alert } from '../../../config'
+import FormButton from '../../../components/FormButton'
 import InputForm from '../../../components/InputForm'
 import TextAreaForm from '../../../components/TextAreaForm'
-import FormButton from '../../../components/FormButton'
-import Head from 'next/head'
 
 const cookies = new Cookies()
 
 function AddRoadmap() {
-  const [isLoading, setIsLoading] = useState(true)
   const [title, setTitle] = useState()
   const [type, setType] = useState()
   const [description, setDescription] = useState()
