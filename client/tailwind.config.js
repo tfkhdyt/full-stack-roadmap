@@ -14,7 +14,7 @@ module.exports = {
   safelist: [
     {
       pattern: /(bg|shadow|text|ring)-.+-.+\/.+/,
-      variants: ['selection'],
+      variants: ['hover', 'selection'],
     },
   ],
 }

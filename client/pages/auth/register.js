@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import axios from 'axios'
 
-import AuthButton from '../../components/AuthButton'
+import FormButton from '../../components/FormButton'
 import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
 import { Alert } from '../../config'
@@ -84,14 +84,14 @@ function Register() {
               id='password'
               onChange={(e) => setPassword(e.target.value)}
             />
-            <AuthButton type='register'>Register</AuthButton>
+            <FormButton color='green-600'>Register</FormButton>
           </form>
         </div>
         <div className='px-6'>
           <p className='text-gray-200 text-sm mt-4 flex items-center font-light'>
             Sudah punya akun?{' '}
             <Link href='/auth/login'>
-              <a className='bg-sky-600 px-2 py-1 rounded-md text-xs mx-2 font-medium'>
+              <a className='bg-sky-600 px-2 py-1 rounded-md text-xs mx-2 font-medium text-gray-800'>
                 Login
               </a>
             </Link>{' '}

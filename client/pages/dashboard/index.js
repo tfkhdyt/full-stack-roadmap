@@ -1,7 +1,8 @@
-import Cookies from 'universal-cookie'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Axios from 'axios'
+import Cookies from 'universal-cookie'
+import Link from 'next/link'
 
 import { Alert } from '../../config'
 import Loading from '../../components/Loading'
@@ -10,29 +11,48 @@ const cookies = new Cookies()
 
 export async function getServerSideProps({ req }) {
   const cookies = new Cookies(req.headers.cookie)
-  const res = await Axios.get('http://localhost:4000/roadmap', {
-    headers: {
-      Authorization: `Bearer ${cookies.get('token')}`,
-    },
-  }).then((res) => res.data.data)
-  return {
-    props: {
-      res,
-    },
+  try {
+    const res = await Axios.get('http://localhost:4000/roadmap', {
+      headers: {
+        Authorization: `Bearer ${cookies.get('token')}`,
+      },
+    })
+    return {
+      props: {
+        status: res.status,
+        error: null,
+        data: res.data.data,
+      },
+    }
+  } catch (err) {
+    return {
+      props: {
+        status: err.response.status,
+        error: err,
+        data: null,
+      },
+    }
   }
 }
 
-function Dashboard({ res }) {
+function Dashboard({ status, error, data }) {
   const [accepted, setAccepted] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
-    console.log(res)
+    console.log(data)
   }, [])
 
   useEffect(() => {
-    if (res) {
+    if (status === 401) {
+      router.push('/auth/login')
+    } else if (status === 500) {
+      Alert.fire({
+        icon: 'error',
+        title: 'Data fetching failed!',
+      })
+    } else if (data) {
       setIsLoading(false)
     }
   })
@@ -60,9 +80,11 @@ function Dashboard({ res }) {
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-3'>
         <p className='font-extrabold text-2xl flex justify-center'>Dashboard</p>
         <div className='flex flex-wrap justify-center gap-2 text-sm'>
-          <button className='font-semibold px-1.5 py-1 bg-sky-400 rounded shadow-md shadow-sky-400/50 hover:bg-sky-600 transition duration-500 ease-in-out text-gray-800'>
-            Add Data
-          </button>
+          <Link href='/dashboard/add-roadmap'>
+            <a className='font-semibold px-1.5 py-1 bg-sky-400 rounded shadow-md shadow-sky-400/50 hover:bg-sky-600 transition duration-500 ease-in-out text-gray-800'>
+              Add Data
+            </a>
+          </Link>
           <button className='font-semibold px-1.5 py-1 bg-purple-400 rounded shadow-md shadow-purple-400/50 hover:bg-purple-600 transition duration-500 ease-in-out text-gray-800'>
             Edit Profile
           </button>
@@ -89,8 +111,8 @@ function Dashboard({ res }) {
           </div>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          {res &&
-            res
+          {data &&
+            data
               .filter((e) => e.accepted == accepted)
               .map((e, i) => {
                 return (
@@ -99,6 +121,7 @@ function Dashboard({ res }) {
                     className={`rounded-md bg-${e.color} shadow-md shadow-${e.color}/50 p-3 flex justify-between items-center`}
                   >
                     <div className='flex items-center space-x-2'>
+                      <p className='font-bold text-gray-800'>({e.order})</p>
                       <img
                         src={e.icon}
                         alt={`Icon ${e.title}`}
@@ -107,7 +130,7 @@ function Dashboard({ res }) {
                           '[marginLeft:-2px] [marginRight:-5px]'
                         }`}
                       />
-                      <p className='font-bold text-lg text-gray-800'>
+                      <p className='font-semibold text-lg text-gray-800'>
                         {e.title}
                       </p>
                     </div>
