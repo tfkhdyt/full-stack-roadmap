@@ -9,6 +9,7 @@ import FormButton from '../../components/FormButton'
 import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
 import { Alert } from '../../config'
+import {route} from 'next/dist/server/router'
 
 function Login() {
   const [email, setEmail] = useState()
@@ -34,20 +35,12 @@ function Login() {
         password,
       })
       .then((res) => {
-        Alert.close()
         cookie.set('token', res.data.accessToken, {
           path: '/',
           maxAge: 3000000,
         })
-        Alert.fire({
-          icon: 'success',
-          title: 'Login berhasil!',
-          text: `Selamat datang, ${res.data.user.fullName}!`,
-        }).then((res) => {
-          if (res.isConfirmed || res.isDismissed) {
-            router.push('/dashboard')
-          }
-        })
+        router.push('/dashboard')
+        Alert.close()
       })
       .catch((err) => {
         Alert.close()

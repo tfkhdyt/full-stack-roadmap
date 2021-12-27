@@ -55,8 +55,8 @@ export default function OptionButton({ data, role }) {
           },
         }
       )
-      Alert.close()
       refreshData()
+      Alert.close()
     } catch (err) {
       console.log(err)
       switch (err.response.status) {

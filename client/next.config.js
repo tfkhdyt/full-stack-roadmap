@@ -8,4 +8,16 @@ module.exports = {
       },
     ]
   },
+  rewrites: async () => {
+    return [
+      {
+        source: '/login',
+        destination: '/auth/login'
+      },
+      {
+        source: '/register',
+        destination: '/auth/register'
+      }
+    ]
+  }
 }
