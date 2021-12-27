@@ -62,7 +62,7 @@ function Dashboard({ status, error, data, role }) {
       showCancelButton: true,
     }).then((res) => {
       if (res.isConfirmed) {
-        cookies.remove('token')
+        cookies.remove('token', { path: '/' })
         if (!cookies.get('token'))
           router.push('/auth/login')     
       }
