@@ -9,8 +9,6 @@ import { Alert } from '../../config'
 import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
 
-const cookies = new Cookies()
-
 export async function getServerSideProps({ req }) {
   const cookies = new Cookies(req.headers.cookie)
   try {
@@ -39,16 +37,17 @@ export async function getServerSideProps({ req }) {
 }
 
 function Dashboard({ status, error, data, role }) {
+  const cookies = new Cookies()
+  const router = useRouter()
   const [accepted, setAccepted] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
-  const router = useRouter()
 
   useEffect(() => {
     console.log(data)
   }, [])
 
   useEffect(() => {
-    if (status === 401) {
+    if (status === 401 || !cookies.get('token')) {
       router.push('/auth/login')
     } else if (status === 500) {
       Alert.fire({
@@ -68,9 +67,6 @@ function Dashboard({ status, error, data, role }) {
     }).then((res) => {
       if (res.isConfirmed) {
         cookies.remove('token')
-        cookies.addChangeListener(() => {
-          router.push('/auth/login')
-        })
       }
     })
   }
@@ -128,7 +124,7 @@ function Dashboard({ status, error, data, role }) {
                     key={e._id}
                     className={`rounded-md bg-${e.color} shadow-md shadow-${e.color}/50 p-3 flex justify-between items-center`}
                   >
-                    <Link href={`/dashboard/detail/${e._id}`}>
+                    <Link href={`/dashboard/detail/${e._id}`} passHref>
                       <div className='flex items-center space-x-2 flex-1'>
                         <img
                           src={e.icon}

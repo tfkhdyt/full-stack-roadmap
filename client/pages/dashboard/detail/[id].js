@@ -2,12 +2,10 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import axios from 'axios'
 
-export async function getServerSideProps ({ query }) {
+export async function getServerSideProps({ query }) {
   try {
     // const res = await axios.get()
-  } catch (err) {
-
-  }
+  } catch (err) {}
 }
 
 export default function Detail() {
