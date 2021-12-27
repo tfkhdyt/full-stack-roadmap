@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cookie": "^0.4.1",
+    "dotenv": "^10.0.0",
     "moment": "^2.29.1",
     "next": "latest",
     "react": "^17.0.2",
