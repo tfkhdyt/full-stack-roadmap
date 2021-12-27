@@ -126,19 +126,21 @@ function Dashboard({ status, error, data, role }) {
                     key={e._id}
                     className={`rounded-md bg-${e.color} shadow-md shadow-${e.color}/50 p-3 flex justify-between items-center`}
                   >
-                    <div className='flex items-center space-x-2'>
-                      <img
-                        src={e.icon}
-                        alt={`Icon ${e.title}`}
-                        className={`h-5 ${
-                          e.title == 'HTML' &&
-                          '[marginLeft:-2px] [marginRight:-5px]'
-                        } ${e.title == 'Bootstrap' && 'h-4'}`}
-                      />
-                      <p className='font-semibold text-lg text-gray-800'>
-                        {e.title}
-                      </p>
-                    </div>
+                    <Link href={`/dashboard/detail/${e._id}`}>
+                      <div className='flex items-center space-x-2 flex-1'>
+                        <img
+                          src={e.icon}
+                          alt={`Icon ${e.title}`}
+                          className={`h-5 ${
+                            e.title == 'HTML' &&
+                            '[marginLeft:-2px] [marginRight:-5px]'
+                          } ${e.title == 'Bootstrap' && 'h-4'}`}
+                        />
+                        <p className='font-semibold text-lg text-gray-800'>
+                          {e.title}
+                        </p>
+                      </div>
+                    </Link>
                     {/* option button */}
                     <OptionButton data={e} role={role} />
                     {/* ---------- */}
