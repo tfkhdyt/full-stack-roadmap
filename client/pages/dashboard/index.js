@@ -68,7 +68,9 @@ function Dashboard({ status, error, data, role }) {
     }).then((res) => {
       if (res.isConfirmed) {
         cookies.remove('token')
-        router.push('/auth/login')
+        cookies.addChangeListener(() => {
+          router.push('/auth/login')
+        })
       }
     })
   }
