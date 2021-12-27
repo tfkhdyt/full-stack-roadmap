@@ -24,7 +24,7 @@ export async function getServerSideProps({ req }) {
         status: res.status,
         error: null,
         data: res.data.data,
-        role: res.data.role
+        role: res.data.role,
       },
     }
   } catch (err) {
@@ -140,7 +140,7 @@ function Dashboard({ status, error, data, role }) {
                       </p>
                     </div>
                     {/* option button */}
-                    <OptionButton data={e} role={role} />                    
+                    <OptionButton data={e} role={role} />
                     {/* ---------- */}
                   </div>
                 )

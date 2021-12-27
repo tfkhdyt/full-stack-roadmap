@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
-import {Alert} from '../config'
+import { Alert } from '../config'
 
 const cookies = new Cookies()
 
@@ -33,7 +33,7 @@ export default function OptionButton({ data, role }) {
   }
 
   const refreshData = () => {
-    router.replace(router.asPath);
+    router.replace(router.asPath)
   }
 
   const changeStatus = async () => {
@@ -42,8 +42,8 @@ export default function OptionButton({ data, role }) {
         title: 'Loading...',
         didOpen: () => {
           Alert.showLoading()
-        }
-      }) 
+        },
+      })
       await axios.patch(
         `http://localhost:4000/roadmap/${data._id}`,
         {
@@ -73,7 +73,7 @@ export default function OptionButton({ data, role }) {
         case 404:
           Alert.fire({
             icon: 'error',
-            title: 'Data tidak ditemukan'
+            title: 'Data tidak ditemukan',
           })
         default:
           Alert.fire({
@@ -95,7 +95,9 @@ export default function OptionButton({ data, role }) {
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className={`h-5 w-5 ${isOpened ? `fill-${data.color}` : 'fill-gray-800'}`}
+          className={`h-5 w-5 ${
+            isOpened ? `fill-${data.color}` : 'fill-gray-800'
+          }`}
           viewBox='0 0 20 20'
           fill='currentColor'
         >
@@ -108,12 +110,14 @@ export default function OptionButton({ data, role }) {
           isOpened ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } transition duration-200 ease-in-out z-50 space-y-2`}
       >
-        {role === 'admin' && <button
-          className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'
-          onClick={changeStatus}
-        >
-          {data.accepted ? 'Pend' : 'Accept'}
-        </button>}
+        {role === 'admin' && (
+          <button
+            className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'
+            onClick={changeStatus}
+          >
+            {data.accepted ? 'Pend' : 'Accept'}
+          </button>
+        )}
         <button className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'>
           Edit Data
         </button>

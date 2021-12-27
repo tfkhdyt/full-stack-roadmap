@@ -6,7 +6,11 @@ const {
   updateUser,
   deleteUser,
 } = require('../controllers/user.controller')
-const { addRoadmap, getRoadmaps, editRoadmap } = require('../controllers/roadmap.controller')
+const {
+  addRoadmap,
+  getRoadmaps,
+  editRoadmap,
+} = require('../controllers/roadmap.controller')
 const verifyToken = require('../middlewares/authJWT')
 
 const router = express.Router()

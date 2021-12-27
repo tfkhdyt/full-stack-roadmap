@@ -38,7 +38,7 @@ exports.getRoadmaps = async (req, res) => {
       res.status(200).send({
         message: 'Query berhasil',
         data: result,
-        role: req.user.role
+        role: req.user.role,
       })
     } catch (err) {
       res.status(500).send({
@@ -54,7 +54,7 @@ exports.getRoadmaps = async (req, res) => {
       res.status(200).send({
         message: 'Query berhasil',
         data: result,
-        role: req.user.role
+        role: req.user.role,
       })
     } catch (err) {
       res.status(500).send({
