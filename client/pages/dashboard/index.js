@@ -43,11 +43,7 @@ function Dashboard({ status, error, data, role }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    console.log(data)
-  }, [])
-
-  useEffect(() => {
-    if (status === 401 || !cookies.get('token')) {
+    if (status === 401) {
       router.push('/auth/login')
     } else if (status === 500) {
       Alert.fire({
@@ -67,6 +63,8 @@ function Dashboard({ status, error, data, role }) {
     }).then((res) => {
       if (res.isConfirmed) {
         cookies.remove('token')
+        if (!cookies.get('token'))
+          router.push('/auth/login')     
       }
     })
   }
