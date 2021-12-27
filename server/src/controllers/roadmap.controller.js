@@ -38,6 +38,7 @@ exports.getRoadmaps = async (req, res) => {
       res.status(200).send({
         message: 'Query berhasil',
         data: result,
+        role: req.user.role
       })
     } catch (err) {
       res.status(500).send({
@@ -53,6 +54,7 @@ exports.getRoadmaps = async (req, res) => {
       res.status(200).send({
         message: 'Query berhasil',
         data: result,
+        role: req.user.role
       })
     } catch (err) {
       res.status(500).send({
@@ -60,5 +62,37 @@ exports.getRoadmaps = async (req, res) => {
         data: err.message,
       })
     }
+  }
+}
+
+exports.editRoadmap = async (req, res) => {
+  if (!req.user) {
+    res.status(401).send({
+      message: 'Invalid JWT Token',
+    })
+  }
+
+  const { id } = req.params
+  let updatedUser
+  try {
+    updatedUser = await roadmap.findById(id)
+  } catch (err) {
+    res.status(404).send({
+      message: 'User not found',
+      data: err.message,
+    })
+  }
+
+  try {
+    const result = await roadmap.findByIdAndUpdate(updatedUser._id, req.body)
+    res.status(200).send({
+      message: 'Ubah data berhasil',
+      data: result,
+    })
+  } catch (err) {
+    res.status(500).send({
+      message: 'Ubah data gagal',
+      data: err.message,
+    })
   }
 }

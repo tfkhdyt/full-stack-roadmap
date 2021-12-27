@@ -6,7 +6,7 @@ const {
   updateUser,
   deleteUser,
 } = require('../controllers/user.controller')
-const { addRoadmap, getRoadmaps } = require('../controllers/roadmap.controller')
+const { addRoadmap, getRoadmaps, editRoadmap } = require('../controllers/roadmap.controller')
 const verifyToken = require('../middlewares/authJWT')
 
 const router = express.Router()
@@ -18,5 +18,6 @@ router.patch('/user/:id', verifyToken, updateUser)
 router.delete('/user/:id', verifyToken, deleteUser)
 router.post('/roadmap', verifyToken, addRoadmap)
 router.get('/roadmap', verifyToken, getRoadmaps)
+router.patch('/roadmap/:id', verifyToken, editRoadmap)
 
 module.exports = router
