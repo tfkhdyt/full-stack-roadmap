@@ -14,7 +14,7 @@ const cookies = new Cookies()
 export async function getServerSideProps({ req }) {
   const cookies = new Cookies(req.headers.cookie)
   try {
-    const res = await axios.get('http://localhost:4000/roadmap', {
+    const res = await axios.get(`${process.env.API_URL}/roadmap`, {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`,
       },

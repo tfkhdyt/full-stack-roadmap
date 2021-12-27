@@ -29,7 +29,7 @@ function Login() {
     })
 
     axios
-      .post('http://localhost:4000/login', {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         email,
         password,
       })

@@ -45,7 +45,7 @@ export default function OptionButton({ data, role }) {
         },
       })
       await axios.patch(
-        `http://localhost:4000/roadmap/${data._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${data._id}`,
         {
           accepted: !data.accepted,
         },

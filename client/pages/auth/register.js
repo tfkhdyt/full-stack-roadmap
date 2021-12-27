@@ -29,7 +29,7 @@ function Register() {
     })
 
     axios
-      .post('http://localhost:4000/register', {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
         fullName,
         email,
         password,

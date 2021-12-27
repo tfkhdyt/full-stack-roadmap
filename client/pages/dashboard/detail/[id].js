@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export async function getServerSideProps ({ query }) {
   try {
-    const res = await axios.get()
+    // const res = await axios.get()
   } catch (err) {
 
   }
