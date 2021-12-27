@@ -83,8 +83,12 @@ exports.editRoadmap = async (req, res) => {
     })
   }
 
+  const data = req.body
+  if (req.user.role !== 'admin' && data.accepted)
+    delete data.accepted
+
   try {
-    const result = await roadmap.findByIdAndUpdate(updatedUser._id, req.body)
+    const result = await roadmap.findByIdAndUpdate(updatedUser._id, data)
     res.status(200).send({
       message: 'Ubah data berhasil',
       data: result,
