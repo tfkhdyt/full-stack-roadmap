@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Axios from 'axios'
+import axios from 'axios'
 import Cookies from 'universal-cookie'
+import Head from 'next/head'
 import Link from 'next/link'
 
 import { Alert } from '../../config'
 import Loading from '../../components/Loading'
-import Head from 'next/head'
+import OptionButton from '../../components/OptionButton'
 
 const cookies = new Cookies()
 
 export async function getServerSideProps({ req }) {
   const cookies = new Cookies(req.headers.cookie)
   try {
-    const res = await Axios.get('http://localhost:4000/roadmap', {
+    const res = await axios.get('http://localhost:4000/roadmap', {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`,
       },
@@ -23,6 +24,7 @@ export async function getServerSideProps({ req }) {
         status: res.status,
         error: null,
         data: res.data.data,
+        role: res.data.role
       },
     }
   } catch (err) {
@@ -36,7 +38,7 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-function Dashboard({ status, error, data }) {
+function Dashboard({ status, error, data, role }) {
   const [accepted, setAccepted] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
@@ -131,20 +133,15 @@ function Dashboard({ status, error, data }) {
                         className={`h-5 ${
                           e.title == 'HTML' &&
                           '[marginLeft:-2px] [marginRight:-5px]'
-                        }`}
+                        } ${e.title == 'Bootstrap' && 'h-4'}`}
                       />
                       <p className='font-semibold text-lg text-gray-800'>
                         {e.title}
                       </p>
                     </div>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5 fill-gray-800'
-                      viewBox='0 0 20 20'
-                      fill='currentColor'
-                    >
-                      <path d='M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z' />
-                    </svg>
+                    {/* option button */}
+                    <OptionButton data={e} role={role} />                    
+                    {/* ---------- */}
                   </div>
                 )
               })}
