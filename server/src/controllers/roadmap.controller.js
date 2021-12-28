@@ -1,4 +1,5 @@
 const roadmap = require('../models/roadmap.model')
+const user = require('../models/user.model')
 
 exports.addRoadmap = async (req, res) => {
   if (!req.user) {
@@ -48,9 +49,11 @@ exports.getRoadmaps = async (req, res) => {
     }
   } else {
     try {
-      const result = await roadmap.find({
-        userId: req.user._id,
-      })
+      const result = await roadmap
+        .find({
+          userId: req.user._id,
+        })
+        .sort('order')
       res.status(200).send({
         message: 'Query berhasil',
         data: result,
@@ -84,8 +87,7 @@ exports.editRoadmap = async (req, res) => {
   }
 
   const data = req.body
-  if (req.user.role !== 'admin' && data.accepted)
-    delete data.accepted
+  if (req.user.role !== 'admin' && data.accepted) delete data.accepted
 
   try {
     const result = await roadmap.findByIdAndUpdate(updatedUser._id, data)
@@ -98,5 +100,69 @@ exports.editRoadmap = async (req, res) => {
       message: 'Ubah data gagal',
       data: err.message,
     })
+  }
+}
+
+exports.getRoadmap = async (req, res) => {
+  if (!req.user) {
+    res.status(401).send({
+      message: 'Invalid JWT token',
+    })
+  }
+
+  const { id } = req.params
+
+  if (req.user.role === 'admin') {
+    try {
+      const result = await roadmap
+        .findOne({
+          _id: id,
+        })
+        .sort('order')
+      if (!result) {
+        res.status(404).send({
+          message: 'Query gagal',
+          title: 'Data tidak ditemukan',
+        })
+      }
+      const submitter = await user.findOne({
+        _id: result.userId,
+      })
+      res.status(200).send({
+        message: 'Query berhasil',
+        data: result,
+        submitter: submitter.fullName,
+      })
+    } catch (err) {
+      res.status(500).send({
+        message: 'Query gagal',
+        data: err.message,
+      })
+    }
+  } else {
+    try {
+      const result = await roadmap
+        .findOne({
+          _id: id,
+          userId: req.user._id,
+        })
+        .sort('order')
+      if (!result) {
+        res.status(404).send({
+          message: 'Query gagal',
+          title: 'Data tidak ditemukan',
+        })
+      }
+      res.status(200).send({
+        message: 'Query berhasil',
+        data: result,
+        submitter: req.user.fullName,
+      })
+    } catch (err) {
+      res.status(500).send({
+        message: 'Query gagal',
+        data: err.message,
+      })
+    }
   }
 }

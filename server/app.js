@@ -10,12 +10,14 @@ require('dotenv').config()
 const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PWD}@cluster0.pbe5r.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
 try {
-  mongoose.connect(uri, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  }).then(() => {
-    console.log('Connected to DB...')
-  })
+  mongoose
+    .connect(uri, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    })
+    .then(() => {
+      console.log('Connected to DB...')
+    })
 } catch (error) {
   throw error.message
 }

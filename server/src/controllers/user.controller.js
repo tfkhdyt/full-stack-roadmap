@@ -21,6 +21,17 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
+exports.getUserData = async (req, res) => {
+  const { id } = req.params
+  const user = await user.findOne({
+    _id: id,
+  })
+  res.status(200).send({
+    message: 'query success!',
+    data: user,
+  })
+}
+
 exports.updateUser = async (req, res) => {
   if (!req.user) {
     res.status(401).send({
