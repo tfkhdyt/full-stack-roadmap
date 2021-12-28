@@ -9,7 +9,7 @@ import FormButton from '../../components/FormButton'
 import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
 import { Alert } from '../../config'
-import {route} from 'next/dist/server/router'
+import { route } from 'next/dist/server/router'
 
 function Login() {
   const [email, setEmail] = useState()

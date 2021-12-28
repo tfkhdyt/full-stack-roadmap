@@ -8,6 +8,7 @@ import { Alert } from '../../../config'
 import FormButton from '../../../components/FormButton'
 import InputForm from '../../../components/InputForm'
 import TextAreaForm from '../../../components/TextAreaForm'
+import BackToDashboard from '../../../components/BackToDashboard'
 
 const cookies = new Cookies()
 
@@ -94,6 +95,7 @@ function AddRoadmap() {
           Add Roadmap
         </p>
         <div>
+          <BackToDashboard />
           <form className='space-y-3' onSubmit={handleSubmit}>
             <InputForm
               label='Title'

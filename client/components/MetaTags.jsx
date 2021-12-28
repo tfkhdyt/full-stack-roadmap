@@ -9,7 +9,6 @@ export default function MetaTags() {
         content='JCu7ig2hkiijnjnq8doWrgNg9HPCpWwo2WrTQWko8Cs'
       />
       {/* metadata */}
-      <meta name='theme-color' content='#1F2937' />
       <meta name='description' content={Data.deskripsi} />
       <meta name='keywords' content={Data.keywords.join(',')} />
       <meta name='twitter:card' content='summary' />

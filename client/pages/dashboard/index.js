@@ -63,8 +63,7 @@ function Dashboard({ status, error, data, role }) {
     }).then((res) => {
       if (res.isConfirmed) {
         cookies.remove('token', { path: '/' })
-        if (!cookies.get('token'))
-          router.push('/auth/login')     
+        if (!cookies.get('token')) router.push('/auth/login')
       }
     })
   }
@@ -127,10 +126,7 @@ function Dashboard({ status, error, data, role }) {
                         <img
                           src={e.icon}
                           alt={`Icon ${e.title}`}
-                          className={`h-5 ${
-                            e.title == 'HTML' &&
-                            '[marginLeft:-2px] [marginRight:-5px]'
-                          } ${e.title == 'Bootstrap' && 'h-4'}`}
+                          className='w-5'
                         />
                         <p className='font-semibold text-lg text-gray-800'>
                           {e.title}

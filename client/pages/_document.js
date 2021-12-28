@@ -12,6 +12,7 @@ class MyDocument extends Document {
     return (
       <Html className='scroll-smooth'>
         <Head>
+          <meta name='theme-color' content='#1F2937' />
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link
             rel='preconnect'
