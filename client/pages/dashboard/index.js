@@ -4,55 +4,44 @@ import axios from 'axios'
 import Cookies from 'universal-cookie'
 import Head from 'next/head'
 import Link from 'next/link'
+import useSWR from 'swr'
 
-import { Alert } from '../../config'
+import { Alert, Toast } from '../../config'
 import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
 
-export async function getServerSideProps({ req }) {
-  const cookies = new Cookies(req.headers.cookie)
+const cookies = new Cookies()
+
+const fetcher = async (url) => {
   try {
-    const res = await axios.get(`${process.env.API_URL}/roadmap`, {
+    const res = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`,
       },
     })
-    return {
-      props: {
-        status: res.status,
-        error: null,
-        data: res.data.data,
-        role: res.data.role,
-        referer: req.headers.referer || null,
-      },
-    }
+    return res.data
   } catch (err) {
-    return {
-      props: {
-        status: err.response.status,
-        error: err,
-        data: null,
-      },
-    }
+    const error = new Error(err.message)
+    error.status = err.response.status
+    throw error
   }
 }
 
-function Dashboard({ status, error, data, role, referer }) {
-  const cookies = new Cookies()
+function Dashboard() {
   const router = useRouter()
   const [accepted, setAccepted] = useState(true)
-  const [isLoading, setIsLoading] = useState(true)
+  const { data, error, mutate } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/roadmap`, fetcher)
 
   useEffect(() => {
-    if (status === 401) {
-      router.push('/auth/login')
-    } else if (status === 500) {
-      Alert.fire({
-        icon: 'error',
-        title: 'Data fetching failed!',
-      })
-    } else if (data) {
-      setIsLoading(false)
+    if (error) {
+      if (error.status === 401) {
+        router.push('/auth/login')
+      } else if (error.status === 500) {
+        Alert.fire({
+          icon: 'error',
+          title: 'Data fetching failed!',
+        })
+      }
     }
   })
 
@@ -63,28 +52,12 @@ function Dashboard({ status, error, data, role, referer }) {
       showCancelButton: true,
     }).then((res) => {
       if (res.isConfirmed) {
-        Alert.fire({
-          toast: true,
-          position: 'top-right',
-          timer: 3000,
-          timerProgressBar: true,
-          icon: 'success',
+        Toast.fire({
           title: 'Logout success!',
-          background: '#0c4a6e',
-          hideClass: {
-            popup: 'opacity-0 transition duration-200 ease-in-out',
-          },
           didOpen: () => {
-            cookies.remove('token', { path: '/' })
-            if (!cookies.get('token')) router.push('/auth/login')
-          },
-          showConfirmButton: false,
-          showClass: {
-            popup: 'animate__animated animate__backInRight animate__fast',
-          },
-          hideClass: {
-            popup: 'animate__animated animate__backOutRight animate__fast',
-          },
+            cookies.remove('token')
+            router.push('/dashboard')
+          }
         })
       }
     })
@@ -104,19 +77,12 @@ function Dashboard({ status, error, data, role, referer }) {
     router.push(url)
   }
 
-  useEffect(() => {
-    if (referer) {
-      const ref = new URL(referer)
-      if (!['/login', '/auth/login'].includes(ref.pathname)) Alert.close()
-    }
-  }, [])
-
   return (
     <div>
       <Head>
         <title>Dashboard | Full Stack Roadmap</title>
       </Head>
-      <Loading isLoading={isLoading} />
+      {!data && <Loading />}
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-3'>
         <p className='font-extrabold text-2xl flex justify-center'>Dashboard</p>
         <div className='flex flex-wrap justify-center gap-2 text-sm'>
@@ -152,7 +118,7 @@ function Dashboard({ status, error, data, role, referer }) {
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           {data &&
-            data
+            data.data
               .filter((e) => e.accepted == accepted)
               .map((e, i) => {
                 return (
@@ -174,7 +140,7 @@ function Dashboard({ status, error, data, role, referer }) {
                       </p>
                     </div>
                     {/* option button */}
-                    <OptionButton data={e} role={role} />
+                    <OptionButton data={e} role={data.role} mutate={mutate} />
                     {/* ---------- */}
                   </div>
                 )

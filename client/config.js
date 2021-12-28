@@ -9,6 +9,26 @@ export const Alert = Swal.mixin({
   allowOutsideClick: false,
 })
 
+export const Toast = Swal.mixin({
+  color: '#e5e7eb',
+  allowEnterKey: false,
+  allowEscapeKey: false,
+  allowOutsideClick: false,
+  toast: true,
+  position: 'bottom-right',
+  timer: 4000,
+  timerProgressBar: true,
+  icon: 'success',
+  background: '#0c4a6e',
+  showConfirmButton: false,
+  showClass: {
+    popup: 'animate__animated animate__backInRight animate__fast',
+  },
+  hideClass: {
+    popup: 'animate__animated animate__backOutRight animate__fast',
+  },
+})
+
 export default {
   header: "TFKHDYT's Full Stack Roadmap",
   title: 'Full Stack Roadmap | TFKHDYT',
@@ -26,6 +46,12 @@ export default {
     'Programmer',
     'Roadmap',
   ],
-  API_URL: process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : process.env.API_URL,
-  NEXT_PUBLIC_API_URL: process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : process.env.NEXT_PUBLIC_API_URL,
+  API_URL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000'
+      : process.env.API_URL,
+  NEXT_PUBLIC_API_URL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000'
+      : process.env.NEXT_PUBLIC_API_URL,
 }

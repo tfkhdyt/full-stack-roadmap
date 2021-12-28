@@ -7,141 +7,141 @@ import Loading from '../../../components/Loading'
 import BackToDashboard from '../../../components/BackToDashboard'
 import Link from 'next/link'
 import Head from 'next/head'
+import useSWR from 'swr'
 
-export async function getServerSideProps({ query, req }) {
-  const cookies = new Cookies(req.headers.cookie)
-  const { id } = query
+const cookies = new Cookies()
+
+const fetcher = async (url) => {
   try {
-    const res = await axios.get(`${process.env.API_URL}/roadmap/${id}`, {
+    const res = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`,
       },
     })
-    return {
-      props: {
-        status: res.status,
-        error: null,
-        data: res.data.data,
-        submitter: res.data.submitter,
-      },
-    }
+    return res.data
   } catch (err) {
-    return {
-      props: {
-        status: err.response.status,
-        error: err,
-        data: null,
-      },
-    }
+    const error = new Error(err.message)
+    error.status = err.response.status
+    throw error
   }
 }
 
-export default function Detail({ status, error, data, submitter }) {
+export default function Detail() {
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
+  const { id } = router.query
+  const { data, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${id}`,
+    fetcher
+  )
 
-  useEffect(async () => {
-    switch (status) {
-      case 404:
-        Alert.fire({
-          icon: 'error',
-          title: 'Data tidak ditemukan',
-        }).then((res) => {
-          if (res.isConfirmed) {
-            router.push('/dashboard')
-          }
-        })
-        break
-      case 500:
-        Alert.fire({
-          icon: 'error',
-          title: 'Data fetching gagal',
-        }).then((res) => {
-          if (res.isConfirmed) {
-            router.push('/dashboard')
-          }
-        })
-        break
+  useEffect(() => {
+    if (error) {
+      switch (error.status) {
+        case 404:
+          Alert.fire({
+            icon: 'error',
+            title: 'Data tidak ditemukan',
+          }).then((res) => {
+            if (res.isConfirmed) {
+              router.push('/dashboard')
+            }
+          })
+          break
+        case 500:
+          Alert.fire({
+            icon: 'error',
+            title: 'Data fetching gagal',
+          }).then((res) => {
+            if (res.isConfirmed) {
+              router.push('/dashboard')
+            }
+          })
+          break
+      }
     }
-    if (data) setIsLoading(false)
   })
 
   useEffect(() => {
     Alert.close()
   }, [])
 
+  if (!data) return <Loading />
+
   return (
     <div>
       <Head>
-        <title>{data.title} | Full Stack Roadmap</title>
+        <title>{data.data.title} | Full Stack Roadmap</title>
       </Head>{' '}
-      <Loading isLoading={isLoading} />
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-4'>
         <p className='font-extrabold text-2xl flex justify-center'>Detail</p>
         <div>
           <BackToDashboard />
           {data && (
             <div
-              className={`bg-${data.color} w-full rounded-md p-4 shadow-lg shadow-${data.color}/50 text-gray-800 space-y-1`}
+              className={`bg-${data.data.color} w-full rounded-md p-4 shadow-lg shadow-${data.data.color}/50 text-gray-800 space-y-1`}
             >
               <div>
                 <span className='font-bold'>Order:</span>{' '}
-                <span>{data.order}</span>
+                <span>{data.data.order}</span>
               </div>
               <div className='flex items-center space-x-1'>
                 <span className='font-bold'>Title:</span>{' '}
                 <div className='flex space-x-1 items-center'>
                   <img
-                    src={data.icon}
-                    alt={`Icon ${data.icon}`}
-                    className={`${data.title == 'Express' ? 'w-5' : 'h-5'}`}
+                    src={data.data.icon}
+                    alt={`Icon ${data.data.icon}`}
+                    className={`${
+                      data.data.title == 'Express' ? 'w-5' : 'h-5'
+                    }`}
                   />
-                  <p>{data.title}</p>
+                  <p>{data.data.title}</p>
                 </div>
               </div>
               <div>
                 <span className='font-bold'>Type:</span>{' '}
-                <span>{data.type}</span>
+                <span>{data.data.type}</span>
               </div>
               <div>
                 <p className='font-bold'>Description:</p>{' '}
                 <p className='text-sm leading-snug text-justify'>
-                  {data.description}
+                  {data.data.description}
                 </p>
               </div>
               <div>
                 <span className='font-bold'>Color:</span>{' '}
-                <span>{data.color}</span>
+                <span>{data.data.color}</span>
               </div>
               <div>
                 <p className='font-bold'>Video's Link:</p>{' '}
-                <Link href={data.linkVideo}>
+                <Link href={data.data.linkVideo}>
                   <a
                     className='break-all text-sm leading-snug underline underline-offset-1'
                     target='_blank'
                   >
-                    {data.linkVideo}
+                    {data.data.linkVideo}
                   </a>
                 </Link>
               </div>
               <div>
                 <p className='font-bold'>Documentation's Link:</p>{' '}
-                <Link href={data.linkDocs}>
+                <Link href={data.data.linkDocs}>
                   <a
                     className='break-all text-sm leading-snug underline underline-offset-1'
                     target='_blank'
                   >
-                    {data.linkDocs}
+                    {data.data.linkDocs}
                   </a>
                 </Link>
               </div>
               <div>
                 <span className='font-bold'>Submitted By:</span>{' '}
-                <span>{submitter}</span>
+                <span>{data.submitter}</span>
               </div>
               <div>
                 <span className='font-bold'>Status:</span>{' '}
-                <span>{data.accepted == true ? 'Accepted' : 'Pending'}</span>
+                <span>
+                  {data.data.accepted == true ? 'Accepted' : 'Pending'}
+                </span>
               </div>
             </div>
           )}

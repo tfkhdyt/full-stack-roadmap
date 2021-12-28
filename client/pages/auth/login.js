@@ -8,8 +8,7 @@ import Cookies from 'universal-cookie'
 import FormButton from '../../components/FormButton'
 import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
-import { Alert } from '../../config'
-import { route } from 'next/dist/server/router'
+import { Alert, Toast } from '../../config'
 
 function Login() {
   const [email, setEmail] = useState()
@@ -40,22 +39,9 @@ function Login() {
           maxAge: 3000000,
         })
         Alert.close()
-        Alert.fire({
-          toast: true,
-          position: 'top-right',
-          timer: 4000,
-          timerProgressBar: true,
-          icon: 'success',
+        Toast.fire({
           title: 'Login success!',
-          background: '#0c4a6e',
           didOpen: () => router.push('/dashboard'),
-          showConfirmButton: false,
-          showClass: {
-            popup: 'animate__animated animate__backInRight animate__fast',
-          },
-          hideClass: {
-            popup: 'animate__animated animate__backOutRight animate__fast',
-          },
         })
       })
       .catch((err) => {

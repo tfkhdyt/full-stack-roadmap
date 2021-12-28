@@ -1,9 +1,7 @@
-function Loading({ isLoading }) {
+function Loading() {
   return (
     <div
-      className={`grid place-items-center ${
-        isLoading ? 'h-screen w-screen' : 'opacity-0 h-0 w-0'
-      } `}
+      className={`grid place-items-center h-screen w-screen`}
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'

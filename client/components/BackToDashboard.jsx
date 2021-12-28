@@ -5,10 +5,6 @@ export default function BackToDashboard() {
   const router = useRouter()
 
   const handleClick = () => {
-    Alert.fire({
-      title: 'Loading...',
-      didOpen: () => Alert.showLoading(),
-    })
     router.back()
   }
 

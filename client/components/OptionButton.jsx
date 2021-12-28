@@ -6,7 +6,7 @@ import { Alert } from '../config'
 
 const cookies = new Cookies()
 
-export default function OptionButton({ data, role }) {
+export default function OptionButton({ data, role, mutate }) {
   const [isOpened, setIsOpened] = useState(false)
   const ref = useRef()
   const router = useRouter()
@@ -33,7 +33,8 @@ export default function OptionButton({ data, role }) {
   }
 
   const refreshData = () => {
-    router.replace(router.asPath)
+    // router.replace(router.asPath)
+    mutate()
   }
 
   const changeStatus = async () => {
