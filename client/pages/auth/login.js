@@ -35,18 +35,11 @@ function Login() {
         password,
       })
       .then((res) => {
-        Alert.close()
         cookie.set('token', res.data.accessToken, {
           path: '/',
           maxAge: 3000000,
         })
-        Alert.fire({
-          icon: 'success',
-          title: 'Login success!',
-          text: `Welcome ${res.data.user.fullName}`,
-        }).then((res) => {
-          if (res.isConfirmed) router.push('/dashboard')
-        })
+        router.push('/dashboard')
       })
       .catch((err) => {
         Alert.close()
