@@ -5,6 +5,8 @@ import axios from 'axios'
 import { Alert } from '../../../config'
 import Loading from '../../../components/Loading'
 import BackToDashboard from '../../../components/BackToDashboard'
+import Link from 'next/link'
+import Head from 'next/head'
 
 export async function getServerSideProps({ query, req }) {
   const cookies = new Cookies(req.headers.cookie)
@@ -64,8 +66,15 @@ export default function Detail({ status, error, data, submitter }) {
     if (data) setIsLoading(false)
   })
 
+  useEffect(() => {
+    Alert.close()
+  }, [])
+
   return (
     <div>
+      <Head>
+        <title>{data.title} | Full Stack Roadmap</title>
+      </Head>
       {' '}
       <Loading isLoading={isLoading} />
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-4'>
@@ -76,6 +85,10 @@ export default function Detail({ status, error, data, submitter }) {
             <div
               className={`bg-${data.color} w-full rounded-md p-4 shadow-lg shadow-${data.color}/50 text-gray-800 space-y-1`}
             >
+              <div>
+                <span className='font-bold'>Order:</span>{' '}
+                <span>{data.order}</span>
+              </div>
               <div className='flex items-center space-x-1'>
                 <span className='font-bold'>Title:</span>{' '}
                 <div className='flex space-x-1 items-center'>
@@ -98,20 +111,38 @@ export default function Detail({ status, error, data, submitter }) {
                 </p>
               </div>
               <div>
+                <span className='font-bold'>Color:</span>{' '}
+                <span>{data.color}</span>
+              </div>
+              <div>
                 <p className='font-bold'>Video's Link:</p>{' '}
-                <p className='break-all text-sm leading-snug'>
-                  {data.linkVideo}
-                </p>
+                <Link href={data.linkVideo}>
+                  <a 
+                    className='break-all text-sm leading-snug underline underline-offset-1'
+                    target='_blank'
+                  >
+                    {data.linkVideo}
+                  </a>
+                </Link>
               </div>
               <div>
                 <p className='font-bold'>Documentation's Link:</p>{' '}
-                <p className='break-all text-sm leading-snug'>
+                <Link href={data.linkDocs}>
+                <a 
+                  className='break-all text-sm leading-snug underline underline-offset-1'
+                  target='_blank'
+                >
                   {data.linkDocs}
-                </p>
+                </a>
+                </Link>
               </div>
               <div>
                 <span className='font-bold'>Submitted By:</span>{' '}
                 <span>{submitter}</span>
+              </div>
+              <div>
+                <span className='font-bold'>Status:</span>{' '}
+                <span>{data.accepted == true ? 'Accepted' : 'Pending'}</span>
               </div>
             </div>
           )}

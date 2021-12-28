@@ -72,6 +72,20 @@ function Dashboard({ status, error, data, role }) {
     setAccepted(!accepted)
   }
 
+  const handleDetail = (url) => {
+    Alert.fire({
+      title: 'Loading...',
+      didOpen: () => {
+        Alert.showLoading()
+      }
+    })
+    router.push(url)
+  }
+
+  useEffect(() => {
+    Alert.close()
+  }, [])
+
   return (
     <div>
       <Head>
@@ -121,18 +135,19 @@ function Dashboard({ status, error, data, role }) {
                     key={e._id}
                     className={`rounded-md bg-${e.color} shadow-md shadow-${e.color}/50 p-3 flex justify-between items-center`}
                   >
-                    <Link href={`/dashboard/detail/${e._id}`} passHref>
-                      <div className='flex items-center space-x-2 flex-1'>
-                        <img
-                          src={e.icon}
-                          alt={`Icon ${e.title}`}
-                          className='w-5'
-                        />
-                        <p className='font-semibold text-lg text-gray-800'>
-                          {e.title}
-                        </p>
-                      </div>
-                    </Link>
+                    <div
+                      className='flex items-center space-x-2 flex-1'
+                      onClick={() => handleDetail(`/dashboard/detail/${e._id}`)}
+                    >
+                      <img
+                        src={e.icon}
+                        alt={`Icon ${e.title}`}
+                        className='w-5'
+                      />
+                      <p className='font-semibold text-lg text-gray-800'>
+                        {e.title}
+                      </p>
+                    </div>
                     {/* option button */}
                     <OptionButton data={e} role={role} />
                     {/* ---------- */}
