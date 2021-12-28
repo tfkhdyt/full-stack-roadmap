@@ -72,7 +72,7 @@ function Dashboard({ status, error, data, role, referer }) {
           title: 'Logout success!',
           background: '#0c4a6e',
           hideClass: {
-            popup: 'opacity-0 transition duration-200 ease-in-out'
+            popup: 'opacity-0 transition duration-200 ease-in-out',
           },
           didOpen: () => {
             cookies.remove('token', { path: '/' })
