@@ -41,11 +41,21 @@ function Login() {
         })
         Alert.close()
         Alert.fire({
+          toast: true,
+          position: 'top-right',
+          timer: 4000,
+          timerProgressBar: true,
           icon: 'success',
           title: 'Login success!',
-          text: `Welcome, ${res.data.user.fullName}`,
+          background: '#0c4a6e',
           didOpen: () => router.push('/dashboard'),
-          showConfirmButton: false
+          showConfirmButton: false,
+          showClass: {
+            popup: 'animate__animated animate__backInRight animate__fast',
+          },
+          hideClass: {
+            popup: 'animate__animated animate__backOutRight animate__fast',
+          },
         })
       })
       .catch((err) => {

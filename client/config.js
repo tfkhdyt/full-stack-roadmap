@@ -1,11 +1,12 @@
 import Swal from 'sweetalert2'
+import 'animate.css'
 
 export const Alert = Swal.mixin({
   background: '#1f2937',
   color: '#e5e7eb',
   allowEnterKey: false,
   allowEscapeKey: false,
-  allowOutsideClick: false
+  allowOutsideClick: false,
 })
 
 export default {

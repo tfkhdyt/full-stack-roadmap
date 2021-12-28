@@ -23,6 +23,7 @@ export async function getServerSideProps({ req }) {
         error: null,
         data: res.data.data,
         role: res.data.role,
+        referer: req.headers.referer || null,
       },
     }
   } catch (err) {
@@ -36,7 +37,7 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-function Dashboard({ status, error, data, role }) {
+function Dashboard({ status, error, data, role, referer }) {
   const cookies = new Cookies()
   const router = useRouter()
   const [accepted, setAccepted] = useState(true)
@@ -62,8 +63,29 @@ function Dashboard({ status, error, data, role }) {
       showCancelButton: true,
     }).then((res) => {
       if (res.isConfirmed) {
-        cookies.remove('token', { path: '/' })
-        if (!cookies.get('token')) router.push('/auth/login')
+        Alert.fire({
+          toast: true,
+          position: 'top-right',
+          timer: 3000,
+          timerProgressBar: true,
+          icon: 'success',
+          title: 'Logout success!',
+          background: '#0c4a6e',
+          hideClass: {
+            popup: 'opacity-0 transition duration-200 ease-in-out'
+          },
+          didOpen: () => {
+            cookies.remove('token', { path: '/' })
+            if (!cookies.get('token')) router.push('/auth/login')
+          },
+          showConfirmButton: false,
+          showClass: {
+            popup: 'animate__animated animate__backInRight animate__fast',
+          },
+          hideClass: {
+            popup: 'animate__animated animate__backOutRight animate__fast',
+          },
+        })
       }
     })
   }
@@ -83,7 +105,10 @@ function Dashboard({ status, error, data, role }) {
   }
 
   useEffect(() => {
-    Alert.close()
+    if (referer) {
+      const ref = new URL(referer)
+      if (!['/login', '/auth/login'].includes(ref.pathname)) Alert.close()
+    }
   }, [])
 
   return (
