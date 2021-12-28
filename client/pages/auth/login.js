@@ -39,6 +39,12 @@ function Login() {
           path: '/',
           maxAge: 3000000,
         })
+        Alert.close()
+        Alert.fire({
+          icon: 'success',
+          title: 'Login success!',
+          text: `Welcome, ${res.data.user.fullName}`
+        })
         router.push('/dashboard')
       })
       .catch((err) => {
