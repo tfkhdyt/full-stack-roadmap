@@ -74,8 +74,7 @@ export default function Detail({ status, error, data, submitter }) {
     <div>
       <Head>
         <title>{data.title} | Full Stack Roadmap</title>
-      </Head>
-      {' '}
+      </Head>{' '}
       <Loading isLoading={isLoading} />
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-4'>
         <p className='font-extrabold text-2xl flex justify-center'>Detail</p>
@@ -117,7 +116,7 @@ export default function Detail({ status, error, data, submitter }) {
               <div>
                 <p className='font-bold'>Video's Link:</p>{' '}
                 <Link href={data.linkVideo}>
-                  <a 
+                  <a
                     className='break-all text-sm leading-snug underline underline-offset-1'
                     target='_blank'
                   >
@@ -128,12 +127,12 @@ export default function Detail({ status, error, data, submitter }) {
               <div>
                 <p className='font-bold'>Documentation's Link:</p>{' '}
                 <Link href={data.linkDocs}>
-                <a 
-                  className='break-all text-sm leading-snug underline underline-offset-1'
-                  target='_blank'
-                >
-                  {data.linkDocs}
-                </a>
+                  <a
+                    className='break-all text-sm leading-snug underline underline-offset-1'
+                    target='_blank'
+                  >
+                    {data.linkDocs}
+                  </a>
                 </Link>
               </div>
               <div>

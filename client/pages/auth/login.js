@@ -43,12 +43,10 @@ function Login() {
         Alert.fire({
           icon: 'success',
           title: 'Login success!',
-          text: `Welcome ${res.data.user.fullName}`
+          text: `Welcome ${res.data.user.fullName}`,
+        }).then((res) => {
+          if (res.isConfirmed) router.push('/dashboard')
         })
-          .then((res) => {
-            if (res.isConfirmed)
-              router.push('/dashboard')
-          })
       })
       .catch((err) => {
         Alert.close()

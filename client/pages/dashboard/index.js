@@ -77,7 +77,7 @@ function Dashboard({ status, error, data, role }) {
       title: 'Loading...',
       didOpen: () => {
         Alert.showLoading()
-      }
+      },
     })
     router.push(url)
   }

@@ -7,13 +7,16 @@ export default function BackToDashboard() {
   const handleClick = () => {
     Alert.fire({
       title: 'Loading...',
-      didOpen: () => Alert.showLoading()
+      didOpen: () => Alert.showLoading(),
     })
     router.back()
   }
 
   return (
-    <a className='flex justify-start items-center space-x-1 my-2 italic text-sm w-fit' onClick={handleClick}>
+    <a
+      className='flex justify-start items-center space-x-1 my-2 italic text-sm w-fit'
+      onClick={handleClick}
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
         className='h-4 w-4 fill-cyan-500'
