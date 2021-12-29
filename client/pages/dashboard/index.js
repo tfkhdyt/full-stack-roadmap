@@ -48,22 +48,20 @@ function Dashboard() {
     }
   })
 
-  const handleLogOut = () => {
-    Alert.fire({
+  const handleLogOut = async () => {
+    const res = await Alert.fire({
       icon: 'question',
       title: 'Apakah anda yakin ingin logout?',
       showCancelButton: true,
-    }).then((res) => {
-      if (res.isConfirmed) {
-        Toast.fire({
-          title: 'Logout success!',
-          didOpen: () => {
-            cookies.remove('token')
-            router.push('/dashboard')
-          },
-        })
-      }
     })
+
+    if (res.isConfirmed) {
+      Toast.fire({
+        title: 'Logout success!',
+      })
+      cookies.remove('token', { path: '/' })
+      router.push('/dashboard')
+    }
   }
 
   const handleStatus = () => {

@@ -36,14 +36,12 @@ function Login() {
       Alert.close()
       Toast.fire({
         title: 'Login success!',
-        didOpen: () => {
-          cookie.set('token', res.data.accessToken, {
-            path: '/',
-            maxAge: 3000000,
-          })
-          router.push('/dashboard')
-        },
       })
+      cookie.set('token', res.data.accessToken, {
+        path: '/',
+        maxAge: 3000000,
+      })
+      router.push('/dashboard')
     } catch (err) {
       Alert.close()
       switch (err.response.status) {
