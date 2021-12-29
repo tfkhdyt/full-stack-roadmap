@@ -28,61 +28,55 @@ function Login() {
       },
     })
 
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         email,
         password,
       })
-      .then((res) => {
-        Alert.close()
-        Toast.fire({
-          title: 'Login success!',
-          didOpen: () => {
-            cookie.set('token', res.data.accessToken, {
-              path: '/',
-              maxAge: 3000000,
-            })
-            router.push('/dashboard')
-          },
-        })
+      Alert.close()
+      Toast.fire({
+        title: 'Login success!',
+        didOpen: () => {
+          cookie.set('token', res.data.accessToken, {
+            path: '/',
+            maxAge: 3000000,
+          })
+          router.push('/dashboard')
+        },
       })
-      .catch((err) => {
-        Alert.close()
-        switch (err.response.status) {
-          case 500:
-            Alert.fire({
-              icon: 'error',
-              title: 'Login gagal!',
-              text: 'Terjadi kesalahan pada server',
-            })
-            break
-          case 404:
-            Alert.fire({
-              icon: 'error',
-              title: 'Login gagal!',
-              text: 'Akun tidak ditemukan ',
-            })
-            break
-          case 401:
-            Alert.fire({
-              icon: 'error',
-              title: 'Login gagal!',
-              text: 'Password salah',
-            })
-            break
-          default:
-            Alert.fire({
-              icon: 'error',
-              title: 'Login gagal!',
-            })
-            break
-        }
-      })
+    } catch (err) {
+      Alert.close()
+      switch (err.response.status) {
+        case 500:
+          Alert.fire({
+            icon: 'error',
+            title: 'Login gagal!',
+            text: 'Terjadi kesalahan pada server',
+          })
+          break
+        case 404:
+          Alert.fire({
+            icon: 'error',
+            title: 'Login gagal!',
+            text: 'Akun tidak ditemukan ',
+          })
+          break
+        case 401:
+          Alert.fire({
+            icon: 'error',
+            title: 'Login gagal!',
+            text: 'Password salah',
+          })
+          break
+        default:
+          Alert.fire({
+            icon: 'error',
+            title: 'Login gagal!',
+          })
+          break
+      }
+    }
   }
-
-  useEffect(() => {
-    router.prefetch('/dashboard')
-  }, [])
 
   return (
     <div>
