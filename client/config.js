@@ -11,9 +11,6 @@ export const Alert = Swal.mixin({
 
 export const Toast = Swal.mixin({
   color: '#e5e7eb',
-  allowEnterKey: false,
-  allowEscapeKey: false,
-  allowOutsideClick: false,
   toast: true,
   position: 'top-right',
   timer: 2000,
