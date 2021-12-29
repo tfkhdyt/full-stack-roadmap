@@ -71,12 +71,6 @@ function Dashboard() {
   }
 
   const handleDetail = (url) => {
-    Alert.fire({
-      title: 'Loading...',
-      didOpen: () => {
-        Alert.showLoading()
-      },
-    })
     router.push(url)
   }
 
