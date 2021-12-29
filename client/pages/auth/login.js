@@ -34,14 +34,16 @@ function Login() {
         password,
       })
       .then((res) => {
-        cookie.set('token', res.data.accessToken, {
-          path: '/',
-          maxAge: 3000000,
-        })
         Alert.close()
         Toast.fire({
           title: 'Login success!',
-          didOpen: () => router.push('/dashboard'),
+          didOpen: () => {
+            cookie.set('token', res.data.accessToken, {
+              path: '/',
+              maxAge: 3000000,
+            })
+            router.push('/dashboard')
+          },
         })
       })
       .catch((err) => {

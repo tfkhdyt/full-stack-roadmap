@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
 import axios from 'axios'
-import { Alert } from '../../../config'
+import { Alert, Toast } from '../../../config'
 import Loading from '../../../components/Loading'
 import BackToDashboard from '../../../components/BackToDashboard'
 import Link from 'next/link'
@@ -29,7 +29,7 @@ const fetcher = async (url) => {
 export default function Detail() {
   const router = useRouter()
   const { id } = router.query
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${id}`,
     fetcher
   )
@@ -61,8 +61,61 @@ export default function Detail() {
     }
   })
 
-  if (!data)
-    return <Loading />
+  const refreshData = () => {
+    mutate()
+  }
+
+  const changeStatus = async () => {
+    try {
+      Alert.fire({
+        title: 'Loading...',
+        didOpen: () => {
+          Alert.showLoading()
+        },
+      })
+      await axios.patch(
+        `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${data.data._id}`,
+        {
+          accepted: !data.data.accepted,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.get('token')}`,
+          },
+        }
+      )
+      refreshData()
+      Alert.close()
+      Toast.fire({ title: 'Status changed successfully!' })
+    } catch (err) {
+      console.log(err)
+      switch (err.response.status) {
+        case 500:
+          Alert.fire({
+            icon: 'error',
+            title: 'Change status failed!',
+            text: 'There is an error on server',
+          })
+          break
+        case 401:
+          cookies.remove('token')
+          router.push('/auth/login')
+        case 404:
+          Alert.fire({
+            icon: 'error',
+            title: 'Data not found',
+          })
+        default:
+          Alert.fire({
+            icon: 'error',
+            title: 'Change status failed!',
+          })
+          break
+      }
+    }
+  }
+
+  if (!data) return <Loading />
 
   return (
     <div>
@@ -134,11 +187,22 @@ export default function Detail() {
                 <span className='font-bold'>Submitted By:</span>{' '}
                 <span>{data.submitter}</span>
               </div>
-              <div>
+              <div className='mb-4'>
                 <span className='font-bold'>Status:</span>{' '}
                 <span>
                   {data.data.accepted == true ? 'Accepted' : 'Pending'}
                 </span>
+              </div>
+              <div className='flex flex-wrap gap-2'>
+                <button className={`px-3 py-2 w-20 ${!data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'} rounded-md shadow-lg font-semibold text-gray-200`} onClick={changeStatus}>
+                  {!data.data.accepted ? 'Accept' : 'Pend'}
+                </button>
+                <button className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200'>
+                  Edit
+                </button>
+                <button className='px-3 py-2 bg-red-600 rounded-md shadow-lg font-semibold text-gray-200'>
+                  Delete
+                </button>
               </div>
             </div>
           )}
