@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { Alert } from '../config'
 
 export default function BackToDashboard() {
   const router = useRouter()

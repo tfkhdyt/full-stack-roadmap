@@ -71,11 +71,13 @@ export default function OptionButton({ data, role, mutate }) {
         case 401:
           cookies.remove('token')
           router.push('/auth/login')
+          break
         case 404:
           Alert.fire({
             icon: 'error',
             title: 'Data tidak ditemukan',
           })
+          break
         default:
           Alert.fire({
             icon: 'error',

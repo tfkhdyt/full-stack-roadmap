@@ -115,7 +115,7 @@ function Dashboard() {
           {data &&
             data.data
               .filter((e) => e.accepted == accepted)
-              .map((e, i) => {
+              .map((e) => {
                 return (
                   <div
                     key={e._id}

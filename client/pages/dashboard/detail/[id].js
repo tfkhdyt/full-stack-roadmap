@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Cookies from 'universal-cookie'
 import axios from 'axios'
 import { Alert, Toast } from '../../../config'
@@ -100,11 +100,13 @@ export default function Detail() {
         case 401:
           cookies.remove('token')
           router.push('/auth/login')
+          break
         case 404:
           Alert.fire({
             icon: 'error',
             title: 'Data not found',
           })
+          break
         default:
           Alert.fire({
             icon: 'error',
@@ -194,14 +196,16 @@ export default function Detail() {
                 </span>
               </div>
               <div className='flex flex-wrap gap-2'>
-                {data.role === 'admin' && <button
-                  className={`px-3 py-2 w-20 ${
-                    !data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'
-                  } rounded-md shadow-lg font-semibold text-gray-200`}
-                  onClick={changeStatus}
-                >
-                  {!data.data.accepted ? 'Accept' : 'Pend'}
-                </button>}
+                {data.role === 'admin' && (
+                  <button
+                    className={`px-3 py-2 w-20 ${
+                      !data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'
+                    } rounded-md shadow-lg font-semibold text-gray-200`}
+                    onClick={changeStatus}
+                  >
+                    {!data.data.accepted ? 'Accept' : 'Pend'}
+                  </button>
+                )}
                 <button className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200'>
                   Edit
                 </button>

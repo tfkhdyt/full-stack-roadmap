@@ -75,6 +75,7 @@ function AddRoadmap() {
           case 401:
             cookies.remove('token')
             router.push('/auth/login')
+            break
           default:
             Alert.fire({
               icon: 'error',
