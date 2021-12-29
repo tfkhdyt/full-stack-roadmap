@@ -48,6 +48,10 @@ function Dashboard() {
     }
   })
 
+  useEffect(() => {
+    router.prefetch('/auth/login')
+  })
+
   const handleLogOut = async () => {
     const res = await Alert.fire({
       icon: 'question',
