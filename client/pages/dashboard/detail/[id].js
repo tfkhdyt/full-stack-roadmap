@@ -59,18 +59,13 @@ export default function Detail() {
           break
       }
     }
+    if (data) Alert.close()
   })
-
-  useEffect(() => {
-    Alert.close()
-  }, [])
-
-  if (!data) return <Loading />
 
   return (
     <div>
       <Head>
-        <title>{data.data.title} | Full Stack Roadmap</title>
+        <title>{data && data.data.title} | Full Stack Roadmap</title>
       </Head>{' '}
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-4'>
         <p className='font-extrabold text-2xl flex justify-center'>Detail</p>

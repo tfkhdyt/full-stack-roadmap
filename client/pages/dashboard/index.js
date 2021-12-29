@@ -30,7 +30,10 @@ const fetcher = async (url) => {
 function Dashboard() {
   const router = useRouter()
   const [accepted, setAccepted] = useState(true)
-  const { data, error, mutate } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/roadmap`, fetcher)
+  const { data, error, mutate } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/roadmap`,
+    fetcher
+  )
 
   useEffect(() => {
     if (error) {
@@ -57,7 +60,7 @@ function Dashboard() {
           didOpen: () => {
             cookies.remove('token')
             router.push('/dashboard')
-          }
+          },
         })
       }
     })

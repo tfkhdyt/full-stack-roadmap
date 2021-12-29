@@ -1,8 +1,6 @@
 function Loading() {
   return (
-    <div
-      className={`grid place-items-center h-screen w-screen`}
-    >
+    <div className={`grid place-items-center h-screen w-screen`}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='50'
