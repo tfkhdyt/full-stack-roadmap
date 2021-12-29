@@ -194,7 +194,12 @@ export default function Detail() {
                 </span>
               </div>
               <div className='flex flex-wrap gap-2'>
-                <button className={`px-3 py-2 w-20 ${!data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'} rounded-md shadow-lg font-semibold text-gray-200`} onClick={changeStatus}>
+                <button
+                  className={`px-3 py-2 w-20 ${
+                    !data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'
+                  } rounded-md shadow-lg font-semibold text-gray-200`}
+                  onClick={changeStatus}
+                >
                   {!data.data.accepted ? 'Accept' : 'Pend'}
                 </button>
                 <button className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200'>
