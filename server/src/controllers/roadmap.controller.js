@@ -132,6 +132,7 @@ exports.getRoadmap = async (req, res) => {
         message: 'Query berhasil',
         data: result,
         submitter: submitter.fullName,
+        role: req.user.role,
       })
     } catch (err) {
       res.status(500).send({
