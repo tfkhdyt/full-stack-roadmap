@@ -16,10 +16,6 @@ function Login() {
   const router = useRouter()
   const cookie = new Cookies()
 
-  useEffect(() => {
-    router.prefetch('/dashboard')
-  })
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     Alert.fire({
