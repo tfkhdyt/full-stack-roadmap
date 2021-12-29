@@ -38,7 +38,7 @@ function Dashboard() {
   useEffect(() => {
     if (error) {
       if (error.status === 401) {
-        router.push('/login')
+        router.push('/auth/login')
       } else if (error.status === 500) {
         Alert.fire({
           icon: 'error',
@@ -60,7 +60,7 @@ function Dashboard() {
         title: 'Logout success!',
       })
       cookies.remove('token', { path: '/' })
-      router.push('/login')
+      router.push('/auth/login')
     }
   }
 
