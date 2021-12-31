@@ -94,6 +94,7 @@ exports.editRoadmap = async (req, res) => {
     res.status(200).send({
       message: 'Ubah data berhasil',
       data: result,
+      role: req.user.role
     })
   } catch (err) {
     res.status(500).send({
