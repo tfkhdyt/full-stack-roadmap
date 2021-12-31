@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
 import { Alert } from '../config'
+import Link from 'next/link'
 
 const cookies = new Cookies()
 
@@ -121,9 +122,11 @@ export default function OptionButton({ data, role, mutate }) {
             {data.accepted ? 'Pend' : 'Accept'}
           </button>
         )}
-        <button className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'>
-          Edit Data
-        </button>
+        <Link href={`/dashboard/edit-roadmap/${data._id}`}>
+          <a className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'>
+            Edit Data
+          </a>
+        </Link>
         <button className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'>
           Delete Data
         </button>

@@ -115,6 +115,7 @@ function Dashboard() {
           {data &&
             data.data
               .filter((e) => e.accepted == accepted)
+              .sort((a, b) => a - b)
               .map((e) => {
                 return (
                   <div

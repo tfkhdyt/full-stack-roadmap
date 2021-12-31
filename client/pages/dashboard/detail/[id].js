@@ -206,10 +206,12 @@ export default function Detail() {
                     {!data.data.accepted ? 'Accept' : 'Pend'}
                   </button>
                 )}
-                <button className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200'>
-                  Edit
-                </button>
-                <button className='px-3 py-2 bg-red-600 rounded-md shadow-lg font-semibold text-gray-200'>
+                <Link href={`/dashboard/edit-roadmap/${data.data._id}`}>
+                  <a className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200 flex justify-center'>
+                    Edit
+                  </a>
+                </Link>
+                <button className='px-3 py-2 bg-rose-500 rounded-md shadow-lg font-semibold text-gray-200'>
                   Delete
                 </button>
               </div>
