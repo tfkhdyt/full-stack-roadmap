@@ -94,7 +94,7 @@ exports.editRoadmap = async (req, res) => {
     res.status(200).send({
       message: 'Ubah data berhasil',
       data: result,
-      role: req.user.role
+      role: req.user.role,
     })
   } catch (err) {
     res.status(500).send({
@@ -169,7 +169,6 @@ exports.getRoadmap = async (req, res) => {
   }
 }
 
-
 exports.deleteRoadmap = async (req, res) => {
   if (!req.user) {
     res.status(401).send({
@@ -193,11 +192,26 @@ exports.deleteRoadmap = async (req, res) => {
     res.status(200).send({
       message: 'Hapus data berhasil',
       data: result,
-      role: req.user.role
+      role: req.user.role,
     })
   } catch (err) {
     res.status(500).send({
       message: 'Hapus data gagal',
+      data: err.message,
+    })
+  }
+}
+
+exports.getAcceptedRoadmaps = async (req, res) => {
+  try {
+    const result = await roadmap.find({ accepted: true }).sort('order')
+    res.status(200).send({
+      message: 'Query berhasil',
+      data: result,
+    })
+  } catch (err) {
+    res.status(500).send({
+      message: 'Query gagal',
       data: err.message,
     })
   }

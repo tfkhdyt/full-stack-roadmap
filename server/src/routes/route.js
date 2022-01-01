@@ -9,6 +9,7 @@ const {
 const {
   addRoadmap,
   getRoadmaps,
+  getAcceptedRoadmaps,
   editRoadmap,
   getRoadmap,
   deleteRoadmap
@@ -26,6 +27,7 @@ router.delete('/user/:id', verifyToken, deleteUser)
 
 router.post('/roadmap', verifyToken, addRoadmap)
 router.get('/roadmap', verifyToken, getRoadmaps)
+router.get('/roadmaps', getAcceptedRoadmaps)
 router.get('/roadmap/:id', verifyToken, getRoadmap)
 router.patch('/roadmap/:id', verifyToken, editRoadmap)
 router.delete('/roadmap/:id', verifyToken, deleteRoadmap)
