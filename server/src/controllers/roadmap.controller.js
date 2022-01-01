@@ -76,12 +76,12 @@ exports.editRoadmap = async (req, res) => {
   }
 
   const { id } = req.params
-  let updatedUser
+  let updatedData
   try {
-    updatedUser = await roadmap.findById(id)
+    updatedData = await roadmap.findById(id)
   } catch (err) {
     res.status(404).send({
-      message: 'User not found',
+      message: 'Data not found',
       data: err.message,
     })
   }
@@ -90,7 +90,7 @@ exports.editRoadmap = async (req, res) => {
   if (req.user.role !== 'admin' && data.accepted) delete data.accepted
 
   try {
-    const result = await roadmap.findByIdAndUpdate(updatedUser._id, data)
+    const result = await roadmap.findByIdAndUpdate(updatedData._id, data)
     res.status(200).send({
       message: 'Ubah data berhasil',
       data: result,
@@ -166,5 +166,39 @@ exports.getRoadmap = async (req, res) => {
         data: err.message,
       })
     }
+  }
+}
+
+
+exports.deleteRoadmap = async (req, res) => {
+  if (!req.user) {
+    res.status(401).send({
+      message: 'Invalid JWT Token',
+    })
+  }
+
+  const { id } = req.params
+  let deletedData
+  try {
+    deletedData = await roadmap.findById(id)
+  } catch (err) {
+    res.status(404).send({
+      message: 'Data not found',
+      data: err.message,
+    })
+  }
+
+  try {
+    const result = await roadmap.findByIdAndDelete(deletedData._id)
+    res.status(200).send({
+      message: 'Hapus data berhasil',
+      data: result,
+      role: req.user.role
+    })
+  } catch (err) {
+    res.status(500).send({
+      message: 'Hapus data gagal',
+      data: err.message,
+    })
   }
 }

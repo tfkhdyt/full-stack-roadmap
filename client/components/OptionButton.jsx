@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
-import { Alert } from '../config'
+import { Alert, Toast } from '../config'
 import Link from 'next/link'
+import deleteData from '../utils/deleteData'
 
 const cookies = new Cookies()
 
@@ -59,6 +60,9 @@ export default function OptionButton({ data, role, mutate }) {
       )
       refreshData()
       Alert.close()
+      Toast.fire({
+        title: 'Ubah status berhasil!',
+      })
     } catch (err) {
       console.log(err)
       switch (err.response.status) {
@@ -83,6 +87,56 @@ export default function OptionButton({ data, role, mutate }) {
           Alert.fire({
             icon: 'error',
             title: 'Ubah status gagal!',
+          })
+          break
+      }
+    }
+  }
+
+  const handleDelete = async (id) => {
+    const confirm = await Alert.fire({
+      icon: 'question',
+      title: 'Apakah Anda yakin ingin menghapus data ini?',
+      text: 'Data yang telah dihapus tidak dapat dikembalikan',
+      showCancelButton: true,
+    })
+    if (!confirm.isConfirmed) return
+    Alert.fire({
+      title: 'Loading...',
+      didOpen: () => {
+        Alert.showLoading()
+      },
+    })
+    try {
+      await deleteData(id)
+      Alert.close()
+      refreshData()
+      Toast.fire({
+        title: 'Data berhasil dihapus!',
+      })
+    } catch (err) {
+      switch (err) {
+        case 500:
+          Alert.fire({
+            icon: 'error',
+            title: 'Delete data gagal!',
+            text: 'Terjadi kesalahan pada server',
+          })
+          break
+        case 401:
+          cookies.remove('token')
+          router.push('/auth/login')
+          break
+        case 404:
+          Alert.fire({
+            icon: 'error',
+            title: 'Data tidak ditemukan',
+          })
+          break
+        default:
+          Alert.fire({
+            icon: 'error',
+            title: 'Delete data gagal!',
           })
           break
       }
@@ -127,7 +181,10 @@ export default function OptionButton({ data, role, mutate }) {
             Edit Data
           </a>
         </Link>
-        <button className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'>
+        <button
+          className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'
+          onClick={() => handleDelete(data._id)}
+        >
           Delete Data
         </button>
       </div>

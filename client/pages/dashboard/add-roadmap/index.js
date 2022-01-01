@@ -120,10 +120,10 @@ function AddRoadmap() {
               label='Icon (link only)'
               id='icon'
               onChange={(e) => setIcon(e.target.value)}
-              placeholder='Example: https://.../...jpg'
+              placeholder='Example: https://.../...svg'
             />
             <InputForm
-              label='Color (Tailwind CSS color or Hex only)'
+              label='Color (Tailwind CSS color only)'
               id='color'
               onChange={(e) => setColor(e.target.value)}
               placeholder='Example: orange-500 or [#69420]'

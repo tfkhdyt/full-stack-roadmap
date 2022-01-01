@@ -8,6 +8,7 @@ import BackToDashboard from '../../../components/BackToDashboard'
 import Link from 'next/link'
 import Head from 'next/head'
 import useSWR from 'swr'
+import deleteData from '../../../utils/deleteData'
 
 const cookies = new Cookies()
 
@@ -86,7 +87,9 @@ export default function Detail() {
       )
       refreshData()
       Alert.close()
-      Toast.fire({ title: 'Status changed successfully!' })
+      Toast.fire({
+        title: 'Ubah status berhasil!',
+      })
     } catch (err) {
       console.log(err)
       switch (err.response.status) {
@@ -111,6 +114,56 @@ export default function Detail() {
           Alert.fire({
             icon: 'error',
             title: 'Change status failed!',
+          })
+          break
+      }
+    }
+  }
+
+  const handleDelete = async (id) => {
+    const confirm = await Alert.fire({
+      icon: 'question',
+      title: 'Apakah Anda yakin ingin menghapus data ini?',
+      text: 'Data yang telah dihapus tidak dapat dikembalikan',
+      showCancelButton: true,
+    })
+    if (!confirm.isConfirmed) return
+    Alert.fire({
+      title: 'Loading...',
+      didOpen: () => {
+        Alert.showLoading()
+      },
+    })
+    try {
+      await deleteData(id)
+      Alert.close()
+      Toast.fire({
+        title: 'Data berhasil dihapus!',
+      })
+      router.push('/dashboard')
+    } catch (err) {
+      switch (err) {
+        case 500:
+          Alert.fire({
+            icon: 'error',
+            title: 'Delete data gagal!',
+            text: 'Terjadi kesalahan pada server',
+          })
+          break
+        case 401:
+          cookies.remove('token')
+          router.push('/auth/login')
+          break
+        case 404:
+          Alert.fire({
+            icon: 'error',
+            title: 'Data tidak ditemukan',
+          })
+          break
+        default:
+          Alert.fire({
+            icon: 'error',
+            title: 'Delete data gagal!',
           })
           break
       }
@@ -211,7 +264,10 @@ export default function Detail() {
                     Edit
                   </a>
                 </Link>
-                <button className='px-3 py-2 bg-rose-500 rounded-md shadow-lg font-semibold text-gray-200'>
+                <button
+                  className='px-3 py-2 bg-rose-500 rounded-md shadow-lg font-semibold text-gray-200'
+                  onClick={() => handleDelete(data.data._id)}
+                >
                   Delete
                 </button>
               </div>
