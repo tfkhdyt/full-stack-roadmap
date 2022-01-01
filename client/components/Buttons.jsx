@@ -3,16 +3,14 @@ import Link from 'next/link'
 export default function Buttons({
   linkVideo,
   linkDocs,
-  textColorAlt,
-  ringColor,
-  buttonColor,
+  color
 }) {
   return (
     <div className='flex space-x-2 text-sm'>
       <Link href={linkVideo}>
         <a
           target='_blank'
-          className={`w-1/2 py-2 bg-transparent ring-1 ${ringColor} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
+          className={`w-1/2 py-2 bg-transparent ring-1 ring-gray-800 rounded-md font-semibold flex justify-center items-center space-x-0.5`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -32,7 +30,7 @@ export default function Buttons({
       <Link href={linkDocs}>
         <a
           target='_blank'
-          className={`w-1/2 py-2 ${buttonColor} ${textColorAlt} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
+          className={`w-1/2 py-2 bg-gray-800 text-${color} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

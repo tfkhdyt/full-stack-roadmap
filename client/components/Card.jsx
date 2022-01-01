@@ -5,7 +5,7 @@ export default function Card({ id, data }) {
     return (
       <>
         <div
-          className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2 selection:bg-gray-800 ${data.textSelection}`}
+          className={`bg-${data.color} shadow-lg shadow-${data.color} text-gray-800 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2 selection:bg-gray-800 selection:text-${data.color}`}
         >
           <p className={`font-semibold italic text-xs`}>{data.type}</p>
           <p className='font-bold text-xl flex items-center space-x-1'>
@@ -22,9 +22,7 @@ export default function Card({ id, data }) {
           <Buttons
             linkVideo={data.linkVideo}
             linkDocs={data.linkDocs}
-            textColorAlt={data.textColorAlt}
-            ringColor={data.ringColor}
-            buttonColor={data.buttonColor}
+            color={data.color}
           />
         </div>
         <div className='col-start-5 col-end-6 md:mx-auto relative mr-10'>
@@ -45,7 +43,7 @@ export default function Card({ id, data }) {
           <div className='w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-sky-500 shadow'></div>
         </div>
         <div
-          className={`${data.bgColor} shadow-lg ${data.shadColor} ${data.textColor} col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 ${data.textSelection}`}
+          className={`bg-${data.color} shadow-lg shadow-${data.color} text-gray-800 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 selection:text-${data.color}`}
         >
           <p className={`font-semibold italic text-xs`}>{data.type}</p>
           <p className='font-bold text-xl flex items-center space-x-1'>
@@ -62,9 +60,7 @@ export default function Card({ id, data }) {
           <Buttons
             linkVideo={data.linkVideo}
             linkDocs={data.linkDocs}
-            textColorAlt={data.textColorAlt}
-            ringColor={data.ringColor}
-            buttonColor={data.buttonColor}
+            color={data.color}
           />
         </div>
       </>
