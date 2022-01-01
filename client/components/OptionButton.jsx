@@ -64,7 +64,7 @@ export default function OptionButton({ data, role, mutate }) {
         title: 'Ubah status berhasil!',
       })
     } catch (err) {
-      console.log(err)
+      // console.log(err)
       switch (err.response.status) {
         case 500:
           Alert.fire({

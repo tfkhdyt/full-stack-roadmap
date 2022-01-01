@@ -17,7 +17,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(password)
+    // console.log(password)
     Alert.fire({
       title: 'Loading...',
       allowEnterKey: false,
