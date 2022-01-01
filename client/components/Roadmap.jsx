@@ -1,32 +1,10 @@
-import axios from 'axios'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
-import useSWR from 'swr'
-import Cookies from 'universal-cookie'
 import {Alert} from '../config'
 import Card from './Card'
-import Loading from './Loading'
 // import { data } from '../public/data'
 
-const cookies = new Cookies()
-
-const fetcher = async (url) => {
-  try {
-    const result = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${cookies.get('token')}`
-      }
-    })
-   return result.data.data 
-  } catch (err) {
-    const error = new Error(err.message)
-    error.status = err.response.status
-    throw error
-  }
-}
-
-export default function Roadmap() {
-  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/roadmaps`, fetcher)
+export default function Roadmap({ data, error }) {
   const router = useRouter()
 
   useEffect(async () => {
@@ -42,8 +20,6 @@ export default function Roadmap() {
       }
     }
   })
-
-  if (!data) return <Loading />
 
   return (
     <div className='flex flex-col justify-center'>
