@@ -16,10 +16,10 @@ const fetcher = async (url) => {
   try {
     const result = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${cookies.get('token')}`
-      }
+        Authorization: `Bearer ${cookies.get('token')}`,
+      },
     })
-   return result.data.data 
+    return result.data.data
   } catch (err) {
     const error = new Error(err.message)
     error.status = err.response.status
@@ -28,7 +28,10 @@ const fetcher = async (url) => {
 }
 
 export default function Home() {
-  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/roadmaps`, fetcher)
+  const { data, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/roadmaps`,
+    fetcher
+  )
 
   if (!data) return <Loading />
 
@@ -40,7 +43,7 @@ export default function Home() {
       </Head>
       <div className='flex flex-col p-4 space-y-4'>
         <Header />
-        <Roadmap data={data} error={error}/>
+        <Roadmap data={data} error={error} />
       </div>
       <BackToTop />
     </>

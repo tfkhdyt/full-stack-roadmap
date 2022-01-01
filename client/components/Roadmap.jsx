@@ -1,6 +1,6 @@
-import {useRouter} from 'next/router'
-import {useEffect} from 'react'
-import {Alert} from '../config'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { Alert } from '../config'
 import Card from './Card'
 // import { data } from '../public/data'
 
@@ -13,7 +13,7 @@ export default function Roadmap({ data, error }) {
         icon: 'error',
         title: 'Gagal mengambil data',
         text: 'Terjadi kesalahan pada server',
-        confirmButtonText: 'Refresh'
+        confirmButtonText: 'Refresh',
       })
       if (err.isConfirmed) {
         router.reload()

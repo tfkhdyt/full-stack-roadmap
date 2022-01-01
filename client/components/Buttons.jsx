@@ -1,10 +1,6 @@
 import Link from 'next/link'
 
-export default function Buttons({
-  linkVideo,
-  linkDocs,
-  color
-}) {
+export default function Buttons({ linkVideo, linkDocs, color }) {
   return (
     <div className='flex space-x-2 text-sm'>
       <Link href={linkVideo}>
