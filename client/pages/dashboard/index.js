@@ -72,12 +72,13 @@ function Dashboard() {
     router.push(url)
   }
 
+  if (!data) return <Loading />
+
   return (
     <div>
       <Head>
         <title>Dashboard | Full Stack Roadmap</title>
       </Head>
-      {!data && <Loading />}
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-3'>
         <p className='font-extrabold text-2xl flex justify-center'>Dashboard</p>
         <div className='flex flex-wrap justify-center gap-2 text-sm'>
