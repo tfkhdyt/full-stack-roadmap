@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className='flex flex-col space-y-2 text-center selection:bg-sky-400 selection:text-gray-800'>
       <Link href='/auth/login'>
-        <a className='font-extrabold text-lg lg:text-4xl text-gray-200 mx-auto'>
+        <a className='font-extrabold text-lg lg:text-4xl text-gray-200 mx-auto cursor-text'>
           {Config.header}
         </a>
       </Link>

@@ -8,8 +8,8 @@ export default function BackToDashboard() {
   }
 
   return (
-    <a
-      className='flex justify-start items-center space-x-1 my-2 italic text-sm w-fit'
+    <p
+      className='flex justify-start items-center space-x-1 my-2 italic text-sm w-fit cursor-pointer'
       onClick={handleClick}
     >
       <svg
@@ -25,6 +25,6 @@ export default function BackToDashboard() {
         />
       </svg>
       <span className='text-cyan-500'>Back to previous page</span>
-    </a>
+    </p>
   )
 }
