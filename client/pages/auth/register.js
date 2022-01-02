@@ -51,6 +51,7 @@ function Register() {
       })
       .catch((err) => {
         Alert.close()
+        console.log(err)
         Alert.fire({
           icon: 'error',
           title: 'Registrasi gagal!',

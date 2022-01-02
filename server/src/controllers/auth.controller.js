@@ -1,8 +1,16 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const { validationResult } = require('express-validator')
 const User = require('../models/user.model')
 
 exports.signup = (req, res) => {
+  const errors = validationResult(req)
+  console.log('errors')
+  if (!errors.isEmpty()) {
+    return res.send({
+      errors: errors.array(),
+    })
+  }
   const { fullName, email, password, role } = req.body
   const user = new User({
     fullName,

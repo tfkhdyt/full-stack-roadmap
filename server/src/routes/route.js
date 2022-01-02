@@ -1,4 +1,5 @@
 const express = require('express')
+const { check } = require('express-validator')
 
 const { signup, signin } = require('../controllers/auth.controller')
 const {
@@ -12,13 +13,18 @@ const {
   getAcceptedRoadmaps,
   editRoadmap,
   getRoadmap,
-  deleteRoadmap
+  deleteRoadmap,
 } = require('../controllers/roadmap.controller')
 const verifyToken = require('../middlewares/authJWT')
 
 const router = express.Router()
 
-router.post('/register', signup)
+router.post(
+  '/register',
+  check('email').isEmail(),
+  check('password').isLength({ min: 8 }),
+  signup
+)
 router.post('/login', signin)
 
 router.get('/users', verifyToken, getAllUsers)
