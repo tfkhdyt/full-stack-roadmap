@@ -28,35 +28,39 @@ function Register() {
       },
     })
 
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
         fullName,
         email,
         password,
       })
-      .then((res) => {
-        Alert.close()
-        Alert.fire({
-          icon: 'success',
-          title: 'Registrasi berhasil!',
-          text: 'Pergi ke halaman login?',
-          showCancelButton: true,
-          confirmButtonText: 'Ya',
-          cancelButtonText: 'Tidak',
-        }).then((res) => {
-          if (res.isConfirmed) {
-            router.push('/auth/login')
-          }
-        })
+      Alert.close()
+      const res = await Alert.fire({
+        icon: 'success',
+        title: 'Registrasi berhasil!',
+        text: 'Pergi ke halaman login?',
+        showCancelButton: true,
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
       })
-      .catch((err) => {
-        Alert.close()
-        console.log(err)
-        Alert.fire({
-          icon: 'error',
-          title: 'Registrasi gagal!',
+
+      if (res.isConfirmed) {
+        router.push('/auth/login')
+      }
+    } catch (err) {
+      Alert.close()
+      console.log(err.response.data)
+      const msg = err.response.data.errors
+        .map((e) => {
+          return e.msg
         })
+        .join(',\n')
+      Alert.fire({
+        icon: 'error',
+        title: 'Registrasi gagal!',
+        text: err.response.data.errors && msg,
       })
+    }
   }
 
   return (
