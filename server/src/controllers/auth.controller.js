@@ -5,11 +5,12 @@ const User = require('../models/user.model')
 
 exports.signup = (req, res) => {
   const errors = validationResult(req)
-  console.log('errors')
+  console.log(errors)
   if (!errors.isEmpty()) {
-    return res.send({
+    res.status(404).json({
       errors: errors.array(),
     })
+    return
   }
   const { fullName, email, password, role } = req.body
   const user = new User({
