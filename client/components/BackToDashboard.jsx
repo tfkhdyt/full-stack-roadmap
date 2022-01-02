@@ -9,12 +9,12 @@ export default function BackToDashboard() {
 
   return (
     <p
-      className='flex justify-start items-center space-x-1 my-2 italic text-sm w-fit cursor-pointer'
+      className='flex justify-start items-center space-x-1 my-2 italic text-sm w-fit cursor-pointer group transition duration-500 ease-in-out'
       onClick={handleClick}
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        className='h-4 w-4 fill-cyan-500'
+        className='h-4 w-4 text-gray-400 group-hover:fill-cyan-500'
         viewBox='0 0 20 20'
         fill='currentColor'
       >
@@ -24,7 +24,9 @@ export default function BackToDashboard() {
           clipRule='evenodd'
         />
       </svg>
-      <span className='text-cyan-500'>Back to previous page</span>
+      <span className='text-gray-400 group-hover:text-cyan-500'>
+        Back to previous page
+      </span>
     </p>
   )
 }
