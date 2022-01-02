@@ -1,14 +1,14 @@
-import Head from 'next/head'
 import Config from '../config'
 import Cookies from 'universal-cookie'
+import Head from 'next/head'
 import axios from 'axios'
 import useSWR from 'swr'
 
-import Header from '../components/Header'
-import Roadmap from '../components/Roadmap'
 import BackToTop from '../components/BackToTop'
-import MetaTags from '../components/MetaTags'
+import Header from '../components/Header'
 import Loading from '../components/Loading'
+import MetaTags from '../components/MetaTags'
+import Roadmap from '../components/Roadmap'
 
 const cookies = new Cookies()
 
