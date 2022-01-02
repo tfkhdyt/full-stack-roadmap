@@ -81,35 +81,37 @@ function Login() {
       <Head>
         <title>Login | Full Stack Roadmap</title>
       </Head>
-      <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-96'>
-        <div className='flex justify-center'>
-          <AuthHeader>Login</AuthHeader>
-        </div>
-        <div className='px-6'>
-          <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
-            <InputForm
-              label='Email'
-              id='email'
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <InputForm
-              label='Password'
-              id='password'
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <FormButton color='sky-600'>Login</FormButton>
-          </form>
-        </div>
-        <div className='px-6'>
-          <p className='text-gray-200 text-sm mt-4 flex justify-center items-center font-light'>
-            Belum punya akun?{' '}
-            <Link href='/auth/register'>
-              <a className='bg-green-600 px-2 py-1 rounded-md text-xs mx-2 font-medium text-gray-800'>
-                Register
-              </a>
-            </Link>{' '}
-            sekarang!
-          </p>
+      <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-96 md:min-h-screen md:grid md:place-items-center'>
+        <div className='lg:flex lg:flex-col'>
+          <div className='flex justify-center'>
+            <AuthHeader>Login</AuthHeader>
+          </div>
+          <div className='px-6'>
+            <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
+              <InputForm
+                label='Email'
+                id='email'
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <InputForm
+                label='Password'
+                id='password'
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <FormButton color='sky-600'>Login</FormButton>
+            </form>
+          </div>
+          <div className='px-6'>
+            <p className='text-gray-200 text-sm mt-4 flex justify-center items-center font-light'>
+              Belum punya akun?{' '}
+              <Link href='/auth/register'>
+                <a className='bg-green-600 px-2 py-1 rounded-md text-xs mx-2 font-medium text-gray-800'>
+                  Register
+                </a>
+              </Link>{' '}
+              sekarang!
+            </p>
+          </div>
         </div>
       </div>
     </div>
