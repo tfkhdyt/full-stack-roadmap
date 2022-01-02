@@ -46,13 +46,7 @@
 
 ## About The Project
 
-![Halaman utama](images/main-page.png)
-![Login](images/login.png)
-![Register](images/registration.png)
-![Dashboard](images/dashboard.png)
-![Add data](images/add-data.png)
-![Detail](images/detail.png)
-![Edit data](images/edit-data.png)
+<img src='images/main-page.png' alt='Halaman utama' height='150' /> <img src='images/login.png' alt='Login' height='150' /> <img src='images/registration.png' alt='Register' height='150' /> <img src='images/dashboard.png' alt='Dashboard' height='150' /> <img src='images/add-data.png' alt='add data' height='150' /> <img src='images/detail.png' alt='detail' height='150' /> <img src='images/edit-data.png' alt='edit data' height='150' />
 
 Website ini menampilkan roadmap full stack ala saya sendiri mulai dari dasar sampai expert. Data dari roadmap diambil dari API yang saya buat khusus agar proses tambah, edit, dan hapus data lebih mudah.
 
@@ -154,10 +148,9 @@ Website ini menampilkan roadmap full stack ala saya sendiri mulai dari dasar sam
 ### Server
 
 - Jalankan aplikasi
-  ````sh
+  ```sh
   npm run dev
-  ```start
-  ````
+  ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -190,7 +183,7 @@ Distributed under the GPL-3.0. See [`LICENSE`](https://github.com/tfkhdyt/full-s
 
 <p align=center>
   <a href="https://facebook.com/tfkhdyt142"><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></a>&nbsp;
-  <a href="https://twitter.com/tfkhdyt"><img height="28" src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg"></a>&nbsp;
+  <a href="https://twitter.com/tfkhdyt"><img height="28" src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg"></a>&nbsp;
   <a href="https://instagram.com/_tfkhdyt_"><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>&nbsp;
   <a href="https://youtube.com/tfkhdyt"><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/YouTube_social_red_circle_%282017%29.svg"></a>&nbsp;
   <a href="https://t.me/tfkhdyt"><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg"></a>&nbsp;
@@ -204,6 +197,18 @@ Email: tfkhdyt@pm.me
 Project Link: [https://github.com/tfkhdyt/full-stack-roadmap](https://github.com/tfkhdyt/full-stack-roadmap)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Support
+
+Klik tombol di bawah untuk mendukung saya lewat donasi
+
+<p align="center">
+  <a href="https://donate.tfkhdyt.my.id/">
+    <img src="https://i.postimg.cc/jjRDbZQx/1621036430601.png" width="125px">
+  </a>
+</p>
+
+<p align="right">(<a href="#top">kembali ke atas</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
