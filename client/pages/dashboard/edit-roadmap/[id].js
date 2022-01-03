@@ -11,6 +11,7 @@ import InputForm from '../../../components/InputForm'
 import TextAreaForm from '../../../components/TextAreaForm'
 import BackToDashboard from '../../../components/BackToDashboard'
 import Loading from '../../../components/Loading'
+import SelectForm from '../../../components/SelectForm'
 
 const cookies = new Cookies()
 
@@ -36,6 +37,7 @@ export default function EditRoadmap() {
   const [description, setDescription] = useState()
   const [icon, setIcon] = useState()
   const [color, setColor] = useState()
+  const [intensity, setIntensity] = useState()
   const [linkVideo, setLinkVideo] = useState()
   const [linkDocs, setLinkDocs] = useState()
   const [accepted, setAccepted] = useState()
@@ -83,7 +85,8 @@ export default function EditRoadmap() {
       setType(data.data.type)
       setDescription(data.data.description)
       setIcon(data.data.icon)
-      setColor(data.data.color)
+      setColor(data.data.color.split('-')[0]),
+      setIntensity(data.data.color.split('-')[1])
       setLinkVideo(data.data.linkVideo)
       setLinkDocs(data.data.linkDocs)
       setAccepted(data.data.accepted)
@@ -111,7 +114,7 @@ export default function EditRoadmap() {
           type,
           description,
           icon,
-          color,
+          color: `${color}-${intensity}`,
           linkVideo,
           linkDocs,
           accepted,
@@ -157,6 +160,9 @@ export default function EditRoadmap() {
         }
       })
   }
+
+  const handleColor = (e) => setColor(e)
+  const handleIntensity = (e) => setIntensity(e)
 
   if (!data) return <Loading />
 
@@ -211,12 +217,20 @@ export default function EditRoadmap() {
               placeholder='Example: https://.../...svg'
               value={icon}
             />
-            <InputForm
+            {/*<InputForm
               label='Color (Tailwind CSS color only)'
               id='color'
               onChange={(e) => setColor(e.target.value)}
               placeholder='Example: orange-500 or [#69420]'
               value={color}
+            />*/}
+            <SelectForm
+              label='Color'
+              id='color'
+              handleColor={handleColor}
+              handleIntensity={handleIntensity}
+              defaultColor={data.data.color.split('-')[0]}
+              defaultIntensity={data.data.color.split('-')[1]}
             />
             <InputForm
               label="Video's Link"

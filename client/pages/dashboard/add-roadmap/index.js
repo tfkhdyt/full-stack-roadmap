@@ -3,12 +3,14 @@ import { useState } from 'react'
 import Axios from 'axios'
 import Head from 'next/head'
 import Cookies from 'universal-cookie'
+import Select from 'react-select'
 
 import { Alert } from '../../../config'
 import FormButton from '../../../components/FormButton'
 import InputForm from '../../../components/InputForm'
 import TextAreaForm from '../../../components/TextAreaForm'
 import BackToDashboard from '../../../components/BackToDashboard'
+import SelectForm from '../../../components/SelectForm'
 
 const cookies = new Cookies()
 
@@ -18,12 +20,15 @@ function AddRoadmap() {
   const [description, setDescription] = useState()
   const [icon, setIcon] = useState()
   const [color, setColor] = useState()
+  const [intensity, setIntensity] = useState()
   const [linkVideo, setLinkVideo] = useState()
   const [linkDocs, setLinkDocs] = useState()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    /*alert(`Color: ${color}
+Intensity: ${intensity}`)*/
     Alert.fire({
       title: 'Loading...',
       allowEnterKey: false,
@@ -41,7 +46,7 @@ function AddRoadmap() {
         type,
         description,
         icon,
-        color,
+        color: `${color}-${intensity}`,
         linkVideo,
         linkDocs,
       },
@@ -86,6 +91,9 @@ function AddRoadmap() {
       })
   }
 
+  const handleColor = (e) => setColor(e)
+  const handleIntensity = (e) => setIntensity(e)
+
   return (
     <div>
       <Head>
@@ -122,11 +130,17 @@ function AddRoadmap() {
               onChange={(e) => setIcon(e.target.value)}
               placeholder='Example: https://.../...svg'
             />
-            <InputForm
+            {/*<InputForm
               label='Color (Tailwind CSS color only)'
               id='color'
               onChange={(e) => setColor(e.target.value)}
               placeholder='Example: orange-500 or [#69420]'
+            />*/}
+            <SelectForm
+              label='Color'
+              id='color'
+              handleColor={handleColor}
+              handleIntensity={handleIntensity}
             />
             <InputForm
               label="Video's Link"
