@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
-import Select from 'react-select'
 
-export default function SelectForm({ label, id, handleColor, handleIntensity, defaultColor = 'blue', defaultIntensity = 400 }) {
+export default function SelectForm({
+  label,
+  id,
+  handleColor,
+  handleIntensity,
+  defaultColor = 'blue',
+  defaultIntensity = 400,
+}) {
   const colors = [
     {
       value: 'red',
@@ -115,9 +121,11 @@ export default function SelectForm({ label, id, handleColor, handleIntensity, de
           defaultValue={color}
         >
           {colors
-            .sort((a, b) => a.value > b.value ? 1 : -1)
-              .map((element) => (
-                <option value={element.value}>{element.label}</option>
+            .sort((a, b) => (a.value > b.value ? 1 : -1))
+            .map((element, index) => (
+              <option key={index} value={element.value}>
+                {element.label}
+              </option>
             ))}
         </select>
         <select
@@ -126,13 +134,13 @@ export default function SelectForm({ label, id, handleColor, handleIntensity, de
           onChange={(e) => setIntensity(e.target.value)}
           defaultValue={intensity}
         >
-          {_intensity
-            .map((element) => (
-              <option value={element}>{element}</option>
-            ))}
+          {_intensity.map((element, index) => (
+            <option key={index} value={element}>
+              {element}
+            </option>
+          ))}
         </select>
-        <div className={`w-10 h-10 bg-${color}-${intensity} rounded-md`}>
-        </div>
+        <div className={`w-10 h-10 bg-${color}-${intensity} rounded-md`}></div>
       </div>
     </div>
   )

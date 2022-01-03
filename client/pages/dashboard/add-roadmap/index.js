@@ -3,7 +3,6 @@ import { useState } from 'react'
 import Axios from 'axios'
 import Head from 'next/head'
 import Cookies from 'universal-cookie'
-import Select from 'react-select'
 
 import { Alert } from '../../../config'
 import FormButton from '../../../components/FormButton'

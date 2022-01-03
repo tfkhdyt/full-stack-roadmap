@@ -177,7 +177,7 @@ export default function Detail() {
       <Head>
         <title>{data.data.title} | Full Stack Roadmap</title>
       </Head>{' '}
-      <div className='px-6 md:px-56 lg:px-80 py-3 text-gray-200 space-y-4'>
+      <div className='px-6 md:px-56 lg:px-80 py-3 text-gray-200 space-y-3'>
         <p className='font-extrabold text-2xl flex justify-center'>Detail</p>
         <div>
           <BackToDashboard />
