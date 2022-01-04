@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import MetaTags from '../components/MetaTags'
 
 import Config from '../config'
 
@@ -12,6 +13,7 @@ class MyDocument extends Document {
     return (
       <Html className='scroll-smooth'>
         <Head>
+          <MetaTags />
           <meta name='theme-color' content='#1F2937' />
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link

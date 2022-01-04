@@ -7,7 +7,6 @@ import useSWR from 'swr'
 import BackToTop from '../components/BackToTop'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
-import MetaTags from '../components/MetaTags'
 import Roadmap from '../components/Roadmap'
 
 const cookies = new Cookies()
@@ -38,7 +37,6 @@ export default function Home() {
   return (
     <>
       <Head>
-        <MetaTags />
         <title>{Config.title}</title>
       </Head>
       <div className='flex flex-col p-4 space-y-4'>
