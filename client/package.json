@@ -9,9 +9,7 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^0.24.0",
-    "cookie": "^0.4.1",
     "dotenv": "^10.0.0",
-    "moment": "^2.29.1",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,13 +19,13 @@
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "latest",
     "eslint": "8.5.0",
     "eslint-config-next": "12.0.7",
     "eslint-plugin-react": "^7.28.0",
-    "postcss": "^8.4.4",
+    "postcss": "latest",
     "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.0"
+    "tailwindcss": "latest"
   },
   "prettier": {
     "semi": false,
