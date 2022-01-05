@@ -116,7 +116,7 @@ export default function SelectForm({
       <div className='space-x-2 flex'>
         <select
           name='color'
-          className='py-2 px-3 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200 appearance-none'
+          className='py-2 px-3 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200 appearance-none outline-none'
           onChange={(e) => setColor(e.target.value)}
           defaultValue={color}
         >
@@ -130,7 +130,7 @@ export default function SelectForm({
         </select>
         <select
           name='intensity'
-          className='py-2 px-3 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200 appearance-none'
+          className='py-2 px-3 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200 appearance-none outline-none'
           onChange={(e) => setIntensity(e.target.value)}
           defaultValue={intensity}
         >
