@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 import MetaTags from '../components/MetaTags'
 
 import Config from '../config'
@@ -26,6 +27,7 @@ class MyDocument extends Document {
             rel='stylesheet'
           />
           <link rel='shortcut icon' href={Config.favicon} />
+          <Script src='https://www.googletagmanager.com/gtag/js?id=G-06J9C3XX72' />
         </Head>
         <body className='bg-gray-800'>
           <Main />
