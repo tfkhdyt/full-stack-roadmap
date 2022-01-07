@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       <Script>
         {`
           window.dataLayer = window.dataLayer || []
-          const gtag = (...arguments) => dataLayer.push(arguments)
+          function gtag () { dataLayer.push(arguments) }
           gtag('js', new Date())
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
         `}
