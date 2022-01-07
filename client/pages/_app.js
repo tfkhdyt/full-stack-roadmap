@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
       <Script strategy='lazyOnload'>
         {`
               window.dataLayer = window.dataLayer || []
-              const gtag () => dataLayer.push(arguments)
+              const gtag = () => dataLayer.push(arguments)
               gtag('js', new Date())
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
             `}
