@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
 import MetaTags from '../components/MetaTags'
 
 import Config from '../config'
@@ -29,19 +28,6 @@ class MyDocument extends Document {
           <link rel='shortcut icon' href={Config.favicon} />
         </Head>
         <body className='bg-gray-800'>
-          {/* Global site tag (gtag.js) - Google Analytics */}
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-            strategy='lazyOnload'
-          />
-          <Script strategy='lazyOnload'>
-            {`
-              window.dataLayer = window.dataLayer || []
-              const gtag () => dataLayer.push(arguments)
-              gtag('js', new Date())
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
-            `}
-          </Script>
           <Main />
           <NextScript />
         </body>
