@@ -27,7 +27,19 @@ class MyDocument extends Document {
             rel='stylesheet'
           />
           <link rel='shortcut icon' href={Config.favicon} />
-          <Script src='https://www.googletagmanager.com/gtag/js?id=G-06J9C3XX72' />
+          {/* Global site tag (gtag.js) - Google Analytics */}
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+            strategy='lazyOnload'
+          />
+          <Script strategy='lazyOnload'>
+            {`
+              window.dataLayer = window.dataLayer || []
+              const gtag () => dataLayer.push(arguments)
+              gtag('js', new Date())
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
+            `}
+          </Script>
         </Head>
         <body className='bg-gray-800'>
           <Main />
