@@ -27,6 +27,8 @@ class MyDocument extends Document {
             rel='stylesheet'
           />
           <link rel='shortcut icon' href={Config.favicon} />
+        </Head>
+        <body className='bg-gray-800'>
           {/* Global site tag (gtag.js) - Google Analytics */}
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -40,8 +42,6 @@ class MyDocument extends Document {
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
             `}
           </Script>
-        </Head>
-        <body className='bg-gray-800'>
           <Main />
           <NextScript />
         </body>
