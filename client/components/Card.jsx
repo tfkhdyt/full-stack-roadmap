@@ -23,6 +23,7 @@ export default function Card({ id, data }) {
             linkVideo={data.linkVideo}
             linkDocs={data.linkDocs}
             color={data.color}
+            title={data.title}
           />
         </div>
         <div className='col-start-5 col-end-6 md:mx-auto relative mr-10'>
@@ -61,6 +62,7 @@ export default function Card({ id, data }) {
             linkVideo={data.linkVideo}
             linkDocs={data.linkDocs}
             color={data.color}
+            title={data.title}
           />
         </div>
       </>
