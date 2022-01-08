@@ -5,7 +5,8 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -22,6 +23,12 @@ module.exports = {
         "react/prop-types": "off",
         "no-undef": "off",
         "no-unused-vars": "off",
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        "no-async-promise-executor": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 };
