@@ -21,7 +21,15 @@ const router = express.Router()
 
 router.post(
   '/register',
-  [check('email').isEmail().normalizeEmail().withMessage('Email anda tidak valid'), check('password').isLength({ min: 8 }).withMessage('Password harus lebih dari 8 huruf')],
+  [
+    check('email')
+      .isEmail()
+      .normalizeEmail()
+      .withMessage('Email anda tidak valid'),
+    check('password')
+      .isLength({ min: 8 })
+      .withMessage('Password harus lebih dari 8 huruf'),
+  ],
   signup
 )
 router.post('/login', signin)

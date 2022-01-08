@@ -17,7 +17,7 @@
     "singleQuote": true
   },
   "scripts": {
-    "lint": "prettier -cw src app.js && eslint src app.js",
+    "lint": "prettier -cw src app.js && eslint --fix src app.js",
     "dev": "nodemon app.js"
   },
   "devDependencies": {
