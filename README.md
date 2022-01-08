@@ -101,26 +101,12 @@ Website ini menampilkan roadmap full stack ala saya sendiri mulai dari dasar sam
    cd full-stack-roadmap
    ```
 3. Instal paket NPM yang dibutuhkan
-
    ```sh
-   # client
-   cd client
-   npm install
-
-   # server
-   cd server
-   npm install
+   npm run install
    ```
 
 4. Jalankan aplikasi dalam mode development
-
    ```sh
-   # client
-   cd client
-   npm run dev
-
-   # server
-   cd server
    npm run dev
    ```
 
@@ -148,6 +134,18 @@ Website ini menampilkan roadmap full stack ala saya sendiri mulai dari dasar sam
 ### Server
 
 - Jalankan aplikasi
+  ```sh
+  npm run dev
+  ```
+
+### Client and Server
+
+- Instal semua NPM package yang dibutuhkan
+  ```sh
+  npm run install
+  ```
+
+- Jalankan client dan server secara bersamaan
   ```sh
   npm run dev
   ```
@@ -208,7 +206,7 @@ Klik tombol di bawah untuk mendukung saya lewat donasi
   </a>
 </p>
 
-<p align="right">(<a href="#top">kembali ke atas</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
