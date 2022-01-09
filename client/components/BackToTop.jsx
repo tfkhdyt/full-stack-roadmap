@@ -5,7 +5,7 @@ export default function BackToTop() {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 200) {
+      if (window.pageYOffset > 175) {
         setShowButton(true)
       } else {
         setShowButton(false)
@@ -20,14 +20,14 @@ export default function BackToTop() {
   return (
     <>
       <button
-        className={`p-3 rounded-full bg-sky-400 fixed bottom-4 right-6 shadow-md shadow-sky-400/50 transition-opacity duration-500 ease-in-out ${
+        className={`p-3 rounded-full bg-sky-600 fixed bottom-4 left-7 shadow-md shadow-sky-700/50 transition-opacity duration-400 ease-in-out ${
           showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        } active:bg-sky-600`}
+        } active:bg-sky-800`}
         onClick={showButton ? handleClick : null}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className='h-4 w-4 fill-gray-800'
+          className='h-4 w-4'
           fill='none'
           viewBox='0 0 24 24'
           stroke='currentColor'
@@ -36,7 +36,7 @@ export default function BackToTop() {
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={2}
-            d='M5 10l7-7m0 0l7 7m-7-7v18'
+            d='M5 15l7-7 7 7'
           />
         </svg>
       </button>

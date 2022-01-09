@@ -30,7 +30,7 @@ export default function Card({ id, data }) {
           <div className='h-full w-6 flex items-center justify-center'>
             <div className='h-full w-1 bg-sky-800 pointer-events-none'></div>
           </div>
-          <div className='w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-sky-500 shadow'></div>
+          <div className='w-5 h-5 absolute top-1/2 -mt-3 ml-0.5 rounded-full bg-sky-600 shadow-lg'></div>
         </div>
       </>
     )
@@ -41,7 +41,7 @@ export default function Card({ id, data }) {
           <div className='h-full w-6 flex items-center justify-center'>
             <div className='h-full w-1 bg-sky-800 pointer-events-none'></div>
           </div>
-          <div className='w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-sky-500 shadow'></div>
+          <div className='w-5 h-5 ml-0.5 absolute top-1/2 -mt-3 rounded-full bg-sky-600 shadow-lg'></div>
         </div>
         <div
           className={`bg-${data.color} shadow-md shadow-${data.color} text-gray-800 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 selection:text-${data.color}`}

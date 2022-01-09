@@ -39,7 +39,7 @@ export default function Home() {
       <Head>
         <title>{Config.title}</title>
       </Head>
-      <div className='flex flex-col p-4 space-y-4'>
+      <div className='flex flex-col p-4'>
         <Header />
         <Roadmap data={data} error={error} />
       </div>
