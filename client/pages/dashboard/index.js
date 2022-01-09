@@ -9,6 +9,7 @@ import useSWR from 'swr'
 import { Alert, Toast } from '../../config'
 import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
+import Header from '../../components/Header'
 
 const cookies = new Cookies()
 
@@ -72,7 +73,7 @@ function Dashboard() {
     router.push(url)
   }
 
-  if (!data) return <Loading />
+  if (!data) return <Loading title='Dashboard | Full Stack Roadmap' />
 
   return (
     <div>
@@ -80,7 +81,11 @@ function Dashboard() {
         <title>Dashboard | Full Stack Roadmap</title>
       </Head>
       <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-3'>
-        <p className='font-extrabold text-2xl flex justify-center'>Dashboard</p>
+        <Header>
+          <p className='font-extrabold text-2xl flex justify-center'>
+            Dashboard
+          </p>
+        </Header>
         <div className='flex flex-wrap justify-center gap-2 text-sm'>
           <Link href='/dashboard/add-roadmap'>
             <a className='font-semibold px-1.5 py-1 bg-sky-600 rounded shadow-md shadow-sky-600/50 hover:bg-sky-700 transition duration-500 ease-in-out text-gray-200'>
@@ -90,6 +95,11 @@ function Dashboard() {
           <button className='font-semibold px-1.5 py-1 bg-purple-500 rounded shadow-md shadow-purple-500/50 hover:bg-purple-600 transition duration-500 ease-in-out text-gray-200'>
             Edit Profile
           </button>
+          <Link href='/'>
+            <a className='font-semibold px-1.5 py-1 bg-teal-700 rounded shadow-md shadow-emerald-700/50 hover:bg-emerald-800 transition duration-500 ease-in-out text-gray-200'>
+              Go To Home
+            </a>
+          </Link>
           <button
             className='font-semibold px-1.5 py-1 bg-red-400 rounded shadow-md shadow-red-400/50 hover:bg-red-500 transition duration-500 ease-in-out text-gray-200'
             onClick={handleLogOut}

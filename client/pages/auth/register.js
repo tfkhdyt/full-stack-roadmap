@@ -5,8 +5,8 @@ import Link from 'next/link'
 import axios from 'axios'
 
 import { Alert } from '../../config'
-import AuthHeader from '../../components/AuthHeader'
 import FormButton from '../../components/FormButton'
+import Header from '../../components/Header'
 import InputForm from '../../components/InputForm'
 
 function Register() {
@@ -71,7 +71,9 @@ function Register() {
       <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-96 md:min-h-screen md:grid md:place-items-center'>
         <div className='lg:flex lg:flex-col'>
           <div className='flex justify-center'>
-            <AuthHeader>Registration</AuthHeader>
+            <Header>
+              <p className='font-bold text-2xl'>Registration</p>
+            </Header>
           </div>
           <div className='px-6'>
             <form method='POST' className='space-y-3' onSubmit={handleSubmit}>

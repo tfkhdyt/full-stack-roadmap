@@ -8,6 +8,7 @@ import BackToTop from '../components/BackToTop'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
 import Roadmap from '../components/Roadmap'
+import { Nav } from '../components/Header'
 
 const cookies = new Cookies()
 
@@ -32,15 +33,27 @@ export default function Home() {
     fetcher
   )
 
-  if (!data) return <Loading />
+  if (!data) return <Loading title={Config.title} />
 
   return (
     <>
       <Head>
         <title>{Config.title}</title>
       </Head>
-      <div className='flex flex-col p-4'>
-        <Header />
+      <div className='flex flex-col p-4 space-y-3'>
+        <Header>
+          <span className='font-extrabold text-xl lg:text-4xl cursor-text leading-none'>
+            {Config.header}
+          </span>
+          <span className='flex justify-center items-center space-x-3'>
+            <Nav
+              link='https://github.com/tfkhdyt/full-stack-roadmap'
+              label='Source Code'
+              isOpenInNewTab={true}
+            />
+            <Nav link='/auth/login' label='Dashboard' />
+          </span>
+        </Header>
         <Roadmap data={data} error={error} />
       </div>
       <BackToTop />

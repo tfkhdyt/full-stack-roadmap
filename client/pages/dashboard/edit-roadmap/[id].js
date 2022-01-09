@@ -12,6 +12,7 @@ import TextAreaForm from '../../../components/TextAreaForm'
 import BackToDashboard from '../../../components/BackToDashboard'
 import Loading from '../../../components/Loading'
 import SelectForm from '../../../components/SelectForm'
+import Header from '../../../components/Header'
 
 const cookies = new Cookies()
 
@@ -79,6 +80,7 @@ export default function EditRoadmap() {
 
   useEffect(() => {
     if (data && !isChanged) {
+      mutate()
       setIsChanged(true)
       setOrder(data.data.order)
       setTitle(data.data.title)
@@ -164,7 +166,7 @@ export default function EditRoadmap() {
   const handleColor = (e) => setColor(e)
   const handleIntensity = (e) => setIntensity(e)
 
-  if (!data) return <Loading />
+  if (!data) return <Loading title='Edit Data | Full Stack Roadmap' />
 
   return (
     <div>
@@ -172,9 +174,11 @@ export default function EditRoadmap() {
         <title>Edit {data.data.title} | Full Stack Roadmap</title>
       </Head>
       <div className='px-6 md:px-56 lg:px-96 py-3 pb-12 text-gray-200 space-y-3'>
-        <p className='font-extrabold text-2xl flex justify-center'>
-          Edit Roadmap
-        </p>
+        <Header>
+          <p className='font-extrabold text-2xl flex justify-center'>
+            Edit Roadmap
+          </p>
+        </Header>
         <div>
           <BackToDashboard />
           <form className='space-y-3' onSubmit={handleSubmit}>

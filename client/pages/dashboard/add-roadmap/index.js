@@ -10,6 +10,7 @@ import InputForm from '../../../components/InputForm'
 import TextAreaForm from '../../../components/TextAreaForm'
 import BackToDashboard from '../../../components/BackToDashboard'
 import SelectForm from '../../../components/SelectForm'
+import Header from '../../../components/Header'
 
 const cookies = new Cookies()
 
@@ -99,9 +100,11 @@ Intensity: ${intensity}`)*/
         <title>Add Data | Full Stack Roadmap</title>
       </Head>
       <div className='px-6 md:px-56 lg:px-96 py-3 pb-12 text-gray-200 space-y-3'>
-        <p className='font-extrabold text-2xl flex justify-center'>
-          Add Roadmap
-        </p>
+        <Header>
+          <p className='font-extrabold text-2xl flex justify-center'>
+            Add Roadmap
+          </p>
+        </Header>
         <div>
           <BackToDashboard />
           <form className='space-y-3' onSubmit={handleSubmit}>

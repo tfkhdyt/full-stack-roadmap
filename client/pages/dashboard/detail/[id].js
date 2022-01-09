@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import useSWR from 'swr'
 import deleteData from '../../../utils/deleteData'
+import Header from '../../../components/Header'
 
 const cookies = new Cookies()
 
@@ -170,7 +171,7 @@ export default function Detail() {
     }
   }
 
-  if (!data) return <Loading />
+  if (!data) return <Loading title='Detail | Full Stack Roadmap' />
 
   return (
     <div>
@@ -178,7 +179,9 @@ export default function Detail() {
         <title>{data.data.title} | Full Stack Roadmap</title>
       </Head>{' '}
       <div className='px-6 md:px-56 lg:px-80 py-3 text-gray-200 space-y-3'>
-        <p className='font-extrabold text-2xl flex justify-center'>Detail</p>
+        <Header>
+          <p className='font-extrabold text-2xl flex justify-center'>Detail</p>
+        </Header>
         <div>
           <BackToDashboard />
           {data && (

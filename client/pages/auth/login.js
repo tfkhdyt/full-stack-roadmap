@@ -9,6 +9,7 @@ import FormButton from '../../components/FormButton'
 import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
 import { Alert, Toast } from '../../config'
+import Header from '../../components/Header'
 
 function Login() {
   const [email, setEmail] = useState()
@@ -84,7 +85,9 @@ function Login() {
       <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-96 md:min-h-screen md:grid md:place-items-center'>
         <div className='lg:flex lg:flex-col'>
           <div className='flex justify-center'>
-            <AuthHeader>Login</AuthHeader>
+            <Header>
+              <p className='font-bold text-2xl'>Login</p>
+            </Header>
           </div>
           <div className='px-6'>
             <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
