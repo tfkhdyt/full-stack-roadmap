@@ -32,7 +32,7 @@ export default function Roadmap({ data, error }) {
                 (i + 1) % 2 !== 0 ? 'flex-row-reverse' : null
               } md:contents`}
             >
-              <Card id={i + 1} data={e} />
+              <Card id={i + 1} data={e} lastId={data.length} />
             </div>
           ))}
         </div>

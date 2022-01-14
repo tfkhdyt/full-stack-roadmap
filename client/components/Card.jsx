@@ -1,6 +1,6 @@
 import Buttons from './Buttons'
 
-export default function Card({ id, data }) {
+export default function Card({ id, data, lastId }) {
   if (id % 2 !== 0) {
     return (
       <>
@@ -27,10 +27,10 @@ export default function Card({ id, data }) {
           />
         </div>
         <div className='col-start-5 col-end-6 md:mx-auto relative mr-10'>
-          <div className='h-full w-6 flex items-center justify-center'>
-            <div className='h-full w-1 bg-sky-800 pointer-events-none'></div>
+          <div className={`h-full w-6 flex items-center justify-center`}>
+            <div className='h-full w-1 bg-sky-600 pointer-events-none'></div>
           </div>
-          <div className='w-5 h-5 absolute top-1/2 -mt-3 ml-0.5 rounded-full bg-sky-600 shadow-lg'></div>
+          <div className='w-7 h-7 -ml-0.5 absolute top-1/2 -mt-3 rounded-full bg-gray-800 border-solid border-[0.225rem] border-sky-600'></div>
         </div>
       </>
     )
@@ -39,9 +39,9 @@ export default function Card({ id, data }) {
       <>
         <div className='col-start-5 col-end-6 mr-10 md:mx-auto relative'>
           <div className='h-full w-6 flex items-center justify-center'>
-            <div className='h-full w-1 bg-sky-800 pointer-events-none'></div>
+            <div className='h-full w-1 bg-sky-600 pointer-events-none'></div>
           </div>
-          <div className='w-5 h-5 ml-0.5 absolute top-1/2 -mt-3 rounded-full bg-sky-600 shadow-lg'></div>
+          <div className='w-7 h-7 -ml-0.5 absolute top-1/2 -mt-3 rounded-full bg-gray-800 border-solid border-[0.225rem] border-sky-600'></div>
         </div>
         <div
           className={`bg-${data.color} shadow-md shadow-${data.color} text-gray-800 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 selection:text-${data.color}`}
