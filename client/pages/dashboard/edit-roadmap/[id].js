@@ -87,8 +87,8 @@ export default function EditRoadmap() {
       setType(data.data.type)
       setDescription(data.data.description)
       setIcon(data.data.icon)
-      setColor(data.data.color.split('-')[0]),
-        setIntensity(data.data.color.split('-')[1])
+      setColor(data.data.color.split('-')[0])
+      setIntensity(data.data.color.split('-')[1])
       setLinkVideo(data.data.linkVideo)
       setLinkDocs(data.data.linkDocs)
       setAccepted(data.data.accepted)
