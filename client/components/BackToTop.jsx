@@ -20,7 +20,7 @@ export default function BackToTop() {
   return (
     <>
       <button
-        className={`p-2 rounded-full bg-sky-600 fixed bottom-6 left-8 shadow-md shadow-sky-700/50 transition-opacity duration-300 ease-in-out ${
+        className={`p-2 rounded-full bg-sky-600 fixed bottom-6 left-8 transition-opacity duration-300 ease-in-out ${
           showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } active:bg-sky-800`}
         onClick={showButton ? handleClick : null}
