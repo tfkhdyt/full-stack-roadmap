@@ -5,7 +5,7 @@ import { Children } from '../types/children'
 type NavProps = {
   link: string
   label: string
-  isOpenInNewTab: boolean
+  isOpenInNewTab?: boolean
 }
 
 export const Nav = ({ link, label, isOpenInNewTab = false }: NavProps) => {

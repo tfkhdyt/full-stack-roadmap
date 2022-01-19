@@ -10,6 +10,7 @@ module.exports = {
         'gradient-x': 'gradient-x 8s ease infinite',
         'gradient-y': 'gradient-y 8s ease infinite',
         'gradient-xy': 'gradient-xy 8s ease infinite',
+        'pop-out': 'pop-out 0.5s ease'
       },
       keyframes: {
         'gradient-y': {
@@ -40,6 +41,14 @@ module.exports = {
           '50%': {
             'background-size': '200% 200%',
             'background-position': 'right center',
+          },
+        },
+        'pop-out': {
+          '0%, 100%': {
+            transform: 'scale(1)',
+          },
+          '50%': {
+            transform: 'scale(1.50)',
           },
         },
       },
