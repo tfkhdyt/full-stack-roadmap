@@ -5,6 +5,8 @@ type InputFormProps = {
   id: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
+  order?: number
+  value?: string | number
 }
 
 const InputForm = ({ label, id, onChange, ...rest }: InputFormProps) => {

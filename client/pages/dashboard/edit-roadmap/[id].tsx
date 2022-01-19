@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, FormEvent } from 'react'
 import axios from 'axios'
 import Head from 'next/head'
 import Cookies from 'universal-cookie'
@@ -16,7 +16,7 @@ import Header from '../../../components/Header'
 
 const cookies = new Cookies()
 
-const fetcher = async (url) => {
+const fetcher = async (url: string) => {
   try {
     const res = await axios.get(url, {
       headers: {
@@ -24,25 +24,25 @@ const fetcher = async (url) => {
       },
     })
     return res.data
-  } catch (err) {
-    const error = new Error(err.message)
+  } catch (err: any) {
+    const error: { status: number } | any = new Error(err.message)
     error.status = err.response.status
     throw error
   }
 }
 
-export default function EditRoadmap() {
-  const [order, setOrder] = useState()
-  const [title, setTitle] = useState()
-  const [type, setType] = useState()
-  const [description, setDescription] = useState()
-  const [icon, setIcon] = useState()
-  const [color, setColor] = useState()
-  const [intensity, setIntensity] = useState()
-  const [linkVideo, setLinkVideo] = useState()
-  const [linkDocs, setLinkDocs] = useState()
-  const [accepted, setAccepted] = useState()
-  const [isChanged, setIsChanged] = useState(false)
+const EditRoadmap = () => {
+  const [order, setOrder] = useState<number>()
+  const [title, setTitle] = useState<string>()
+  const [type, setType] = useState<string>()
+  const [description, setDescription] = useState<string>()
+  const [icon, setIcon] = useState<string>()
+  const [color, setColor] = useState<string>()
+  const [intensity, setIntensity] = useState<number>()
+  const [linkVideo, setLinkVideo] = useState<string>()
+  const [linkDocs, setLinkDocs] = useState<string>()
+  const [accepted, setAccepted] = useState<boolean>()
+  const [isChanged, setIsChanged] = useState<boolean>(false)
 
   const router = useRouter()
   const { id } = router.query
@@ -95,7 +95,7 @@ export default function EditRoadmap() {
     }
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     Alert.fire({
       title: 'Loading...',
@@ -163,8 +163,8 @@ export default function EditRoadmap() {
       })
   }
 
-  const handleColor = (e) => setColor(e)
-  const handleIntensity = (e) => setIntensity(e)
+  const handleColor = (e: string) => setColor(e)
+  const handleIntensity = (e: number) => setIntensity(e)
 
   if (!data) return <Loading title='Edit Data | Full Stack Roadmap' />
 
@@ -187,7 +187,7 @@ export default function EditRoadmap() {
               <InputForm
                 label='Order'
                 id='order'
-                onChange={(e) => setOrder(e.target.value)}
+                onChange={(e) => setOrder(Number(e.target.value))}
                 placeholder='Example: HTML'
                 value={order}
               />
@@ -288,3 +288,5 @@ export default function EditRoadmap() {
     </div>
   )
 }
+
+export default EditRoadmap

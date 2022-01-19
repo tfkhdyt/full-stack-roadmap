@@ -5,6 +5,7 @@ type TextAreaFormProps = {
   id: string
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   placeholder?: string
+  value?: string
 }
 
 const TextAreaForm = ({ label, id, onChange, ...rest }: TextAreaFormProps) => {
