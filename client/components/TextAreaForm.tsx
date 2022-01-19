@@ -1,4 +1,13 @@
-function TextAreaForm({ label, id, onChange, ...rest }) {
+import { ChangeEvent } from 'react'
+
+type TextAreaFormProps = {
+  label: string
+  id: string
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  placeholder?: string
+}
+
+const TextAreaForm = ({ label, id, onChange, ...rest }: TextAreaFormProps) => {
   return (
     <div className='space-y-1'>
       <label htmlFor={id} className='text-gray-200 font-medium'>

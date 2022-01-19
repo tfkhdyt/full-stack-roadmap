@@ -5,8 +5,8 @@ type SelectFormProps = {
   id: string
   handleColor: (color: string) => void
   handleIntensity: (intensity: number) => void
-  defaultColor: string
-  defaultIntensity: number
+  defaultColor?: string
+  defaultIntensity?: number
 }
 
 const SelectForm = ({
