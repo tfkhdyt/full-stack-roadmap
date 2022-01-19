@@ -20,14 +20,14 @@ export default function BackToTop() {
   return (
     <>
       <button
-        className={`p-2 rounded-full bg-sky-600 fixed bottom-6 left-8 transition-opacity duration-300 ease-in-out ${
+        className={`p-2 -ml-0.5 rounded-full bg-sky-700 fixed bottom-6 left-8 transition-opacity duration-300 ease-in-out ${
           showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } active:bg-sky-800`}
         onClick={showButton ? handleClick : null}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className='h-4 w-4'
+          className='h-5 w-5'
           fill='none'
           viewBox='0 0 24 24'
           stroke='currentColor'

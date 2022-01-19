@@ -6,7 +6,7 @@ export const Nav = ({ link, icon, label, isOpenInNewTab = false }) => {
       <Link href={link}>
         <a
           className='group-hover:text-sky-600 flex items-center space-x-1 transition duration-200 ease-in-out'
-          target={isOpenInNewTab && '_blank'}
+          target={isOpenInNewTab ? '_blank' : ''}
         >
           <span className='font-semibold'>{label}</span>
         </a>

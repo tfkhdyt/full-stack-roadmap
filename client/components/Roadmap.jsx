@@ -1,11 +1,22 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import Cookies from 'universal-cookie'
 import { Alert } from '../config'
 import Card from './Card'
 // import { data } from '../public/data'
 
 export default function Roadmap({ data, error }) {
+  const cookies = new Cookies()
   const router = useRouter()
+  const [progress, setProgress] = useState(cookies.get('progress') || { progress: [] })
+
+  useEffect(() => {
+    // console.log(progress)
+    cookies.set('progress', progress, {
+      maxAge: 3000000,
+      path: '/'
+    })
+  }, [progress.progress])
 
   useEffect(async () => {
     if (error) {
@@ -32,7 +43,7 @@ export default function Roadmap({ data, error }) {
                 (i + 1) % 2 !== 0 ? 'flex-row-reverse' : null
               } md:contents`}
             >
-              <Card id={i + 1} data={e} lastId={data.length} />
+              <Card id={i + 1} data={e} state={[progress, setProgress]} />
             </div>
           ))}
         </div>
