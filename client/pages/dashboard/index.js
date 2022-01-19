@@ -130,7 +130,7 @@ function Dashboard() {
                 return (
                   <div
                     key={e._id}
-                    className={`rounded-md bg-${e.color} shadow-md shadow-${e.color}/50 p-3 flex justify-between items-center lg:cursor-pointer`}
+                    className={`rounded-md bg-${e.color} shadow-md shadow-${e.color} p-3 flex justify-between items-center lg:cursor-pointer`}
                   >
                     <div
                       className='flex items-center space-x-2 flex-1'
