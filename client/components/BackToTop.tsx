@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function BackToTop() {
+const BackToTop = () => {
   const [showButton, setShowButton] = useState(false)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function BackToTop() {
         className={`p-2 -ml-0.5 rounded-full bg-sky-700 fixed bottom-6 left-8 transition-opacity duration-300 ease-in-out ${
           showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } active:bg-sky-800`}
-        onClick={showButton ? handleClick : null}
+        onClick={showButton ? handleClick : undefined}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -43,3 +43,5 @@ export default function BackToTop() {
     </>
   )
 }
+
+export default BackToTop
