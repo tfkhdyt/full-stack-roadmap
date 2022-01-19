@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react'
 
-export default function SelectForm({
+type SelectFormProps = {
+  label: string
+  id: string
+  handleColor: (color: string) => void
+  handleIntensity: (intensity: number) => void
+  defaultColor: string
+  defaultIntensity: number
+}
+
+const SelectForm = ({
   label,
   id,
   handleColor,
   handleIntensity,
   defaultColor = 'blue',
   defaultIntensity = 400,
-}) {
+}: SelectFormProps) => {
   const colors = [
     {
       value: 'red',
@@ -98,8 +107,8 @@ export default function SelectForm({
       label: 'Rose',
     },
   ]
-  const [color, setColor] = useState(defaultColor)
-  const [intensity, setIntensity] = useState(defaultIntensity)
+  const [color, setColor] = useState<string>(defaultColor)
+  const [intensity, setIntensity] = useState<number>(defaultIntensity)
 
   const _intensity = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
 
@@ -131,7 +140,7 @@ export default function SelectForm({
         <select
           name='intensity'
           className='py-2 px-3 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200 appearance-none outline-none'
-          onChange={(e) => setIntensity(e.target.value)}
+          onChange={(e) => setIntensity(Number(e.target.value))}
           defaultValue={intensity}
         >
           {_intensity.map((element, index) => (
@@ -145,3 +154,5 @@ export default function SelectForm({
     </div>
   )
 }
+
+export default SelectForm

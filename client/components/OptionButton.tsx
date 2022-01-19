@@ -11,8 +11,8 @@ import deleteData from '../utils/deleteData'
 const cookies = new Cookies()
 
 type OptionButtonProps = {
-  data: Data,
-  role: string,
+  data: Data
+  role: string
   mutate: () => void
 }
 
@@ -25,7 +25,11 @@ const OptionButton = ({ data, role, mutate }: OptionButtonProps) => {
     const checkIfClickedOutside = (e: Event) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
-      if (isOpened && ref.current && !ref.current.contains(e.target as HTMLElement)) {
+      if (
+        isOpened &&
+        ref.current &&
+        !ref.current.contains(e.target as HTMLElement)
+      ) {
         setIsOpened(false)
       }
     }
