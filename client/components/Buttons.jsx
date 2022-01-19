@@ -1,12 +1,15 @@
 import Link from 'next/link'
 
-export default function Buttons({ linkVideo, linkDocs, color, title }) {
+export default function Buttons({ linkVideo, linkDocs, color, title, shade }) {
+  shade = shade.split('-')
+  shade[1] = Number(shade[1]) - 100
+  shade = shade.join('-')
   return (
     <div className='flex space-x-2 text-sm'>
       <Link href={linkVideo}>
         <a
           target='_blank'
-          className={`w-1/2 py-2 bg-transparent ring-1 ring-gray-800 rounded-md font-semibold flex justify-center items-center space-x-0.5`}
+          className={`w-1/2 py-2 bg-transparent ring-1 ring-gray-800 rounded-md font-semibold flex justify-center items-center space-x-0.5 text-gray-800`}
           id={`Playlist ${title}`}
         >
           <svg
@@ -27,7 +30,7 @@ export default function Buttons({ linkVideo, linkDocs, color, title }) {
       <Link href={linkDocs}>
         <a
           target='_blank'
-          className={`w-1/2 py-2 bg-gray-800 text-${color} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
+          className={`w-1/2 py-2 bg-gray-800 text-${shade} rounded-md font-semibold flex justify-center items-center space-x-0.5`}
           id={`Dokumentasi ${title}`}
         >
           <svg
