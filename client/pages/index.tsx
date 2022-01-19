@@ -1,18 +1,18 @@
-import Config from '../config'
 import Cookies from 'universal-cookie'
 import Head from 'next/head'
 import axios from 'axios'
 import useSWR from 'swr'
 
+import { Nav } from '../components/Header'
 import BackToTop from '../components/BackToTop'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
 import Roadmap from '../components/Roadmap'
-import { Nav } from '../components/Header'
+import Config from '../config'
 
 const cookies = new Cookies()
 
-const fetcher = async (url) => {
+const fetcher = async (url: string) => {
   try {
     const result = await axios.get(url, {
       headers: {
@@ -20,14 +20,14 @@ const fetcher = async (url) => {
       },
     })
     return result.data.data
-  } catch (err) {
-    const error = new Error(err.message)
+  } catch (err: any) {
+    const error: { status: boolean } | any = new Error(err.message)
     error.status = err.response.status
     throw error
   }
 }
 
-export default function Home() {
+const Home = () => {
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/roadmaps`,
     fetcher
@@ -60,3 +60,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home
