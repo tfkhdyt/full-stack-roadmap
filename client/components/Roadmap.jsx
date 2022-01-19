@@ -8,13 +8,15 @@ import Card from './Card'
 export default function Roadmap({ data, error }) {
   const cookies = new Cookies()
   const router = useRouter()
-  const [progress, setProgress] = useState(cookies.get('progress') || { progress: [] })
+  const [progress, setProgress] = useState(
+    cookies.get('progress') || { progress: [] }
+  )
 
   useEffect(() => {
     // console.log(progress)
     cookies.set('progress', progress, {
       maxAge: 3000000,
-      path: '/'
+      path: '/',
     })
   }, [progress.progress])
 

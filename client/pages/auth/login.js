@@ -6,7 +6,6 @@ import axios from 'axios'
 import Cookies from 'universal-cookie'
 
 import FormButton from '../../components/FormButton'
-import AuthHeader from '../../components/AuthHeader'
 import InputForm from '../../components/InputForm'
 import { Alert, Toast } from '../../config'
 import Header from '../../components/Header'
