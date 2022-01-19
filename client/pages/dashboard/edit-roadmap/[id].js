@@ -127,7 +127,7 @@ export default function EditRoadmap() {
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         mutate()
         Alert.close()
         Alert.fire({

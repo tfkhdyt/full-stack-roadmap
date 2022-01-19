@@ -56,7 +56,7 @@ Intensity: ${intensity}`)*/
         },
       }
     )
-      .then((res) => {
+      .then(() => {
         Alert.close()
         Alert.fire({
           icon: 'success',
