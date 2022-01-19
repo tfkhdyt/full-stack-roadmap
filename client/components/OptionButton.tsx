@@ -2,22 +2,30 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
+
 import { Alert, Toast } from '../config'
+import { Data } from '../types/data'
 import Link from 'next/link'
 import deleteData from '../utils/deleteData'
 
 const cookies = new Cookies()
 
-export default function OptionButton({ data, role, mutate }) {
+type OptionButtonProps = {
+  data: Data,
+  role: string,
+  mutate: () => void
+}
+
+const OptionButton = ({ data, role, mutate }: OptionButtonProps) => {
   const [isOpened, setIsOpened] = useState(false)
-  const ref = useRef()
+  const ref = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
   useEffect(() => {
-    const checkIfClickedOutside = (e) => {
+    const checkIfClickedOutside = (e: Event) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
-      if (isOpened && ref.current && !ref.current.contains(e.target)) {
+      if (isOpened && ref.current && !ref.current.contains(e.target as HTMLElement)) {
         setIsOpened(false)
       }
     }
@@ -63,7 +71,7 @@ export default function OptionButton({ data, role, mutate }) {
       Toast.fire({
         title: 'Ubah status berhasil!',
       })
-    } catch (err) {
+    } catch (err: any) {
       // console.log(err)
       switch (err.response.status) {
         case 500:
@@ -93,7 +101,7 @@ export default function OptionButton({ data, role, mutate }) {
     }
   }
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     const confirm = await Alert.fire({
       icon: 'question',
       title: 'Apakah Anda yakin ingin menghapus data ini?',
@@ -191,3 +199,5 @@ export default function OptionButton({ data, role, mutate }) {
     </div>
   )
 }
+
+export default OptionButton

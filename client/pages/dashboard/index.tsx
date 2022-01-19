@@ -7,13 +7,14 @@ import Link from 'next/link'
 import useSWR from 'swr'
 
 import { Alert, Toast } from '../../config'
+import { SWRTypes } from '../../types/swr'
 import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
 import Header from '../../components/Header'
 
 const cookies = new Cookies()
 
-const fetcher = async (url) => {
+const fetcher = async (url: string) => {
   try {
     const res = await axios.get(url, {
       headers: {
@@ -21,17 +22,18 @@ const fetcher = async (url) => {
       },
     })
     return res.data
-  } catch (err) {
-    const error = new Error(err.message)
+  } catch (err: any) {
+    const error: { status: number } | any = new Error(err.message)
     error.status = err.response.status
     throw error
   }
 }
 
-function Dashboard() {
+const Dashboard = () => {
   const router = useRouter()
   const [accepted, setAccepted] = useState(true)
-  const { data, error, mutate } = useSWR(
+
+  const { data, error, mutate } = useSWR<SWRTypes, any>(
     `${process.env.NEXT_PUBLIC_API_URL}/roadmap`,
     fetcher
   )
@@ -69,7 +71,7 @@ function Dashboard() {
     setAccepted(!accepted)
   }
 
-  const handleDetail = (url) => {
+  const handleDetail = (url: string) => {
     router.push(url)
   }
 
@@ -126,7 +128,7 @@ function Dashboard() {
           {data &&
             data.data
               .filter((e) => e.accepted == accepted)
-              .map((e) => {
+              .map((e: Data) => {
                 return (
                   <div
                     key={e._id}

@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 
-function Middleware(req) {
+const Middleware = (req: NextRequest) => {
   const { token } = req.cookies
 
   if (!token) {
