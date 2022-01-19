@@ -1,6 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, ChangeEvent } from 'react'
 
-function InputForm({ label, id, onChange, ...rest }) {
+type InputFormProps = {
+  label: string
+  id: string
+  onchange: (e: ChangeEvent<HTMLInputElement>) => void
+  rest: any
+}
+
+const InputForm = ({ label, id, onchange, ...rest }: InputFormProps) => {
   const [type, setType] = useState('text')
 
   useEffect(() => {
@@ -18,7 +25,7 @@ function InputForm({ label, id, onChange, ...rest }) {
         name={id}
         id={id}
         className='w-full py-2 px-3 rounded-md outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200'
-        onChange={onChange}
+        onChange={onchange}
         {...rest}
         required
       />

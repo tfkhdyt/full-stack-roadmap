@@ -1,4 +1,11 @@
-export default function FormButton({ color, children }) {
+import { ReactNode } from 'react'
+
+type FormButtonProps = {
+  color: string
+  children: ReactNode
+}
+
+const FormButton = ({ color, children }: FormButtonProps) => {
   return (
     <div className='mt-4'>
       <button
@@ -10,3 +17,5 @@ export default function FormButton({ color, children }) {
     </div>
   )
 }
+
+export default FormButton

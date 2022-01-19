@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 
-function middleware(req) {
+const middleware = (req: NextRequest) => {
   const { token } = req.cookies
 
   if (req.url == '/auth') return NextResponse.redirect('/auth/login')

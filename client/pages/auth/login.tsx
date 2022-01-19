@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -11,12 +11,12 @@ import { Alert, Toast } from '../../config'
 import Header from '../../components/Header'
 
 function Login() {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+  const [email, setEmail] = useState<string>()
+  const [password, setPassword] = useState<string>()
   const router = useRouter()
   const cookie = new Cookies()
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     Alert.fire({
       title: 'Loading...',
@@ -42,7 +42,7 @@ function Login() {
         maxAge: 3000000,
       })
       router.push('/dashboard')
-    } catch (err) {
+    } catch (err: any) {
       Alert.close()
       switch (err.response.status) {
         case 500:
@@ -93,12 +93,16 @@ function Login() {
               <InputForm
                 label='Email'
                 id='email'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
               />
               <InputForm
                 label='Password'
                 id='password'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
               />
               <FormButton color='sky-600'>Login</FormButton>
             </form>
