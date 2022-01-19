@@ -8,6 +8,7 @@ import useSWR from 'swr'
 
 import { Alert, Toast } from '../../config'
 import { SWRTypes } from '../../types/swr'
+import { Data } from '../../types/data'
 import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
 import Header from '../../components/Header'
