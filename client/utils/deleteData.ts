@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
-const deleteData = (id) => {
+const deleteData = (id: string) => {
   return new Promise(async (resolve, reject) => {
     try {
       const result = await axios.delete(
@@ -15,7 +15,7 @@ const deleteData = (id) => {
         }
       )
       resolve(result)
-    } catch (err) {
+    } catch (err: any) {
       reject(err.response.status)
     }
   })
