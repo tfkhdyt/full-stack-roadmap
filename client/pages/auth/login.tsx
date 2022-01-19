@@ -10,7 +10,7 @@ import InputForm from '../../components/InputForm'
 import { Alert, Toast } from '../../config'
 import Header from '../../components/Header'
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState<string>()
   const [password, setPassword] = useState<string>()
   const router = useRouter()
