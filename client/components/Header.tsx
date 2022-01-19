@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { Children } from '../types/children'
 
 type NavProps = {
-  link: string,
-  label: string,
+  link: string
+  label: string
   isOpenInNewTab: boolean
 }
 

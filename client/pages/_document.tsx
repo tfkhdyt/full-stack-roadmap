@@ -1,4 +1,10 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
 
 import MetaTags from '../components/MetaTags'
 import Config from '../config'
@@ -35,4 +41,3 @@ export default class MyDocument extends Document {
     )
   }
 }
-
