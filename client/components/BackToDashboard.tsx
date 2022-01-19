@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-export default function BackToDashboard() {
+const BackToDashboard = () => {
   const router = useRouter()
 
   const handleClick = () => {
@@ -30,3 +30,5 @@ export default function BackToDashboard() {
     </p>
   )
 }
+
+export default BackToDashboard

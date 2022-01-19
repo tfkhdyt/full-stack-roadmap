@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -9,13 +9,13 @@ import FormButton from '../../components/FormButton'
 import Header from '../../components/Header'
 import InputForm from '../../components/InputForm'
 
-function Register() {
-  const [fullName, setFullName] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+const Register = () => {
+  const [fullName, setFullName] = useState<string>()
+  const [email, setEmail] = useState<string>()
+  const [password, setPassword] = useState<string>()
   const router = useRouter()
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // console.log(password)
     Alert.fire({
@@ -47,11 +47,11 @@ function Register() {
       if (res.isConfirmed) {
         router.push('/auth/login')
       }
-    } catch (err) {
+    } catch (err: any) {
       Alert.close()
       console.log(err.response.data)
       const msg = err.response.data.errors
-        .map((e) => {
+        .map((e: any) => {
           return e.msg
         })
         .join(',\n')
@@ -80,17 +80,23 @@ function Register() {
               <InputForm
                 label='Full Name'
                 id='fullName'
-                onChange={(e) => setFullName(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFullName(e.target.value)
+                }
               />
               <InputForm
                 label='Email'
                 id='email'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
               />
               <InputForm
                 label='Password'
                 id='password'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
               />
               <FormButton color='green-600'>Register</FormButton>
             </form>

@@ -13,7 +13,7 @@ import Header from '../../../components/Header'
 
 const cookies = new Cookies()
 
-const fetcher = async (url) => {
+const fetcher = async (url: string) => {
   try {
     const res = await axios.get(url, {
       headers: {
@@ -21,14 +21,14 @@ const fetcher = async (url) => {
       },
     })
     return res.data
-  } catch (err) {
-    const error = new Error(err.message)
+  } catch (err: any) {
+    const error: { error: number } | any = new Error(err.message)
     error.status = err.response.status
     throw error
   }
 }
 
-export default function Detail() {
+const Detail = () => {
   const router = useRouter()
   const { id } = router.query
   const { data, error, mutate } = useSWR(
@@ -91,7 +91,7 @@ export default function Detail() {
       Toast.fire({
         title: 'Ubah status berhasil!',
       })
-    } catch (err) {
+    } catch (err: any) {
       // console.log(err)
       switch (err.response.status) {
         case 500:
@@ -121,7 +121,7 @@ export default function Detail() {
     }
   }
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     const confirm = await Alert.fire({
       icon: 'question',
       title: 'Apakah Anda yakin ingin menghapus data ini?',
@@ -281,3 +281,5 @@ export default function Detail() {
     </div>
   )
 }
+
+export default Detail

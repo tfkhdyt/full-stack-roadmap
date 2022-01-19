@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import Axios from 'axios'
 import Head from 'next/head'
 import Cookies from 'universal-cookie'
@@ -14,18 +14,18 @@ import Header from '../../../components/Header'
 
 const cookies = new Cookies()
 
-function AddRoadmap() {
-  const [title, setTitle] = useState()
-  const [type, setType] = useState()
-  const [description, setDescription] = useState()
-  const [icon, setIcon] = useState()
-  const [color, setColor] = useState()
-  const [intensity, setIntensity] = useState()
-  const [linkVideo, setLinkVideo] = useState()
-  const [linkDocs, setLinkDocs] = useState()
+const AddRoadmap = () => {
+  const [title, setTitle] = useState<string>()
+  const [type, setType] = useState<string>()
+  const [description, setDescription] = useState<string>()
+  const [icon, setIcon] = useState<string>()
+  const [color, setColor] = useState<string>()
+  const [intensity, setIntensity] = useState<number>()
+  const [linkVideo, setLinkVideo] = useState<string>()
+  const [linkDocs, setLinkDocs] = useState<string>()
   const router = useRouter()
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     /*alert(`Color: ${color}
 Intensity: ${intensity}`)*/
@@ -91,8 +91,8 @@ Intensity: ${intensity}`)*/
       })
   }
 
-  const handleColor = (e) => setColor(e)
-  const handleIntensity = (e) => setIntensity(e)
+  const handleColor = (e: string) => setColor(e)
+  const handleIntensity = (e: number) => setIntensity(e)
 
   return (
     <div>
@@ -111,25 +111,33 @@ Intensity: ${intensity}`)*/
             <InputForm
               label='Title'
               id='title'
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setTitle(e.target.value)
+              }
               placeholder='Example: HTML'
             />
             <InputForm
               label='Type'
               id='type'
-              onChange={(e) => setType(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setType(e.target.value)
+              }
               placeholder='Example: Markup Language'
             />
             <TextAreaForm
               label='Description'
               id='description'
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                setDescription(e.target.value)
+              }
               placeholder='Example: HTML adalah bla bla bla'
             />
             <InputForm
               label='Icon (link only)'
               id='icon'
-              onChange={(e) => setIcon(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setIcon(e.target.value)
+              }
               placeholder='Example: https://.../...svg'
             />
             {/*<InputForm
@@ -147,7 +155,9 @@ Intensity: ${intensity}`)*/
             <InputForm
               label="Video's Link"
               id='linkVideo'
-              onChange={(e) => setLinkVideo(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setLinkVideo(e.target.value)
+              }
               placeholder='Example: https://youtu.be/..'
             />
             <InputForm

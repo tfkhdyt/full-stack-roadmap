@@ -1,7 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, ChangeEvent } from 'react'
 
-function InputForm({ label, id, onChange, ...rest }) {
-  const [type, setType] = useState('text')
+type InputFormProps = {
+  label: string
+  id: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  placeholder?: string
+  order?: number
+  value?: string | number
+}
+
+const InputForm = ({ label, id, onChange, ...rest }: InputFormProps) => {
+  const [type, setType] = useState<string>('text')
 
   useEffect(() => {
     if (id === 'email') setType('email')
