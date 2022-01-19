@@ -1,9 +1,17 @@
 import Link from 'next/link'
 
-export default function Buttons({ linkVideo, linkDocs, title, shade }) {
-  shade = shade.split('-')
-  shade[1] = Number(shade[1]) - 100
-  shade = shade.join('-')
+type ButtonsProps = {
+  linkVideo: string
+  linkDocs: string
+  title: string
+  color?: string
+  shade: string
+}
+
+const Buttons = ({ linkVideo, linkDocs, title, shade }: ButtonsProps) => {
+  const tempShade: string[] = shade.split('-')
+  tempShade[1] = (Number(tempShade[1]) - 100).toString()
+  shade = tempShade.join('-')
   return (
     <div className='flex space-x-2 text-sm'>
       <Link href={linkVideo}>
@@ -47,3 +55,5 @@ export default function Buttons({ linkVideo, linkDocs, title, shade }) {
     </div>
   )
 }
+
+export default Buttons

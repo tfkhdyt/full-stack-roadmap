@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-function Loading({ title = 'Loading...' }) {
+const Loading = ({ title = 'Loading...' }) => {
   return (
     <div>
       <Head>

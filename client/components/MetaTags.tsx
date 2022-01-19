@@ -1,6 +1,6 @@
 import Data from '../config'
 
-export default function MetaTags() {
+const MetaTags = () => {
   return (
     <>
       {/* google site verification */}
@@ -24,3 +24,5 @@ export default function MetaTags() {
     </>
   )
 }
+
+export default MetaTags

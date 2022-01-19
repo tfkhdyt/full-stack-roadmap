@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "prettier -cw ./{pages,components}/**/*.{js,jsx} && eslint --fix ."
+    "lint": "prettier -cw ./{pages,components,utils,types}/**/*.{js,jsx,ts,tsx} && eslint --fix ."
   },
   "dependencies": {
     "animate.css": "^4.1.1",

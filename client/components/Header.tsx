@@ -1,6 +1,14 @@
 import Link from 'next/link'
 
-export const Nav = ({ link, label, isOpenInNewTab = false }) => {
+import { Children } from '../types/children'
+
+type NavProps = {
+  link: string
+  label: string
+  isOpenInNewTab?: boolean
+}
+
+export const Nav = ({ link, label, isOpenInNewTab = false }: NavProps) => {
   return (
     <div className='group text-sm'>
       <Link href={link}>
@@ -15,10 +23,12 @@ export const Nav = ({ link, label, isOpenInNewTab = false }) => {
   )
 }
 
-export default function Header({ children }) {
+const Header = ({ children }: Children) => {
   return (
     <div className='flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-bl from-blue-600 via-red-500 to-yellow-400 w-fit mx-auto text-transparent bg-clip-text animate-gradient-x'>
       {children}
     </div>
   )
 }
+
+export default Header

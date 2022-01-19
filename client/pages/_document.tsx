@@ -1,12 +1,18 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
-import MetaTags from '../components/MetaTags'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
 
+import MetaTags from '../components/MetaTags'
 import Config from '../config'
 
-class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    return initialProps
   }
 
   render() {
@@ -35,5 +41,3 @@ class MyDocument extends Document {
     )
   }
 }
-
-export default MyDocument

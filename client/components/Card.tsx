@@ -3,9 +3,19 @@ import { useState } from 'react'
 import Buttons from './Buttons'
 import LinesAndDot from './LinesAndDot'
 
-export default function Card({ id, data, state }) {
-  const [progress, setProgress] = state
-  const [isClicked, setIsClicked] = useState(
+type CardProps = {
+  id: number
+  data: any
+  state: any
+}
+
+type ProgressType = {
+  progress: string[]
+}
+
+const Card = ({ id, data, state }: CardProps) => {
+  const [progress, setProgress]: [ProgressType, any] = state
+  const [isActive, setIsClicked] = useState(
     progress.progress.includes(data._id)
   )
   // const cookies = new Cookies()
@@ -15,11 +25,11 @@ export default function Card({ id, data, state }) {
   shadeColor[1] = Number(shadeColor[1]) + 200
   shadeColor = shadeColor.join('-')
 
-  const handleProgressClick = (id) => {
-    const isIdExists = progress.progress.some((value) => value === id)
+  const handleProgressClick = (id: string) => {
+    const isIdExists = progress.progress.some((value: string) => value === id)
     if (isIdExists) {
       setProgress({
-        progress: progress.progress.filter((value) => value !== id),
+        progress: progress.progress.filter((value: string) => value !== id),
       })
       setIsClicked(false)
     } else {
@@ -59,7 +69,7 @@ export default function Card({ id, data, state }) {
           />
         </div>
         <LinesAndDot
-          isClicked={isClicked}
+          isActive={isActive}
           handleProgressClick={handleProgressClick}
           id={data._id}
         />
@@ -69,7 +79,7 @@ export default function Card({ id, data, state }) {
     return (
       <>
         <LinesAndDot
-          isClicked={isClicked}
+          isActive={isActive}
           handleProgressClick={handleProgressClick}
           id={data._id}
         />
@@ -100,3 +110,5 @@ export default function Card({ id, data, state }) {
     )
   }
 }
+
+export default Card
