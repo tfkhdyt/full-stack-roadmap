@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function Buttons({ linkVideo, linkDocs, color, title, shade }) {
+export default function Buttons({ linkVideo, linkDocs, title, shade }) {
   shade = shade.split('-')
   shade[1] = Number(shade[1]) - 100
   shade = shade.join('-')

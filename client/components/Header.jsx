@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export const Nav = ({ link, icon, label, isOpenInNewTab = false }) => {
+export const Nav = ({ link, label, isOpenInNewTab = false }) => {
   return (
     <div className='group text-sm'>
       <Link href={link}>

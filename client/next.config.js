@@ -12,12 +12,12 @@ module.exports = {
     return [
       {
         source: '/login',
-        destination: '/auth/login'
+        destination: '/auth/login',
       },
       {
         source: '/register',
-        destination: '/auth/register'
-      }
+        destination: '/auth/register',
+      },
     ]
-  }
+  },
 }
