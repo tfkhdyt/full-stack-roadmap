@@ -18,9 +18,14 @@
   },
   "scripts": {
     "lint": "prettier -cw src app.js && eslint --fix src app.js",
-    "dev": "tsc-watch --onSuccess 'node ./dist/app.js'"
+    "dev": "tsc-watch --onSuccess 'node ./dist/app.js'",
+    "postinstall": "tsc"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
     "eslint": "^8.5.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",

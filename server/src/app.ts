@@ -1,28 +1,25 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const mongoose = require('mongoose')
-const routes = require('./routes/route')
-
+import express from 'express'
+import cors from 'cors'
+import mongoose from 'mongoose'
 require('dotenv').config()
+
+import routes from './routes/route'
+
+const app = express()
 
 // Connect to database
 const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PWD}@cluster0.pbe5r.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
 try {
-  mongoose
-    .connect(uri, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    })
-    .then(() => {
-      console.log('Connected to DB...')
-    })
-} catch (error) {
+  (async () => {
+    await mongoose.connect(uri)
+    console.log('Connected to DB...')
+  })()
+} catch (error: any) {
   throw error.message
 }
 
-process.on('unhandledRejection', (error) => {
+process.on('unhandledRejection', (error: any) => {
   console.log('unhandledRejection', error.message)
 })
 
