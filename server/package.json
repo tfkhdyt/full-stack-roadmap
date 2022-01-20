@@ -18,7 +18,7 @@
   },
   "scripts": {
     "lint": "prettier -cw src app.js && eslint --fix src app.js",
-    "dev": "nodemon app.js"
+    "dev": "tsc-watch --onSuccess 'node ./dist/app.js'"
   },
   "devDependencies": {
     "eslint": "^8.5.0",
