@@ -50,14 +50,14 @@ const Header = ({ children }: Children) => {
   ]
 
   const getRandomIndex = (): number => {
-    return Math.floor(Math.random() * colors.length) 
+    return Math.floor(Math.random() * colors.length)
   }
 
   const getRandomColor = () => {
     return {
       from: colors[getRandomIndex()],
       via: colors[getRandomIndex()],
-      to: colors[getRandomIndex()]
+      to: colors[getRandomIndex()],
     }
   }
 
