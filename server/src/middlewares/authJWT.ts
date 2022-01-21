@@ -1,7 +1,10 @@
-const jwt = require('jsonwebtoken')
-const User = require('../models/user.model')
+import { Request, Response } from 'express'
+import jwt, { Secret } from 'jsonwebtoken'
 
-const verifyToken = (req, res, next) => {
+import User from '../models/user.model'
+// import { User as UserType } from '../types/user'
+
+const verifyToken = (req: Request, res: Response, next: any) => {
   if (
     req.headers &&
     req.headers.authorization &&
@@ -9,8 +12,8 @@ const verifyToken = (req, res, next) => {
   ) {
     jwt.verify(
       req.headers.authorization.split(' ')[1],
-      process.env.API_SECRET,
-      (err, decode) => {
+      process.env.API_SECRET as Secret,
+      (err: any, decode: { id: string } | any) => {
         if (err) {
           req.user = undefined
           next()
@@ -35,4 +38,5 @@ const verifyToken = (req, res, next) => {
     next()
   }
 }
-module.exports = verifyToken
+
+export default verifyToken

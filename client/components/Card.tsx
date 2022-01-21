@@ -72,6 +72,7 @@ const Card = ({ id, data, state }: CardProps) => {
           isActive={isActive}
           handleProgressClick={handleProgressClick}
           id={data._id}
+          name={data.title}
         />
       </>
     )
@@ -82,6 +83,7 @@ const Card = ({ id, data, state }: CardProps) => {
           isActive={isActive}
           handleProgressClick={handleProgressClick}
           id={data._id}
+          name={data.title}
         />
         <div
           className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} text-gray-800 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 selection:text-${baseColor}`}

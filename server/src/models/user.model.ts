@@ -1,26 +1,21 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+import mongoose, { Schema } from 'mongoose'
+
+import { User as UserType } from '../types/user'
 
 /**
  * User Schema
  */
-const userSchema = new Schema({
+const userSchema: Schema = new Schema({
   fullName: {
     type: String,
     required: [true, 'Fullname not provided'],
   },
   email: {
     type: String,
-    unique: [true, 'Email already exists in database!'],
+    unique: true,
     lowercase: true,
     trim: true,
     required: [true, 'Email not provided'],
-    validate: {
-      validator: function (v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
-      },
-      message: '{VALUE} is not a valid email!',
-    },
   },
   role: {
     type: String,
@@ -37,4 +32,4 @@ const userSchema = new Schema({
   },
 })
 
-module.exports = mongoose.model('User', userSchema)
+export default mongoose.model<UserType>('User', userSchema)

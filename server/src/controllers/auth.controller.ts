@@ -1,9 +1,12 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
-const { validationResult } = require('express-validator')
-const User = require('../models/user.model')
+import { Request, Response } from 'express'
+import jwt, { Secret } from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+import { validationResult } from 'express-validator'
 
-exports.signup = (req, res) => {
+import User from '../models/user.model'
+import { User as UserType } from '../types/user'
+
+export const signup = (req: Request, res: Response) => {
   const errors = validationResult(req)
   console.log(errors)
   if (!errors.isEmpty()) {
@@ -12,7 +15,7 @@ exports.signup = (req, res) => {
     })
     return
   }
-  const { fullName, email, password, role } = req.body
+  const { fullName, email, password, role }: UserType = req.body
   const user = new User({
     fullName,
     email,
@@ -20,12 +23,11 @@ exports.signup = (req, res) => {
     role: role,
   })
 
-  user.save((err, user) => {
+  user.save((err: any, user: UserType) => {
     if (err) {
       res.status(500).send({
         message: err,
       })
-      return
     } else {
       res.status(200).send({
         message: 'User registered successfully',
@@ -35,10 +37,11 @@ exports.signup = (req, res) => {
   })
 }
 
-exports.signin = (req, res) => {
+export const signin = (req: Request, res: Response) => {
+  const API_SECRET: Secret = process.env.API_SECRET as Secret
   User.findOne({
     email: req.body.email,
-  }).exec((err, user) => {
+  }).exec((err: any, user) => {
     if (err) {
       return res.status(500).send({
         message: err,
@@ -51,21 +54,23 @@ exports.signin = (req, res) => {
     }
 
     //comparing passwords
-    const passwordIsValid = bcrypt.compareSync(req.body.password, user.password)
+    const passwordIsValid: boolean = bcrypt.compareSync(
+      req.body.password,
+      user.password
+    )
     // checking if password was valid and send response accordingly
     if (!passwordIsValid) {
-      res.status(401).send({
+      return res.status(401).send({
         accessToken: null,
         message: 'Invalid password!',
       })
-      return
     }
     //signing token with user id
     const token = jwt.sign(
       {
         id: user._id,
       },
-      process.env.API_SECRET,
+      API_SECRET,
       {
         expiresIn: '30d',
       }

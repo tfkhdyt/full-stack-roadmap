@@ -1,19 +1,51 @@
 import { useState, useEffect } from 'react'
 
+import { toast } from 'react-toastify'
+
 type LinesAndDotProps = {
   isActive: boolean
   handleProgressClick: any
   id: string
+  name: string
 }
 
 const LinesAndDot = ({
   isActive,
   handleProgressClick,
   id,
+  name,
 }: LinesAndDotProps) => {
   const [isClicked, setIsClicked] = useState(false)
 
-  const handleClick = () => {
+  const handleClick = (name: string) => {
+    if (!isActive) {
+      toast.success(`${name} has been marked as done!`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      })
+    } else {
+      toast.info(
+        `${name}'${
+          name.charAt(name.length - 1).toLowerCase() !== 's' ? 's' : ''
+        } mark has been removed!`,
+        {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        }
+      )
+    }
     setIsClicked(true)
   }
 
@@ -25,6 +57,12 @@ const LinesAndDot = ({
       return () => clearTimeout(timer)
     }
   }, [isClicked])
+
+  useEffect(() => {
+    if (!isActive) {
+      setIsClicked(false)
+    }
+  }, [isActive])
 
   return (
     <div className='col-start-5 col-end-6 md:mx-auto relative mr-10'>
@@ -38,7 +76,7 @@ const LinesAndDot = ({
             : 'bg-gray-800 border-solid border-[0.225rem] border-sky-700'
         } ${isClicked && isActive && 'animate-pop-out pointer-events-none'}`}
         onClick={() => {
-          handleClick()
+          handleClick(name)
           handleProgressClick(id)
         }}
       >

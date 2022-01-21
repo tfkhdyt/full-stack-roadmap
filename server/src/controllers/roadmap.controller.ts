@@ -1,7 +1,10 @@
-const roadmap = require('../models/roadmap.model')
-const user = require('../models/user.model')
+import { Request, Response } from 'express'
 
-exports.addRoadmap = async (req, res) => {
+import roadmap from '../models/roadmap.model'
+import user from '../models/user.model'
+import { User } from '../types/user'
+
+export const addRoadmap = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT Token',
@@ -18,7 +21,7 @@ exports.addRoadmap = async (req, res) => {
       message: 'Input data berhasil',
       data: result,
     })
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).send({
       message: 'Input data gagal',
       data: err.message,
@@ -26,7 +29,7 @@ exports.addRoadmap = async (req, res) => {
   }
 }
 
-exports.getRoadmaps = async (req, res) => {
+export const getRoadmaps = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT token',
@@ -41,7 +44,7 @@ exports.getRoadmaps = async (req, res) => {
         data: result,
         role: req.user.role,
       })
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).send({
         message: 'Query gagal',
         data: err.message,
@@ -59,7 +62,7 @@ exports.getRoadmaps = async (req, res) => {
         data: result,
         role: req.user.role,
       })
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).send({
         message: 'Query gagal',
         data: err.message,
@@ -68,7 +71,7 @@ exports.getRoadmaps = async (req, res) => {
   }
 }
 
-exports.editRoadmap = async (req, res) => {
+export const editRoadmap = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT Token',
@@ -79,7 +82,7 @@ exports.editRoadmap = async (req, res) => {
   let updatedData
   try {
     updatedData = await roadmap.findById(id)
-  } catch (err) {
+  } catch (err: any) {
     res.status(404).send({
       message: 'Data not found',
       data: err.message,
@@ -96,7 +99,7 @@ exports.editRoadmap = async (req, res) => {
       data: result,
       role: req.user.role,
     })
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).send({
       message: 'Ubah data gagal',
       data: err.message,
@@ -104,7 +107,7 @@ exports.editRoadmap = async (req, res) => {
   }
 }
 
-exports.getRoadmap = async (req, res) => {
+export const getRoadmap = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT token',
@@ -126,16 +129,16 @@ exports.getRoadmap = async (req, res) => {
           title: 'Data tidak ditemukan',
         })
       }
-      const submitter = await user.findOne({
+      const submitter = (await user.findOne({
         _id: result.userId,
-      })
+      })) as User
       res.status(200).send({
         message: 'Query berhasil',
         data: result,
         submitter: submitter.fullName,
         role: req.user.role,
       })
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).send({
         message: 'Query gagal',
         data: err.message,
@@ -160,7 +163,7 @@ exports.getRoadmap = async (req, res) => {
         data: result,
         submitter: req.user.fullName,
       })
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).send({
         message: 'Query gagal',
         data: err.message,
@@ -169,7 +172,7 @@ exports.getRoadmap = async (req, res) => {
   }
 }
 
-exports.deleteRoadmap = async (req, res) => {
+export const deleteRoadmap = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT Token',
@@ -180,7 +183,7 @@ exports.deleteRoadmap = async (req, res) => {
   let deletedData
   try {
     deletedData = await roadmap.findById(id)
-  } catch (err) {
+  } catch (err: any) {
     res.status(404).send({
       message: 'Data not found',
       data: err.message,
@@ -194,7 +197,7 @@ exports.deleteRoadmap = async (req, res) => {
       data: result,
       role: req.user.role,
     })
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).send({
       message: 'Hapus data gagal',
       data: err.message,
@@ -202,14 +205,14 @@ exports.deleteRoadmap = async (req, res) => {
   }
 }
 
-exports.getAcceptedRoadmaps = async (req, res) => {
+export const getAcceptedRoadmaps = async (req: Request, res: Response) => {
   try {
     const result = await roadmap.find({ accepted: true }).sort('order')
     res.status(200).send({
       message: 'Query berhasil',
       data: result,
     })
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).send({
       message: 'Query gagal',
       data: err.message,

@@ -1,21 +1,21 @@
-const express = require('express')
-const { check } = require('express-validator')
+import express from 'express'
+import { check } from 'express-validator'
 
-const { signup, signin } = require('../controllers/auth.controller')
-const {
+import { signup, signin } from '../controllers/auth.controller'
+import {
   getAllUsers,
   updateUser,
   deleteUser,
-} = require('../controllers/user.controller')
-const {
+} from '../controllers/user.controller'
+import {
   addRoadmap,
   getRoadmaps,
   getAcceptedRoadmaps,
   editRoadmap,
   getRoadmap,
   deleteRoadmap,
-} = require('../controllers/roadmap.controller')
-const verifyToken = require('../middlewares/authJWT')
+} from '../controllers/roadmap.controller'
+import verifyToken from '../middlewares/authJWT'
 
 const router = express.Router()
 
@@ -45,4 +45,4 @@ router.get('/roadmap/:id', verifyToken, getRoadmap)
 router.patch('/roadmap/:id', verifyToken, editRoadmap)
 router.delete('/roadmap/:id', verifyToken, deleteRoadmap)
 
-module.exports = router
+export default router

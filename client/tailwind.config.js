@@ -9,8 +9,8 @@ module.exports = {
       animation: {
         'gradient-x': 'gradient-x 8s ease infinite',
         'gradient-y': 'gradient-y 8s ease infinite',
-        'gradient-xy': 'gradient-xy 8s ease infinite',
-        'pop-out': 'pop-out 0.5s ease'
+        'gradient-xy': 'gradient-xy 4s ease infinite',
+        'pop-out': 'pop-out 0.5s ease-in-out'
       },
       keyframes: {
         'gradient-y': {
@@ -48,7 +48,7 @@ module.exports = {
             transform: 'scale(1)',
           },
           '50%': {
-            transform: 'scale(1.50)',
+            transform: 'scale(1.375)',
           },
         },
       },
