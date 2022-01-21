@@ -51,6 +51,11 @@ const Home = () => {
               label='Source Code'
               isOpenInNewTab={true}
             />
+            <Nav
+              link='https://donate.tfkhdyt.my.id'
+              label='Donate'
+              isOpenInNewTab={true}
+            />
             <Nav link='/auth/login' label='Dashboard' />
           </span>
         </Header>

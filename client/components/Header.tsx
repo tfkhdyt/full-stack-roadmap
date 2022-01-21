@@ -25,7 +25,7 @@ export const Nav = ({ link, label, isOpenInNewTab = false }: NavProps) => {
 
 const Header = ({ children }: Children) => {
   return (
-    <div className='flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-bl from-blue-600 via-red-500 to-yellow-400 w-fit mx-auto text-transparent bg-clip-text animate-gradient-x'>
+    <div className='flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-br from-[#1FD4F8] via-[#8D60D2] to-[#DA0FB7] w-fit mx-auto text-transparent bg-clip-text animate-gradient-x'>
       {children}
     </div>
   )

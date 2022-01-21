@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 require('dotenv').config()
 
 import routes from './routes/route'
+import postTrimmer from './middlewares/postTrimmer'
 
 const app = express()
 
@@ -11,7 +12,7 @@ const app = express()
 const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PWD}@cluster0.pbe5r.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
 try {
-  (async () => {
+  ;(async () => {
     await mongoose.connect(uri)
     console.log('Connected to DB...')
   })()
@@ -32,6 +33,8 @@ app.use(
     extended: true,
   })
 )
+
+app.use(postTrimmer)
 
 app.use(
   cors({

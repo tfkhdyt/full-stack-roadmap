@@ -129,9 +129,9 @@ export const getRoadmap = async (req: Request, res: Response) => {
           title: 'Data tidak ditemukan',
         })
       }
-      const submitter = await user.findOne({
+      const submitter = (await user.findOne({
         _id: result.userId,
-      }) as User
+      })) as User
       res.status(200).send({
         message: 'Query berhasil',
         data: result,
