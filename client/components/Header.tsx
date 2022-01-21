@@ -24,8 +24,41 @@ export const Nav = ({ link, label, isOpenInNewTab = false }: NavProps) => {
 }
 
 const Header = ({ children }: Children) => {
+  const gradient: { from: string; to: string }[] = [
+    {
+      from: 'orange-100',
+      to: 'pink-400',
+    },
+    {
+      from: 'amber-400',
+      to: 'purple-600',
+    },
+    {
+      from: 'red-600',
+      to: 'sky-600',
+    },
+    {
+      from: 'purple-500',
+      to: 'orange-100',
+    },
+    {
+      from: 'cyan-400',
+      to: 'pink-400',
+    },
+  ]
+
+  const getRandomColor = () => {
+    const randomNumber = Math.floor(Math.random() * gradient.length)
+    // console.log(randomNumber)
+    return gradient[randomNumber]
+  }
+
+  const chosen = getRandomColor()
+
   return (
-    <div className='flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-br from-[#1FD4F8] via-[#8D60D2] to-[#DA0FB7] w-fit mx-auto text-transparent bg-clip-text animate-gradient-x'>
+    <div
+      className={`flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-br from-${chosen.from} to-${chosen.to} w-fit mx-auto text-transparent bg-clip-text animate-gradient-x`}
+    >
       {children}
     </div>
   )
