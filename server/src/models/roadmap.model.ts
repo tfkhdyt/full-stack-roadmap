@@ -1,7 +1,19 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+import mongoose, { Schema } from 'mongoose'
 
-const roadmapSchema = new Schema({
+interface Roadmap {
+  order: number
+  title: string
+  type: string
+  description: string
+  icon: string
+  color: string
+  linkVideo: string
+  linkDocs: string
+  accepted: boolean
+  userId: string
+}
+
+const roadmapSchema: Schema = new Schema({
   order: {
     type: Number,
     unique: [true, 'Nomor order telah digunakan'],
@@ -45,4 +57,4 @@ const roadmapSchema = new Schema({
   },
 })
 
-module.exports = mongoose.model('Roadmap', roadmapSchema)
+export default mongoose.model<Roadmap>('Roadmap', roadmapSchema)

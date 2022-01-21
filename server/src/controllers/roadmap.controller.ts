@@ -81,7 +81,7 @@ export const editRoadmap = async (req: Request, res: Response) => {
   const { id } = req.params
   let updatedData
   try {
-    updatedData = await roadmap.findById(id)
+    updatedData = (await roadmap.findById(id)) as User | any
   } catch (err: any) {
     res.status(404).send({
       message: 'Data not found',
@@ -118,11 +118,11 @@ export const getRoadmap = async (req: Request, res: Response) => {
 
   if (req.user.role === 'admin') {
     try {
-      const result = await roadmap
+      const result = (await roadmap
         .findOne({
           _id: id,
         })
-        .sort('order')
+        .sort('order')) as User[] | any
       if (!result) {
         res.status(404).send({
           message: 'Query gagal',
@@ -182,7 +182,7 @@ export const deleteRoadmap = async (req: Request, res: Response) => {
   const { id } = req.params
   let deletedData
   try {
-    deletedData = await roadmap.findById(id)
+    deletedData = (await roadmap.findById(id)) as User | any
   } catch (err: any) {
     res.status(404).send({
       message: 'Data not found',

@@ -24,40 +24,48 @@ export const Nav = ({ link, label, isOpenInNewTab = false }: NavProps) => {
 }
 
 const Header = ({ children }: Children) => {
-  const gradient: { from: string; to: string }[] = [
-    {
-      from: 'orange-100',
-      to: 'pink-400',
-    },
-    {
-      from: 'amber-400',
-      to: 'purple-600',
-    },
-    {
-      from: 'red-600',
-      to: 'sky-600',
-    },
-    {
-      from: 'purple-500',
-      to: 'orange-100',
-    },
-    {
-      from: 'cyan-400',
-      to: 'pink-400',
-    },
+  const colors: string[] = [
+    'red',
+    'green',
+    'blue',
+    'slate',
+    'gray',
+    'zinc',
+    'neutral',
+    'stone',
+    'orange',
+    'amber',
+    'yellow',
+    'lime',
+    'emerald',
+    'teal',
+    'cyan',
+    'sky',
+    'indigo',
+    'violet',
+    'purple',
+    'fuchsia',
+    'pink',
+    'rose',
   ]
 
+  const getRandomIndex = (): number => {
+    return Math.floor(Math.random() * colors.length)
+  }
+
   const getRandomColor = () => {
-    const randomNumber = Math.floor(Math.random() * gradient.length)
-    // console.log(randomNumber)
-    return gradient[randomNumber]
+    return {
+      from: colors[getRandomIndex()],
+      via: colors[getRandomIndex()],
+      to: colors[getRandomIndex()],
+    }
   }
 
   const chosen = getRandomColor()
 
   return (
     <div
-      className={`flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-br from-${chosen.from} to-${chosen.to} w-fit mx-auto text-transparent bg-clip-text animate-gradient-x`}
+      className={`flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-br from-${chosen.from}-400 via-${chosen.via}-500 to-${chosen.to}-600 w-fit mx-auto text-transparent bg-clip-text animate-gradient-x`}
     >
       {children}
     </div>
