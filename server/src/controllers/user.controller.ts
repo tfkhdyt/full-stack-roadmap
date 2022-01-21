@@ -1,8 +1,10 @@
-const bcrypt = require('bcrypt')
+import bcrypt from 'bcrypt'
+import { Request, Response } from 'express'
 
-const user = require('../models/user.model')
+import user from '../models/user.model'
+import { User } from '../types/user'
 
-exports.getAllUsers = async (req, res) => {
+export const getAllUsers = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT Token',
@@ -21,18 +23,18 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
-exports.getUserData = async (req, res) => {
+export const getUserData = async (req: Request, res: Response) => {
   const { id } = req.params
-  const user = await user.findOne({
+  const _user: User = (await user.findOne({
     _id: id,
-  })
+  })) as User
   res.status(200).send({
     message: 'query success!',
-    data: user,
+    data: _user,
   })
 }
 
-exports.updateUser = async (req, res) => {
+export const updateUser = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT Token',
@@ -43,14 +45,14 @@ exports.updateUser = async (req, res) => {
     let updatedUser
     try {
       updatedUser = await user.findById(id)
-    } catch (err) {
+    } catch (err: any) {
       res.status(404).send({
         message: 'User not found',
         data: err.message,
       })
     }
 
-    const { fullName, role, email, password } = updatedUser
+    const { fullName, role, email, password }: User = updatedUser as User
     const _fullName = req.body.fullName || fullName
     const _role = req.body.role || role
     const _email = req.body.email || email
@@ -63,7 +65,7 @@ exports.updateUser = async (req, res) => {
         email: _email,
         password: bcrypt.hashSync(_password, 8),
       })
-    } catch (err) {
+    } catch (err: any) {
       res.send({
         message: 'update failed!',
         data: err.message,
@@ -80,7 +82,7 @@ exports.updateUser = async (req, res) => {
   }
 }
 
-exports.deleteUser = async (req, res) => {
+export const deleteUser = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).send({
       message: 'Invalid JWT Token',
@@ -91,7 +93,7 @@ exports.deleteUser = async (req, res) => {
     let deletedUser
     try {
       deletedUser = await user.findByIdAndDelete(id)
-    } catch (err) {
+    } catch (err: any) {
       res.send({
         message: 'delete failed!',
         data: err.message,
