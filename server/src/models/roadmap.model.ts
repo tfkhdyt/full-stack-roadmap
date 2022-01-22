@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
 
 interface IRoadmap {
-  order: { type: number, unique: [number, string], default: Date }
-  title: { type: string, unique: [number, string], require: [boolean, string] }
+  order: { type: number; unique: [number, string]; default: Date }
+  title: { type: string; unique: [number, string]; require: [boolean, string] }
   type: string
   description: string
   icon: string
@@ -57,6 +57,6 @@ const roadmapSchema = new Schema<IRoadmap>({
   },
 })
 
-const Roadmap = model<IRoadmap>('Roadmap', roadmapSchema) 
+const Roadmap = model<IRoadmap>('Roadmap', roadmapSchema)
 
-export default Roadmap 
+export default Roadmap
