@@ -15,7 +15,6 @@ const Layout = ({ children }: { children: JSX.Element }) => {
       transition={{
         default: { duration: 0.5 },
       }}
-      className=''
     >
       {children}
     </motion.main>
