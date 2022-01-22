@@ -10,6 +10,7 @@ import Head from 'next/head'
 import useSWR from 'swr'
 import deleteData from '../../../utils/deleteData'
 import Header from '../../../components/Header'
+import Layout from '../../../components/Layout'
 
 const cookies = new Cookies()
 
@@ -174,111 +175,115 @@ const Detail = () => {
   if (!data) return <Loading title='Detail | Full Stack Roadmap' />
 
   return (
-    <div>
-      <Head>
-        <title>{data.data.title} | Full Stack Roadmap</title>
-      </Head>{' '}
-      <div className='px-6 md:px-56 lg:px-80 py-3 text-gray-200 space-y-3'>
-        <Header>
-          <p className='font-extrabold text-2xl flex justify-center'>Detail</p>
-        </Header>
-        <div>
-          <BackToDashboard />
-          {data && (
-            <div
-              className={`bg-${data.data.color} w-full rounded-md p-4 shadow-lg shadow-${data.data.color}/50 text-gray-800 space-y-1`}
-            >
-              <div>
-                <span className='font-bold'>Order:</span>{' '}
-                <span>{data.data.order}</span>
-              </div>
-              <div className='flex items-center space-x-1'>
-                <span className='font-bold'>Title:</span>{' '}
-                <div className='flex space-x-1 items-center'>
-                  <img
-                    src={data.data.icon}
-                    alt={`Icon ${data.data.icon}`}
-                    className={`${
-                      data.data.title == 'Express' ? 'w-5' : 'h-5'
-                    }`}
-                  />
-                  <p>{data.data.title}</p>
+    <Layout>
+      <div>
+        <Head>
+          <title>{data.data.title} | Full Stack Roadmap</title>
+        </Head>{' '}
+        <div className='px-6 md:px-56 lg:px-80 py-3 text-gray-200 space-y-3'>
+          <Header>
+            <p className='font-extrabold text-2xl flex justify-center'>
+              Detail
+            </p>
+          </Header>
+          <div>
+            <BackToDashboard />
+            {data && (
+              <div
+                className={`bg-${data.data.color} w-full rounded-md p-4 shadow-lg shadow-${data.data.color}/50 text-gray-800 space-y-1`}
+              >
+                <div>
+                  <span className='font-bold'>Order:</span>{' '}
+                  <span>{data.data.order}</span>
+                </div>
+                <div className='flex items-center space-x-1'>
+                  <span className='font-bold'>Title:</span>{' '}
+                  <div className='flex space-x-1 items-center'>
+                    <img
+                      src={data.data.icon}
+                      alt={`Icon ${data.data.icon}`}
+                      className={`${
+                        data.data.title == 'Express' ? 'w-5' : 'h-5'
+                      }`}
+                    />
+                    <p>{data.data.title}</p>
+                  </div>
+                </div>
+                <div>
+                  <span className='font-bold'>Type:</span>{' '}
+                  <span>{data.data.type}</span>
+                </div>
+                <div>
+                  <p className='font-bold'>Description:</p>{' '}
+                  <p className='text-sm leading-snug text-justify'>
+                    {data.data.description}
+                  </p>
+                </div>
+                <div>
+                  <span className='font-bold'>Color:</span>{' '}
+                  <span>{data.data.color}</span>
+                </div>
+                <div>
+                  <p className='font-bold'>Video's Link:</p>{' '}
+                  <Link href={data.data.linkVideo}>
+                    <a
+                      className='break-all text-sm leading-snug underline underline-offset-1'
+                      target='_blank'
+                    >
+                      {data.data.linkVideo}
+                    </a>
+                  </Link>
+                </div>
+                <div>
+                  <p className='font-bold'>Documentation's Link:</p>{' '}
+                  <Link href={data.data.linkDocs}>
+                    <a
+                      className='break-all text-sm leading-snug underline underline-offset-1'
+                      target='_blank'
+                    >
+                      {data.data.linkDocs}
+                    </a>
+                  </Link>
+                </div>
+                <div>
+                  <span className='font-bold'>Submitted By:</span>{' '}
+                  <span>{data.submitter}</span>
+                </div>
+                <div className='mb-4'>
+                  <span className='font-bold'>Status:</span>{' '}
+                  <span>
+                    {data.data.accepted == true ? 'Accepted' : 'Pending'}
+                  </span>
+                </div>
+                <div className='flex flex-wrap gap-2'>
+                  {data.role === 'admin' && (
+                    <button
+                      className={`px-3 py-2 w-20 ${
+                        !data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'
+                      } rounded-md shadow-lg font-semibold text-gray-200`}
+                      onClick={changeStatus}
+                    >
+                      {!data.data.accepted ? 'Accept' : 'Pend'}
+                    </button>
+                  )}
+                  <Link href={`/dashboard/edit-roadmap/${data.data._id}`}>
+                    <a className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200 flex justify-center'>
+                      Edit
+                    </a>
+                  </Link>
+                  <button
+                    className='px-3 py-2 bg-rose-500 rounded-md shadow-lg font-semibold text-gray-200'
+                    onClick={() => handleDelete(data.data._id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
-              <div>
-                <span className='font-bold'>Type:</span>{' '}
-                <span>{data.data.type}</span>
-              </div>
-              <div>
-                <p className='font-bold'>Description:</p>{' '}
-                <p className='text-sm leading-snug text-justify'>
-                  {data.data.description}
-                </p>
-              </div>
-              <div>
-                <span className='font-bold'>Color:</span>{' '}
-                <span>{data.data.color}</span>
-              </div>
-              <div>
-                <p className='font-bold'>Video's Link:</p>{' '}
-                <Link href={data.data.linkVideo}>
-                  <a
-                    className='break-all text-sm leading-snug underline underline-offset-1'
-                    target='_blank'
-                  >
-                    {data.data.linkVideo}
-                  </a>
-                </Link>
-              </div>
-              <div>
-                <p className='font-bold'>Documentation's Link:</p>{' '}
-                <Link href={data.data.linkDocs}>
-                  <a
-                    className='break-all text-sm leading-snug underline underline-offset-1'
-                    target='_blank'
-                  >
-                    {data.data.linkDocs}
-                  </a>
-                </Link>
-              </div>
-              <div>
-                <span className='font-bold'>Submitted By:</span>{' '}
-                <span>{data.submitter}</span>
-              </div>
-              <div className='mb-4'>
-                <span className='font-bold'>Status:</span>{' '}
-                <span>
-                  {data.data.accepted == true ? 'Accepted' : 'Pending'}
-                </span>
-              </div>
-              <div className='flex flex-wrap gap-2'>
-                {data.role === 'admin' && (
-                  <button
-                    className={`px-3 py-2 w-20 ${
-                      !data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'
-                    } rounded-md shadow-lg font-semibold text-gray-200`}
-                    onClick={changeStatus}
-                  >
-                    {!data.data.accepted ? 'Accept' : 'Pend'}
-                  </button>
-                )}
-                <Link href={`/dashboard/edit-roadmap/${data.data._id}`}>
-                  <a className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200 flex justify-center'>
-                    Edit
-                  </a>
-                </Link>
-                <button
-                  className='px-3 py-2 bg-rose-500 rounded-md shadow-lg font-semibold text-gray-200'
-                  onClick={() => handleDelete(data.data._id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 

@@ -1,6 +1,7 @@
 import type { AppProps /*, AppContext */ } from 'next/app'
 import { ToastContainer } from 'react-toastify'
 import Script from 'next/script'
+import { AnimatePresence } from 'framer-motion'
 
 import '../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -31,7 +32,13 @@ const App = ({ Component, pageProps }: AppProps) => (
       pauseOnHover
       bodyClassName='font-semibold'
     />
-    <Component {...pageProps} />
+    <AnimatePresence
+      exitBeforeEnter
+      initial={false}
+      onExitComplete={() => window.scrollTo(0, 0)}
+    >
+      <Component {...pageProps} />
+    </AnimatePresence>
   </>
 )
 

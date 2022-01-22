@@ -13,6 +13,7 @@ import BackToDashboard from '../../../components/BackToDashboard'
 import Loading from '../../../components/Loading'
 import SelectForm from '../../../components/SelectForm'
 import Header from '../../../components/Header'
+import Layout from '../../../components/Layout'
 
 const cookies = new Cookies()
 
@@ -169,123 +170,125 @@ const EditRoadmap = () => {
   if (!data) return <Loading title='Edit Data | Full Stack Roadmap' />
 
   return (
-    <div>
-      <Head>
-        <title>Edit {data.data.title} | Full Stack Roadmap</title>
-      </Head>
-      <div className='px-6 md:px-56 lg:px-96 py-3 pb-12 text-gray-200 space-y-3'>
-        <Header>
-          <p className='font-extrabold text-2xl flex justify-center'>
-            Edit Roadmap
-          </p>
-        </Header>
-        <div>
-          <BackToDashboard />
-          <form className='space-y-3' onSubmit={handleSubmit}>
-            <div className={`${data.role !== 'admin' && 'hidden'}`}>
-              {' '}
-              <InputForm
-                label='Order'
-                id='order'
-                onChange={(e) => setOrder(Number(e.target.value))}
-                placeholder='Example: HTML'
-                value={order}
-              />
-            </div>
+    <Layout>
+      <div>
+        <Head>
+          <title>Edit {data.data.title} | Full Stack Roadmap</title>
+        </Head>
+        <div className='px-6 md:px-56 lg:px-96 py-3 pb-12 text-gray-200 space-y-3'>
+          <Header>
+            <p className='font-extrabold text-2xl flex justify-center'>
+              Edit Roadmap
+            </p>
+          </Header>
+          <div>
+            <BackToDashboard />
+            <form className='space-y-3' onSubmit={handleSubmit}>
+              <div className={`${data.role !== 'admin' && 'hidden'}`}>
+                {' '}
+                <InputForm
+                  label='Order'
+                  id='order'
+                  onChange={(e) => setOrder(Number(e.target.value))}
+                  placeholder='Example: HTML'
+                  value={order}
+                />
+              </div>
 
-            <InputForm
-              label='Title'
-              id='title'
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder='Example: HTML'
-              value={title}
-            />
-            <InputForm
-              label='Type'
-              id='type'
-              onChange={(e) => setType(e.target.value)}
-              placeholder='Example: Markup Language'
-              value={type}
-            />
-            <TextAreaForm
-              label='Description'
-              id='description'
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder='Example: HTML adalah bla bla bla'
-              value={description}
-            />
-            <InputForm
-              label='Icon (link only)'
-              id='icon'
-              onChange={(e) => setIcon(e.target.value)}
-              placeholder='Example: https://.../...svg'
-              value={icon}
-            />
-            {/*<InputForm
+              <InputForm
+                label='Title'
+                id='title'
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder='Example: HTML'
+                value={title}
+              />
+              <InputForm
+                label='Type'
+                id='type'
+                onChange={(e) => setType(e.target.value)}
+                placeholder='Example: Markup Language'
+                value={type}
+              />
+              <TextAreaForm
+                label='Description'
+                id='description'
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder='Example: HTML adalah bla bla bla'
+                value={description}
+              />
+              <InputForm
+                label='Icon (link only)'
+                id='icon'
+                onChange={(e) => setIcon(e.target.value)}
+                placeholder='Example: https://.../...svg'
+                value={icon}
+              />
+              {/*<InputForm
               label='Color (Tailwind CSS color only)'
               id='color'
               onChange={(e) => setColor(e.target.value)}
               placeholder='Example: orange-500 or [#69420]'
               value={color}
             />*/}
-            <SelectForm
-              label='Color'
-              id='color'
-              handleColor={handleColor}
-              handleIntensity={handleIntensity}
-              defaultColor={data.data.color.split('-')[0]}
-              defaultIntensity={data.data.color.split('-')[1]}
-            />
-            <InputForm
-              label="Video's Link"
-              id='linkVideo'
-              onChange={(e) => setLinkVideo(e.target.value)}
-              placeholder='Example: https://youtu.be/..'
-              value={linkVideo}
-            />
-            <InputForm
-              label="Documentation's Link"
-              id='linkDocs'
-              onChange={(e) => setLinkDocs(e.target.value)}
-              placeholder='Example: https://.../..'
-              value={linkDocs}
-            />
-            <div className={`${data.role !== 'admin' && 'hidden'}`}>
-              {' '}
-              <label htmlFor='accepted' className='text-gray-200 font-medium'>
-                Status
-              </label>
-              <div className='flex items-center space-x-4'>
-                <div className='flex items-center space-x-1'>
-                  <input
-                    type='radio'
-                    id='accept'
-                    name='accepted'
-                    value='true'
-                    onChange={() => setAccepted(true)}
-                    checked={accepted === true}
-                  />{' '}
-                  <label htmlFor='accept'>Accepted</label>
-                </div>
-                <div className='flex items-center space-x-1'>
-                  <input
-                    type='radio'
-                    id='pending'
-                    name='accepted'
-                    value='false'
-                    onChange={() => setAccepted(false)}
-                    checked={accepted === false}
-                  />{' '}
-                  <label htmlFor='pending'>Pending</label>
+              <SelectForm
+                label='Color'
+                id='color'
+                handleColor={handleColor}
+                handleIntensity={handleIntensity}
+                defaultColor={data.data.color.split('-')[0]}
+                defaultIntensity={data.data.color.split('-')[1]}
+              />
+              <InputForm
+                label="Video's Link"
+                id='linkVideo'
+                onChange={(e) => setLinkVideo(e.target.value)}
+                placeholder='Example: https://youtu.be/..'
+                value={linkVideo}
+              />
+              <InputForm
+                label="Documentation's Link"
+                id='linkDocs'
+                onChange={(e) => setLinkDocs(e.target.value)}
+                placeholder='Example: https://.../..'
+                value={linkDocs}
+              />
+              <div className={`${data.role !== 'admin' && 'hidden'}`}>
+                {' '}
+                <label htmlFor='accepted' className='text-gray-200 font-medium'>
+                  Status
+                </label>
+                <div className='flex items-center space-x-4'>
+                  <div className='flex items-center space-x-1'>
+                    <input
+                      type='radio'
+                      id='accept'
+                      name='accepted'
+                      value='true'
+                      onChange={() => setAccepted(true)}
+                      checked={accepted === true}
+                    />{' '}
+                    <label htmlFor='accept'>Accepted</label>
+                  </div>
+                  <div className='flex items-center space-x-1'>
+                    <input
+                      type='radio'
+                      id='pending'
+                      name='accepted'
+                      value='false'
+                      onChange={() => setAccepted(false)}
+                      checked={accepted === false}
+                    />{' '}
+                    <label htmlFor='pending'>Pending</label>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <FormButton color='sky-400'>Edit</FormButton>
-          </form>
+              <FormButton color='sky-400'>Edit</FormButton>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 
