@@ -10,17 +10,17 @@ type ILazyShow = {
 }
 
 const LazyShow = ({ children, className, align = 'left' }: ILazyShow) => {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions()
   const variants = {
-    hidden: { 
-      opacity: 0, 
-      x: width < 768 ? 10 : align == 'left' ? -10 : 10,
-      y: 0
+    hidden: {
+      opacity: 0,
+      x: align == 'top' ? 0 : width < 768 ? 10 : align == 'left' ? -10 : 10,
+      y: align == 'top' ? 10 : 0,
     },
-    enter: { 
-      opacity: 1, 
+    enter: {
+      opacity: 1,
       x: 0,
-      y: 0
+      y: 0,
     },
   }
   return (
@@ -28,6 +28,10 @@ const LazyShow = ({ children, className, align = 'left' }: ILazyShow) => {
       variants={variants}
       initial='hidden'
       whileInView='enter'
+      exit={{
+        opacity: 0,
+        x: variants.hidden.x * -1,
+      }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className={className}

@@ -13,6 +13,7 @@ import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
+import LazyShow from '../../components/LazyShow'
 
 const cookies = new Cookies()
 
@@ -129,33 +130,50 @@ const Dashboard = () => {
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             {data &&
+              data.data.filter((e) => e.accepted == accepted).length == 0 && (
+                <LazyShow
+                  className='text-center font-semibold text-gray-200 text-lg'
+                  align='top'
+                >
+                  Data kosong
+                </LazyShow>
+              )}
+            {data &&
               data.data
                 .filter((e) => e.accepted == accepted)
-                .map((e: Data) => {
+                .map((e: Data, i: number) => {
+                  let align: string
+                  if (i % 2 == 0) align = 'left'
+                  else align = 'right'
                   return (
-                    <div
-                      key={e._id}
-                      className={`rounded-md bg-${e.color} shadow-md shadow-${e.color} p-3 flex justify-between items-center lg:cursor-pointer`}
-                    >
+                    <LazyShow align={align} key={e._id}>
                       <div
-                        className='flex items-center space-x-2 flex-1'
-                        onClick={() =>
-                          handleDetail(`/dashboard/detail/${e._id}`)
-                        }
+                        className={`rounded-md bg-${e.color} shadow-md shadow-${e.color} p-3 flex justify-between items-center lg:cursor-pointer`}
                       >
-                        <img
-                          src={e.icon}
-                          alt={`Icon ${e.title}`}
-                          className='w-5'
+                        <div
+                          className='flex items-center space-x-2 flex-1'
+                          onClick={() =>
+                            handleDetail(`/dashboard/detail/${e._id}`)
+                          }
+                        >
+                          <img
+                            src={e.icon}
+                            alt={`Icon ${e.title}`}
+                            className='w-5'
+                          />
+                          <p className='font-semibold text-lg text-gray-800'>
+                            {e.title}
+                          </p>
+                        </div>
+                        {/* option button */}
+                        <OptionButton
+                          data={e}
+                          role={data.role}
+                          mutate={mutate}
                         />
-                        <p className='font-semibold text-lg text-gray-800'>
-                          {e.title}
-                        </p>
+                        {/* ---------- */}
                       </div>
-                      {/* option button */}
-                      <OptionButton data={e} role={data.role} mutate={mutate} />
-                      {/* ---------- */}
-                    </div>
+                    </LazyShow>
                   )
                 })}
           </div>

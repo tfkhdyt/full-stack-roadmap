@@ -45,30 +45,30 @@ const Card = ({ id, data, state }: CardProps) => {
     return (
       <>
         <LazyShow
-            align='left'
-            className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} text-gray-800 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2 selection:bg-gray-800 selection:text-${baseColor}`}
-          >
-            <p className={`font-semibold italic text-xs`}>{data.type}</p>
-            <p className='font-bold text-xl flex items-center space-x-1'>
-              <img
-                src={data.icon}
-                alt={`Foto ${data.title}`}
-                className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`}
-              />
-              <span>{data.title}</span>
-            </p>
-            <p
-              className={`leading-snug text-sm lg:text-base md:text-justify tracking-wide`}
-            >
-              {data.description}
-            </p>
-            <Buttons
-              linkVideo={data.linkVideo}
-              linkDocs={data.linkDocs}
-              color={data.color}
-              shade={shadeColor}
-              title={data.title}
+          align='left'
+          className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} text-gray-800 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2 selection:bg-gray-800 selection:text-${baseColor}`}
+        >
+          <p className={`font-semibold italic text-xs`}>{data.type}</p>
+          <p className='font-bold text-xl flex items-center space-x-1'>
+            <img
+              src={data.icon}
+              alt={`Foto ${data.title}`}
+              className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`}
             />
+            <span>{data.title}</span>
+          </p>
+          <p
+            className={`leading-snug text-sm lg:text-base md:text-justify tracking-wide`}
+          >
+            {data.description}
+          </p>
+          <Buttons
+            linkVideo={data.linkVideo}
+            linkDocs={data.linkDocs}
+            color={data.color}
+            shade={shadeColor}
+            title={data.title}
+          />
         </LazyShow>
         <LinesAndDot
           isActive={isActive}
@@ -88,28 +88,28 @@ const Card = ({ id, data, state }: CardProps) => {
           name={data.title}
         />
         <LazyShow
-            align='right'
-            className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} text-gray-800 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 selection:text-${baseColor}`}
-          >
-            <p className={`font-semibold italic text-xs`}>{data.type}</p>
-            <p className='font-bold text-xl flex items-center space-x-1'>
-              <img
-                src={data.icon}
-                alt={`Foto ${data.title}`}
-                className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`}
-              />
-              <span>{data.title}</span>
-            </p>
-            <p className='leading-snug text-sm lg:text-base md:text-justify tracking-wide'>
-              {data.description}
-            </p>
-            <Buttons
-              linkVideo={data.linkVideo}
-              linkDocs={data.linkDocs}
-              color={data.color}
-              shade={shadeColor}
-              title={data.title}
+          align='right'
+          className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} text-gray-800 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 selection:text-${baseColor}`}
+        >
+          <p className={`font-semibold italic text-xs`}>{data.type}</p>
+          <p className='font-bold text-xl flex items-center space-x-1'>
+            <img
+              src={data.icon}
+              alt={`Foto ${data.title}`}
+              className={`${data.title === 'Express' ? 'h-3' : 'h-5'}`}
             />
+            <span>{data.title}</span>
+          </p>
+          <p className='leading-snug text-sm lg:text-base md:text-justify tracking-wide'>
+            {data.description}
+          </p>
+          <Buttons
+            linkVideo={data.linkVideo}
+            linkDocs={data.linkDocs}
+            color={data.color}
+            shade={shadeColor}
+            title={data.title}
+          />
         </LazyShow>
       </>
     )
