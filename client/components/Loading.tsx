@@ -18,7 +18,7 @@ const Loading = ({ title = 'Loading...' }) => {
         animate='enter' // Animated state to variants.enter
         exit='exit' // Exit state (used later) to variants.exit
         transition={{
-          delay: 1
+          delay: 1,
         }}
         className={`grid place-items-center h-screen w-screen`}
       >
