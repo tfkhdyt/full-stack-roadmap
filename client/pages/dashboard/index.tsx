@@ -14,6 +14,7 @@ import OptionButton from '../../components/OptionButton'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import LazyShow from '../../components/LazyShow'
+import BackToTop from '../../components/BackToTop'
 
 const cookies = new Cookies()
 
@@ -177,6 +178,7 @@ const Dashboard = () => {
                   )
                 })}
           </div>
+          <BackToTop />
         </div>
       </div>
     </Layout>

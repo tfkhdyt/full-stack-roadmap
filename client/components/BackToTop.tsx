@@ -5,7 +5,7 @@ const BackToTop = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 175) {
+      if (window.pageYOffset > 125) {
         setShowButton(true)
       } else {
         setShowButton(false)
@@ -20,7 +20,7 @@ const BackToTop = () => {
   return (
     <>
       <button
-        className={`p-2 -ml-0.5 rounded-full bg-sky-700 fixed bottom-6 left-8 transition-opacity duration-300 ease-in-out ${
+        className={`text-white p-2 -ml-0.5 rounded-full bg-sky-700 fixed bottom-6 left-8 transition-opacity duration-300 ease-in-out ${
           showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } active:bg-sky-800`}
         onClick={showButton ? handleClick : undefined}
