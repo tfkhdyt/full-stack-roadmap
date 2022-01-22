@@ -1,13 +1,13 @@
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
+import { config } from 'dotenv'
 
 import routes from './routes/route'
 import postTrimmer from './middlewares/postTrimmer'
 
 const app = express()
-dotenv.config()
+config()
 
 // Connect to database
 const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PWD}@cluster0.pbe5r.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`

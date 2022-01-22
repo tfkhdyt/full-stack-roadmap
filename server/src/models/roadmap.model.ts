@@ -1,8 +1,8 @@
-import mongoose, { Schema } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
-interface Roadmap {
-  order: number
-  title: string
+interface IRoadmap {
+  order: { type: number, unique: [number, string], default: Date }
+  title: { type: string, unique: [number, string], require: [boolean, string] }
   type: string
   description: string
   icon: string
@@ -13,7 +13,7 @@ interface Roadmap {
   userId: string
 }
 
-const roadmapSchema: Schema = new Schema({
+const roadmapSchema = new Schema<IRoadmap>({
   order: {
     type: Number,
     unique: [true, 'Nomor order telah digunakan'],
@@ -57,4 +57,6 @@ const roadmapSchema: Schema = new Schema({
   },
 })
 
-export default mongoose.model<Roadmap>('Roadmap', roadmapSchema)
+const Roadmap = model<IRoadmap>('Roadmap', roadmapSchema) 
+
+export default Roadmap 
