@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 import { Children } from '../types/children'
 
@@ -61,7 +62,28 @@ const Header = ({ children }: Children) => {
     }
   }
 
-  const chosen = getRandomColor()
+  interface IGradient {
+    from: string
+    via: string
+    to: string
+  }
+
+  /*const chosen = useRef(
+    JSON.parse(sessionStorage.getItem('gradient') as string) || {}
+    )*/
+
+  const [chosen, setChosen] = useState<IGradient>(
+    JSON.parse(sessionStorage.getItem('gradient') as string) || {}
+  )
+
+  useEffect(() => {
+    const session = sessionStorage.getItem('gradient')
+    if (session == null) {
+      const gradient = getRandomColor()
+      setChosen(gradient)
+      sessionStorage.setItem('gradient', JSON.stringify(gradient))
+    }
+  }, [])
 
   return (
     <div

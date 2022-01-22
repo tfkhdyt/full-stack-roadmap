@@ -8,6 +8,7 @@ import { Alert } from '../../config'
 import FormButton from '../../components/FormButton'
 import Header from '../../components/Header'
 import InputForm from '../../components/InputForm'
+import Layout from '../../components/Layout'
 
 const Register = () => {
   const [fullName, setFullName] = useState<string>()
@@ -64,57 +65,59 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <Head>
-        <title>Register | Full Stack Roadmap</title>
-      </Head>
-      <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-96 md:min-h-screen md:grid md:place-items-center'>
-        <div className='lg:flex lg:flex-col'>
-          <div className='flex justify-center'>
-            <Header>
-              <p className='font-bold text-2xl'>Registration</p>
-            </Header>
-          </div>
-          <div className='px-6'>
-            <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
-              <InputForm
-                label='Full Name'
-                id='fullName'
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFullName(e.target.value)
-                }
-              />
-              <InputForm
-                label='Email'
-                id='email'
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value)
-                }
-              />
-              <InputForm
-                label='Password'
-                id='password'
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setPassword(e.target.value)
-                }
-              />
-              <FormButton color='green-600'>Register</FormButton>
-            </form>
-          </div>
-          <div className='px-6'>
-            <p className='text-gray-200 text-sm mt-4 flex justify-center items-center font-light'>
-              Sudah punya akun?{' '}
-              <Link href='/auth/login'>
-                <a className='bg-sky-600 px-2 py-1 rounded-md text-xs mx-2 font-medium text-gray-800'>
-                  Login
-                </a>
-              </Link>{' '}
-              sekarang!
-            </p>
+    <Layout>
+      <div>
+        <Head>
+          <title>Register | Full Stack Roadmap</title>
+        </Head>
+        <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-96 md:min-h-screen md:grid md:place-items-center'>
+          <div className='lg:flex lg:flex-col'>
+            <div className='flex justify-center'>
+              <Header>
+                <p className='font-bold text-2xl'>Registration</p>
+              </Header>
+            </div>
+            <div className='px-6'>
+              <form method='POST' className='space-y-3' onSubmit={handleSubmit}>
+                <InputForm
+                  label='Full Name'
+                  id='fullName'
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setFullName(e.target.value)
+                  }
+                />
+                <InputForm
+                  label='Email'
+                  id='email'
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setEmail(e.target.value)
+                  }
+                />
+                <InputForm
+                  label='Password'
+                  id='password'
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setPassword(e.target.value)
+                  }
+                />
+                <FormButton color='green-600'>Register</FormButton>
+              </form>
+            </div>
+            <div className='px-6'>
+              <p className='text-gray-200 text-sm mt-4 flex justify-center items-center font-light'>
+                Sudah punya akun?{' '}
+                <Link href='/auth/login'>
+                  <a className='bg-sky-600 px-2 py-1 rounded-md text-xs mx-2 font-medium text-gray-800'>
+                    Login
+                  </a>
+                </Link>{' '}
+                sekarang!
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 
