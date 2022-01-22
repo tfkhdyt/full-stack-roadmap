@@ -72,25 +72,36 @@ const Header = ({ children }: Children) => {
     JSON.parse(sessionStorage.getItem('gradient') as string) || {}
     )*/
 
-  const [chosen, setChosen] = useState<IGradient>(
-    JSON.parse(sessionStorage.getItem('gradient') as string) || {}
-  )
+  const [chosen, setChosen] = useState<IGradient>({
+    from: '',
+    via: '',
+    to: '',
+  })
 
   useEffect(() => {
-    const session = sessionStorage.getItem('gradient')
-    if (session == null) {
-      const gradient = getRandomColor()
-      setChosen(gradient)
-      sessionStorage.setItem('gradient', JSON.stringify(gradient))
+    if (window) {
+      const session = sessionStorage.getItem('gradient')
+      if (session == null) {
+        const gradient = getRandomColor()
+        setChosen(gradient)
+        sessionStorage.setItem('gradient', JSON.stringify(gradient))
+      } else {
+        const gradient: IGradient = JSON.parse(
+          sessionStorage.getItem('gradient') as string
+        )
+        setChosen(gradient)
+      }
     }
   }, [])
 
   return (
-    <div
-      className={`flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-br from-${chosen.from}-400 via-${chosen.via}-500 to-${chosen.to}-600 w-fit mx-auto text-transparent bg-clip-text animate-gradient-x`}
-    >
-      {children}
-    </div>
+    chosen && (
+      <div
+        className={`flex flex-col space-y-3 text-center selection:bg-sky-600 selection:text-gray-800 bg-gradient-to-br from-${chosen.from}-400 via-${chosen.via}-500 to-${chosen.to}-600 w-fit mx-auto text-transparent bg-clip-text animate-gradient-x`}
+      >
+        {children}
+      </div>
+    )
   )
 }
 
