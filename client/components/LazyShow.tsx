@@ -30,7 +30,7 @@ const LazyShow = ({ children, className, align = 'left' }: ILazyShow) => {
       whileInView='enter'
       viewport={{ once: true }}
       transition={{ duration: 0.75, type: 'tween' }}
-      className={className}
+      className={className + 'transform-gpu'}
       /*variants={{
         visible: { opacity: 1, scale: 1 },
         hidden: { opacity: 0, scale: 0 }
