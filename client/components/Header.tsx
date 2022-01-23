@@ -14,7 +14,7 @@ export const Nav = ({ link, label, isOpenInNewTab = false }: NavProps) => {
     <div className='group text-sm'>
       <Link href={link} scroll={false}>
         <a
-          className='group-hover:text-sky-600 flex items-center space-x-1 transition duration-200 ease-in-out'
+          className='group-hover:text-sky-600 flex items-center space-x-1 transition duration-500 ease-in-out'
           target={isOpenInNewTab ? '_blank' : ''}
         >
           <span className='font-semibold'>{label}</span>
