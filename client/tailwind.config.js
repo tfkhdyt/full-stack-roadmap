@@ -9,8 +9,8 @@ module.exports = {
       animation: {
         'gradient-x': 'gradient-x 8s ease infinite',
         'gradient-y': 'gradient-y 8s ease infinite',
-        'gradient-xy': 'gradient-xy 4s ease infinite',
-        'pop-out': 'pop-out 0.5s ease-in-out'
+        'gradient-xy': 'gradient-xy 2s linear infinite',
+        'pop-out': 'pop-out 0.25s ease-in-out'
       },
       keyframes: {
         'gradient-y': {

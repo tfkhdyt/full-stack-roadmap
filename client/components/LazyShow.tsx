@@ -28,12 +28,8 @@ const LazyShow = ({ children, className, align = 'left' }: ILazyShow) => {
       variants={variants}
       initial='hidden'
       whileInView='enter'
-      exit={{
-        opacity: 0,
-        x: variants.hidden.x * -1,
-      }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.75, type: 'tween' }}
       className={className}
       /*variants={{
         visible: { opacity: 1, scale: 1 },
