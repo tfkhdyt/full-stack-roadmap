@@ -15,7 +15,6 @@ const LazyShow = ({ children, className, align = 'left' }: ILazyShow) => {
     hidden: {
       opacity: 0,
       x: align == 'top' ? 0 : width < 768 ? 10 : align == 'left' ? -10 : 10,
-      y: align == 'top' ? 10 : 0,
     },
     enter: {
       opacity: 1,
@@ -29,8 +28,12 @@ const LazyShow = ({ children, className, align = 'left' }: ILazyShow) => {
       initial='hidden'
       whileInView='enter'
       viewport={{ once: true }}
-      transition={{ duration: 0.75, type: 'tween' }}
-      className={className + ' transform-gpu'}
+      transition={{
+        duration: 0.5,
+        type: 'tween',
+        ease: 'backInOut',
+      }}
+      className={className}
       /*variants={{
         visible: { opacity: 1, scale: 1 },
         hidden: { opacity: 0, scale: 0 }
