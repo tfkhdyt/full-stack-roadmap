@@ -159,7 +159,7 @@ const OptionButton = ({ data, role, mutate }: OptionButtonProps) => {
     <div className='relative' ref={ref}>
       <button
         className={`block p-2 ${
-          isOpened && 'bg-gray-900/50 rounded-md'
+          isOpened && 'rounded-md bg-gray-900/50'
         } transition duration-200 ease-in-out`}
         onClick={handleClick}
       >
@@ -176,25 +176,25 @@ const OptionButton = ({ data, role, mutate }: OptionButtonProps) => {
       </button>
 
       <div
-        className={`absolute right-0 w-36 p-2 mt-2 bg-slate-700 shadow-md shadow-slate-700/50 rounded-md shadow-xl ${
-          isOpened ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        } transition duration-200 ease-in-out z-50 space-y-2`}
+        className={`absolute right-0 mt-2 w-36 rounded-md bg-slate-700 p-2 shadow-md shadow-xl shadow-slate-700/50 ${
+          isOpened ? 'opacity-100' : 'pointer-events-none opacity-0'
+        } z-50 space-y-2 transition duration-200 ease-in-out`}
       >
         {role === 'admin' && (
           <button
-            className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'
+            className='block w-full rounded-md px-4 py-2 text-left text-sm text-gray-200 transition duration-500 ease-in-out hover:bg-slate-600 hover:text-white'
             onClick={changeStatus}
           >
             {data.accepted ? 'Pend' : 'Accept'}
           </button>
         )}
         <Link href={`/dashboard/edit-roadmap/${data._id}`}>
-          <a className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'>
+          <a className='block w-full rounded-md px-4 py-2 text-left text-sm text-gray-200 transition duration-500 ease-in-out hover:bg-slate-600 hover:text-white'>
             Edit Data
           </a>
         </Link>
         <button
-          className='block px-4 py-2 w-full text-sm text-gray-200 hover:bg-slate-600 hover:text-white rounded-md text-left transition duration-500 ease-in-out'
+          className='block w-full rounded-md px-4 py-2 text-left text-sm text-gray-200 transition duration-500 ease-in-out hover:bg-slate-600 hover:text-white'
           onClick={() => handleDelete(data._id)}
         >
           Delete Data

@@ -180,9 +180,9 @@ const Detail = () => {
         <Head>
           <title>{data.data.title} | Full Stack Roadmap</title>
         </Head>{' '}
-        <div className='px-6 md:px-56 lg:px-80 py-3 text-gray-200 space-y-3'>
+        <div className='space-y-3 px-6 py-3 text-gray-200 md:px-56 lg:px-80'>
           <Header>
-            <p className='font-extrabold text-2xl flex justify-center'>
+            <p className='flex justify-center text-2xl font-extrabold'>
               Detail
             </p>
           </Header>
@@ -190,7 +190,7 @@ const Detail = () => {
             <BackToDashboard />
             {data && (
               <div
-                className={`bg-${data.data.color} w-full rounded-md p-4 shadow-lg shadow-${data.data.color}/50 text-gray-800 space-y-1`}
+                className={`bg-${data.data.color} w-full rounded-md p-4 shadow-lg shadow-${data.data.color}/50 space-y-1 text-gray-800`}
               >
                 <div>
                   <span className='font-bold'>Order:</span>{' '}
@@ -198,7 +198,7 @@ const Detail = () => {
                 </div>
                 <div className='flex items-center space-x-1'>
                   <span className='font-bold'>Title:</span>{' '}
-                  <div className='flex space-x-1 items-center'>
+                  <div className='flex items-center space-x-1'>
                     <img
                       src={data.data.icon}
                       alt={`Icon ${data.data.icon}`}
@@ -215,7 +215,7 @@ const Detail = () => {
                 </div>
                 <div>
                   <p className='font-bold'>Description:</p>{' '}
-                  <p className='text-sm leading-snug text-justify'>
+                  <p className='text-justify text-sm leading-snug'>
                     {data.data.description}
                   </p>
                 </div>
@@ -258,21 +258,21 @@ const Detail = () => {
                 <div className='flex flex-wrap gap-2'>
                   {data.role === 'admin' && (
                     <button
-                      className={`px-3 py-2 w-20 ${
+                      className={`w-20 px-3 py-2 ${
                         !data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'
-                      } rounded-md shadow-lg font-semibold text-gray-200`}
+                      } rounded-md font-semibold text-gray-200 shadow-lg`}
                       onClick={changeStatus}
                     >
                       {!data.data.accepted ? 'Accept' : 'Pend'}
                     </button>
                   )}
                   <Link href={`/dashboard/edit-roadmap/${data.data._id}`}>
-                    <a className='p-2 w-20 bg-sky-600 rounded-md shadow-lg font-semibold text-gray-200 flex justify-center'>
+                    <a className='flex w-20 justify-center rounded-md bg-sky-600 p-2 font-semibold text-gray-200 shadow-lg'>
                       Edit
                     </a>
                   </Link>
                   <button
-                    className='px-3 py-2 bg-rose-500 rounded-md shadow-lg font-semibold text-gray-200'
+                    className='rounded-md bg-rose-500 px-3 py-2 font-semibold text-gray-200 shadow-lg'
                     onClick={() => handleDelete(data.data._id)}
                   >
                     Delete

@@ -70,11 +70,11 @@ const Register = () => {
         <Head>
           <title>Register | Full Stack Roadmap</title>
         </Head>
-        <div className='flex flex-col p-3 space-y-3 md:mx-48 lg:mx-96 md:min-h-screen md:grid md:place-items-center'>
+        <div className='flex flex-col space-y-3 p-3 md:mx-48 md:grid md:min-h-screen md:place-items-center lg:mx-96'>
           <div className='lg:flex lg:flex-col'>
             <div className='flex justify-center'>
               <Header>
-                <p className='font-bold text-2xl'>Registration</p>
+                <p className='text-2xl font-bold'>Registration</p>
               </Header>
             </div>
             <div className='px-6'>
@@ -104,10 +104,10 @@ const Register = () => {
               </form>
             </div>
             <div className='px-6'>
-              <p className='text-gray-200 text-sm mt-4 flex justify-center items-center font-light'>
+              <p className='mt-4 flex items-center justify-center text-sm font-light text-gray-200'>
                 Sudah punya akun?{' '}
                 <Link href='/auth/login'>
-                  <a className='bg-sky-600 px-2 py-1 rounded-md text-xs mx-2 font-medium text-gray-800'>
+                  <a className='mx-2 rounded-md bg-sky-600 px-2 py-1 text-xs font-medium text-gray-800'>
                     Login
                   </a>
                 </Link>{' '}

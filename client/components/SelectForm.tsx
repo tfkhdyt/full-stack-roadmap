@@ -118,14 +118,14 @@ const SelectForm = ({
   }, [color, intensity])
 
   return (
-    <div className='space-y-1 flex-col'>
-      <label htmlFor={id} className='text-gray-200 font-medium'>
+    <div className='flex-col space-y-1'>
+      <label htmlFor={id} className='font-medium text-gray-200'>
         {label}
       </label>
-      <div className='space-x-2 flex'>
+      <div className='flex space-x-2'>
         <select
           name='color'
-          className='py-2 px-3 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200 appearance-none outline-none'
+          className='appearance-none rounded-md bg-gray-700 py-2 px-3 text-gray-200 outline-none transition duration-200 ease-in-out focus:ring-2 focus:ring-blue-400'
           onChange={(e) => setColor(e.target.value)}
           defaultValue={color}
         >
@@ -139,7 +139,7 @@ const SelectForm = ({
         </select>
         <select
           name='intensity'
-          className='py-2 px-3 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200 appearance-none outline-none'
+          className='appearance-none rounded-md bg-gray-700 py-2 px-3 text-gray-200 outline-none transition duration-200 ease-in-out focus:ring-2 focus:ring-blue-400'
           onChange={(e) => setIntensity(Number(e.target.value))}
           defaultValue={intensity}
         >
@@ -149,7 +149,7 @@ const SelectForm = ({
             </option>
           ))}
         </select>
-        <div className={`w-10 h-10 bg-${color}-${intensity} rounded-md`}></div>
+        <div className={`h-10 w-10 bg-${color}-${intensity} rounded-md`}></div>
       </div>
     </div>
   )

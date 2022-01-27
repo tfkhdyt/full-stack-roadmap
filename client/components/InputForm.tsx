@@ -19,14 +19,14 @@ const InputForm = ({ label, id, onChange, ...rest }: InputFormProps) => {
 
   return (
     <div className='space-y-1'>
-      <label htmlFor={id} className='text-gray-200 font-medium'>
+      <label htmlFor={id} className='font-medium text-gray-200'>
         {label}
       </label>
       <input
         type={type}
         name={id}
         id={id}
-        className='w-full py-2 px-3 rounded-md outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out bg-gray-700 text-gray-200'
+        className='w-full rounded-md bg-gray-700 py-2 px-3 text-gray-200 outline-none transition duration-200 ease-in-out focus:ring-2 focus:ring-blue-400'
         onChange={onChange}
         {...rest}
         required

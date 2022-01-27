@@ -65,16 +65,16 @@ const LinesAndDot = ({
   }, [isActive])
 
   return (
-    <div className='col-start-5 col-end-6 md:mx-auto relative mr-10'>
-      <div className={`h-full w-6 flex items-center justify-center`}>
-        <div className='h-full w-1 bg-sky-700 pointer-events-none'></div>
+    <div className='relative col-start-5 col-end-6 mr-10 md:mx-auto'>
+      <div className={`flex h-full w-6 items-center justify-center`}>
+        <div className='pointer-events-none h-full w-1 bg-sky-700'></div>
       </div>
       <div
-        className={`w-9 h-9 -ml-1.5 absolute top-1/2 -mt-3 rounded-full grid place-items-center ${
+        className={`absolute top-1/2 -ml-1.5 -mt-3 grid h-9 w-9 place-items-center rounded-full ${
           isActive
             ? 'bg-gradient-to-br from-green-600 to-green-700'
-            : 'bg-gray-800 border-solid border-[0.225rem] border-sky-700'
-        } ${isClicked && isActive && 'animate-pop-out pointer-events-none'}`}
+            : 'border-[0.225rem] border-solid border-sky-700 bg-gray-800'
+        } ${isClicked && isActive && 'pointer-events-none animate-pop-out'}`}
         onClick={() => {
           handleClick(name)
           handleProgressClick(id)

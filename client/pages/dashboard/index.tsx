@@ -87,39 +87,39 @@ const Dashboard = () => {
         <Head>
           <title>Dashboard | Full Stack Roadmap</title>
         </Head>
-        <div className='px-6 md:px-56 lg:px-64 py-3 text-gray-200 space-y-3'>
+        <div className='space-y-3 px-6 py-3 text-gray-200 md:px-56 lg:px-64'>
           <Header>
-            <p className='font-extrabold text-2xl flex justify-center'>
+            <p className='flex justify-center text-2xl font-extrabold'>
               Dashboard
             </p>
           </Header>
           <div className='flex flex-wrap justify-center gap-2 text-sm'>
             <Link href='/dashboard/add-roadmap' scroll={false}>
-              <a className='font-semibold px-1.5 py-1 bg-sky-600 rounded shadow-md shadow-sky-600/50 hover:bg-sky-700 transition duration-500 ease-in-out text-gray-200'>
+              <a className='rounded bg-sky-600 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-sky-600/50 transition duration-500 ease-in-out hover:bg-sky-700'>
                 Add Data
               </a>
             </Link>
-            <button className='font-semibold px-1.5 py-1 bg-purple-500 rounded shadow-md shadow-purple-500/50 hover:bg-purple-600 transition duration-500 ease-in-out text-gray-200'>
+            <button className='rounded bg-purple-500 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-purple-500/50 transition duration-500 ease-in-out hover:bg-purple-600'>
               Edit Profile
             </button>
             <Link href='/' scroll={false}>
-              <a className='font-semibold px-1.5 py-1 bg-teal-700 rounded shadow-md shadow-emerald-700/50 hover:bg-emerald-800 transition duration-500 ease-in-out text-gray-200'>
+              <a className='rounded bg-teal-700 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-emerald-700/50 transition duration-500 ease-in-out hover:bg-emerald-800'>
                 Go To Home
               </a>
             </Link>
             <button
-              className='font-semibold px-1.5 py-1 bg-red-400 rounded shadow-md shadow-red-400/50 hover:bg-red-500 transition duration-500 ease-in-out text-gray-200'
+              className='rounded bg-red-400 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-red-400/50 transition duration-500 ease-in-out hover:bg-red-500'
               onClick={handleLogOut}
             >
               Logout
             </button>
           </div>
           <div>
-            <div className='flex justify-start items-center space-x-2 mt-10 mb-4 text-sm'>
+            <div className='mt-10 mb-4 flex items-center justify-start space-x-2 text-sm'>
               <div className='font-semibold'>Filter : </div>
               <button
                 onClick={handleStatus}
-                className={`px-2 py-1 transition duration-500 ease-in-out rounded-md shadow-md font-semibold text-gray-200 ${
+                className={`rounded-md px-2 py-1 font-semibold text-gray-200 shadow-md transition duration-500 ease-in-out ${
                   accepted
                     ? 'bg-emerald-600 shadow-emerald-600/50'
                     : 'bg-slate-400 shadow-slate-400/50'
@@ -129,11 +129,11 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             {data &&
               data.data.filter((e) => e.accepted == accepted).length == 0 && (
                 <LazyShow
-                  className='text-center font-semibold text-gray-200 text-lg'
+                  className='text-center text-lg font-semibold text-gray-200'
                   align='top'
                 >
                   Data kosong
@@ -149,10 +149,10 @@ const Dashboard = () => {
                   return (
                     <LazyShow align={align} key={e._id}>
                       <div
-                        className={`rounded-md bg-${e.color} shadow-md shadow-${e.color} p-3 flex justify-between items-center lg:cursor-pointer`}
+                        className={`rounded-md bg-${e.color} shadow-md shadow-${e.color} flex items-center justify-between p-3 lg:cursor-pointer`}
                       >
                         <div
-                          className='flex items-center space-x-2 flex-1'
+                          className='flex flex-1 items-center space-x-2'
                           onClick={() =>
                             handleDetail(`/dashboard/detail/${e._id}`)
                           }
@@ -162,7 +162,7 @@ const Dashboard = () => {
                             alt={`Icon ${e.title}`}
                             className='w-5'
                           />
-                          <p className='font-semibold text-lg text-gray-800'>
+                          <p className='text-lg font-semibold text-gray-800'>
                             {e.title}
                           </p>
                         </div>

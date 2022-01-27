@@ -9,12 +9,12 @@ const BackToDashboard = () => {
 
   return (
     <p
-      className='flex justify-start items-center space-x-1 my-2 italic text-sm w-fit cursor-pointer group'
+      className='group my-2 flex w-fit cursor-pointer items-center justify-start space-x-1 text-sm italic'
       onClick={handleClick}
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        className='h-4 w-4 text-gray-400 group-hover:fill-cyan-500 transition duration-500 ease-in-out'
+        className='h-4 w-4 text-gray-400 transition duration-500 ease-in-out group-hover:fill-cyan-500'
         viewBox='0 0 20 20'
         fill='currentColor'
       >
@@ -24,7 +24,7 @@ const BackToDashboard = () => {
           clipRule='evenodd'
         />
       </svg>
-      <span className='text-gray-400 group-hover:text-cyan-500 transition duration-500 ease-in-out'>
+      <span className='text-gray-400 transition duration-500 ease-in-out group-hover:text-cyan-500'>
         Back to previous page
       </span>
     </p>

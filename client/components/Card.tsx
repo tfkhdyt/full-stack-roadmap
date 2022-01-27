@@ -46,10 +46,10 @@ const Card = ({ id, data, state }: CardProps) => {
       <>
         <LazyShow
           align='left'
-          className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} text-gray-800 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto space-y-2 selection:bg-gray-800 selection:text-${baseColor}`}
+          className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} col-start-1 col-end-5 my-4 ml-auto space-y-2 rounded-xl p-4 text-gray-800 selection:bg-gray-800 selection:text-${baseColor}`}
         >
-          <p className={`font-semibold italic text-xs`}>{data.type}</p>
-          <p className='font-bold text-xl flex items-center space-x-1'>
+          <p className={`text-xs font-semibold italic`}>{data.type}</p>
+          <p className='flex items-center space-x-1 text-xl font-bold'>
             <img
               src={data.icon}
               alt={`Foto ${data.title}`}
@@ -58,7 +58,7 @@ const Card = ({ id, data, state }: CardProps) => {
             <span>{data.title}</span>
           </p>
           <p
-            className={`leading-snug text-sm lg:text-base md:text-justify tracking-wide`}
+            className={`text-sm leading-snug tracking-wide md:text-justify lg:text-base`}
           >
             {data.description}
           </p>
@@ -89,10 +89,10 @@ const Card = ({ id, data, state }: CardProps) => {
         />
         <LazyShow
           align='right'
-          className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} text-gray-800 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto space-y-2 selection:bg-gray-800 selection:text-${baseColor}`}
+          className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} col-start-6 col-end-10 my-4 mr-auto space-y-2 rounded-xl p-4 text-gray-800 selection:bg-gray-800 selection:text-${baseColor}`}
         >
-          <p className={`font-semibold italic text-xs`}>{data.type}</p>
-          <p className='font-bold text-xl flex items-center space-x-1'>
+          <p className={`text-xs font-semibold italic`}>{data.type}</p>
+          <p className='flex items-center space-x-1 text-xl font-bold'>
             <img
               src={data.icon}
               alt={`Foto ${data.title}`}
@@ -100,7 +100,7 @@ const Card = ({ id, data, state }: CardProps) => {
             />
             <span>{data.title}</span>
           </p>
-          <p className='leading-snug text-sm lg:text-base md:text-justify tracking-wide'>
+          <p className='text-sm leading-snug tracking-wide md:text-justify lg:text-base'>
             {data.description}
           </p>
           <Buttons

@@ -175,9 +175,9 @@ const EditRoadmap = () => {
         <Head>
           <title>Edit {data.data.title} | Full Stack Roadmap</title>
         </Head>
-        <div className='px-6 md:px-56 lg:px-96 py-3 pb-12 text-gray-200 space-y-3'>
+        <div className='space-y-3 px-6 py-3 pb-12 text-gray-200 md:px-56 lg:px-96'>
           <Header>
-            <p className='font-extrabold text-2xl flex justify-center'>
+            <p className='flex justify-center text-2xl font-extrabold'>
               Edit Roadmap
             </p>
           </Header>
@@ -254,7 +254,7 @@ const EditRoadmap = () => {
               />
               <div className={`${data.role !== 'admin' && 'hidden'}`}>
                 {' '}
-                <label htmlFor='accepted' className='text-gray-200 font-medium'>
+                <label htmlFor='accepted' className='font-medium text-gray-200'>
                   Status
                 </label>
                 <div className='flex items-center space-x-4'>

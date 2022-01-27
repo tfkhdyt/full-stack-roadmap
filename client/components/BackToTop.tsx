@@ -20,8 +20,8 @@ const BackToTop = () => {
   return (
     <>
       <button
-        className={`text-white p-2 -ml-0.5 rounded-full bg-sky-700 fixed bottom-6 left-8 transition-opacity duration-300 ease-in-out ${
-          showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`fixed bottom-6 left-8 -ml-0.5 rounded-full bg-sky-700 p-2 text-white transition-opacity duration-300 ease-in-out ${
+          showButton ? 'opacity-100' : 'pointer-events-none opacity-0'
         } active:bg-sky-800`}
         onClick={showButton ? handleClick : undefined}
       >
