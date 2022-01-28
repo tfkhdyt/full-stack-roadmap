@@ -58,7 +58,7 @@ const Home = () => {
                 label='Donate'
                 isOpenInNewTab={true}
               />
-              <Nav link='/auth/login' label='Dashboard' />
+              <Nav link='/dashboard' label='Dashboard' />
             </span>
           </Header>
           <Roadmap data={data} error={error} />
