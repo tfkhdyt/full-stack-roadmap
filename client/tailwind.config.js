@@ -54,7 +54,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Poppins'],
+      sans: ['Source Sans Pro'],
     },
   },
   plugins: [],
