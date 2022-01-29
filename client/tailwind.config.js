@@ -10,7 +10,7 @@ module.exports = {
         'gradient-x': 'gradient-x 8s ease infinite',
         'gradient-y': 'gradient-y 8s ease infinite',
         'gradient-xy': 'gradient-xy 2s linear infinite',
-        'pop-out': 'pop-out 0.25s ease-in-out'
+        'pop-out': 'pop-out 0.25s ease-in-out',
       },
       keyframes: {
         'gradient-y': {
@@ -54,7 +54,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Fira Sans'],
+      body: ['Fira Sans', 'sans-serif'],
     },
   },
   plugins: [],
