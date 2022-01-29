@@ -54,7 +54,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Source Sans Pro'],
+      sans: ['Fira Sans'],
     },
   },
   plugins: [],
