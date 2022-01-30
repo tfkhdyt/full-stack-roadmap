@@ -2,6 +2,7 @@ import Cookies from 'universal-cookie'
 import Head from 'next/head'
 import axios from 'axios'
 import useSWR from 'swr'
+import ProgressBar from 'react-scroll-progress-bar'
 
 import { Nav } from '../components/Header'
 import BackToTop from '../components/BackToTop'
@@ -37,8 +38,9 @@ const Home = () => {
   if (!data) return <Loading title={Config.title} />
 
   return (
-    <Layout>
-      <>
+    <>
+      <ProgressBar bgcolor='#fcd34d' />
+      <Layout>
         <Head>
           <title>{Config.title}</title>
         </Head>
@@ -64,8 +66,8 @@ const Home = () => {
           <Roadmap data={data} error={error} />
         </div>
         <BackToTop />
-      </>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
 
-const Layout = ({ children }: { children: JSX.Element }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   const variants = {
     hidden: { opacity: 0 },
     enter: { opacity: 1 },
