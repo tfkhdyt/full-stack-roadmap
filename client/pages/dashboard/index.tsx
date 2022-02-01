@@ -5,8 +5,9 @@ import Cookies from 'universal-cookie'
 import Head from 'next/head'
 import Link from 'next/link'
 import useSWR from 'swr'
+import { toast } from 'react-toastify'
 
-import { Alert, Toast } from '../../config'
+import { Alert } from '../../config'
 import { SWRTypes } from '../../types/swr'
 import { Data } from '../../types/data'
 import Loading from '../../components/Loading'
@@ -63,8 +64,15 @@ const Dashboard = () => {
     })
 
     if (res.isConfirmed) {
-      Toast.fire({
-        title: 'Logout success!',
+      toast.success(`Logout berhasil!`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
       })
       cookies.remove('token', { path: '/' })
       router.push('/auth/login')

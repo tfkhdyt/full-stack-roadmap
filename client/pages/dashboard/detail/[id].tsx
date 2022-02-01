@@ -2,12 +2,14 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Cookies from 'universal-cookie'
 import axios from 'axios'
-import { Alert, Toast } from '../../../config'
-import Loading from '../../../components/Loading'
-import BackToDashboard from '../../../components/BackToDashboard'
 import Link from 'next/link'
 import Head from 'next/head'
 import useSWR from 'swr'
+import { toast } from 'react-toastify'
+
+import { Alert } from '../../../config'
+import Loading from '../../../components/Loading'
+import BackToDashboard from '../../../components/BackToDashboard'
 import deleteData from '../../../utils/deleteData'
 import Header from '../../../components/Header'
 import Layout from '../../../components/Layout'
@@ -89,8 +91,15 @@ const Detail = () => {
       )
       refreshData()
       Alert.close()
-      Toast.fire({
-        title: 'Ubah status berhasil!',
+      toast.success(`Ubah status berhasil!`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
       })
     } catch (err: any) {
       // console.log(err)
@@ -139,8 +148,15 @@ const Detail = () => {
     try {
       await deleteData(id)
       Alert.close()
-      Toast.fire({
-        title: 'Data berhasil dihapus!',
+      toast.success(`Data berhasil dihapus!`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
       })
       router.push('/dashboard')
     } catch (err) {
