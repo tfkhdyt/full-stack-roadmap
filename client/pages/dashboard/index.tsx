@@ -152,10 +152,15 @@ const Dashboard = () => {
                   let align: string
                   if (i % 2 == 0) align = 'left'
                   else align = 'right'
+                  const baseColor = e.color
+                  let shadeColor: (string | number)[] | string =
+                    baseColor.split('-')
+                  shadeColor[1] = Number(shadeColor[1]) + 200
+                  shadeColor = shadeColor.join('-')
                   return (
                     <LazyShow align={align} key={e._id}>
                       <div
-                        className={`rounded-md bg-${e.color} shadow-md shadow-${e.color} flex items-center justify-between p-3 lg:cursor-pointer`}
+                        className={`rounded-md bg-gradient-to-br from-${baseColor} to-${shadeColor} shadow-md shadow-${shadeColor} flex items-center justify-between p-3 lg:cursor-pointer`}
                       >
                         <div
                           className='flex flex-1 items-center space-x-2'

@@ -173,6 +173,10 @@ const Detail = () => {
   }
 
   if (!data) return <Loading title='Detail | Full Stack Roadmap' />
+  const baseColor = data.data.color
+  let shadeColor = baseColor.split('-')
+  shadeColor[1] = Number(shadeColor[1]) + 200
+  shadeColor = shadeColor.join('-')
 
   return (
     <Layout>
@@ -190,7 +194,7 @@ const Detail = () => {
             <BackToDashboard />
             {data && (
               <div
-                className={`bg-${data.data.color} w-full rounded-md p-4 shadow-lg shadow-${data.data.color}/50 space-y-1 text-gray-800`}
+                className={`bg-gradient-to-br from-${baseColor} to-${shadeColor} w-full rounded-md p-4 shadow-lg shadow-${shadeColor}/50 space-y-1 text-gray-800`}
               >
                 <div>
                   <span className='font-bold'>Order:</span>{' '}
@@ -259,20 +263,22 @@ const Detail = () => {
                   {data.role === 'admin' && (
                     <button
                       className={`w-20 px-3 py-2 ${
-                        !data.data.accepted ? 'bg-green-600' : 'bg-zinc-500'
-                      } rounded-md font-semibold text-gray-200 shadow-lg`}
+                        !data.data.accepted
+                          ? 'bg-green-600 shadow-green-800 hover:bg-green-700'
+                          : 'bg-zinc-500 shadow-zinc-600/50 hover:bg-zinc-600'
+                      } rounded-md font-semibold text-gray-200 shadow-md transition duration-500`}
                       onClick={changeStatus}
                     >
                       {!data.data.accepted ? 'Accept' : 'Pend'}
                     </button>
                   )}
                   <Link href={`/dashboard/edit-roadmap/${data.data._id}`}>
-                    <a className='flex w-20 justify-center rounded-md bg-sky-600 p-2 font-semibold text-gray-200 shadow-lg'>
+                    <a className='flex w-20 justify-center rounded-md bg-sky-600 p-2 font-semibold text-gray-200 shadow-md shadow-sky-700/50 transition duration-500 hover:bg-sky-700'>
                       Edit
                     </a>
                   </Link>
                   <button
-                    className='rounded-md bg-rose-500 px-3 py-2 font-semibold text-gray-200 shadow-lg'
+                    className='rounded-md bg-rose-500 px-3 py-2 font-semibold text-gray-200 shadow-md shadow-rose-600/50 transition duration-500 hover:bg-rose-600'
                     onClick={() => handleDelete(data.data._id)}
                   >
                     Delete
