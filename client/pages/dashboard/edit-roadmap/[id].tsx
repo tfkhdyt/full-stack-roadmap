@@ -1,22 +1,26 @@
+// import library
+import { FormEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useEffect, useState, FormEvent } from 'react'
-import axios from 'axios'
-import Head from 'next/head'
 import Cookies from 'universal-cookie'
+import Head from 'next/head'
+import axios from 'axios'
 import useSWR from 'swr'
 
+// import config and components
 import { Alert } from '../../../config'
-import FormButton from '../../../components/FormButton'
-import InputForm from '../../../components/InputForm'
-import TextAreaForm from '../../../components/TextAreaForm'
 import BackToDashboard from '../../../components/BackToDashboard'
+import FormButton from '../../../components/FormButton'
+import Header from '../../../components/Header'
+import InputForm from '../../../components/InputForm'
+import Layout from '../../../components/Layout'
 import Loading from '../../../components/Loading'
 import SelectForm from '../../../components/SelectForm'
-import Header from '../../../components/Header'
-import Layout from '../../../components/Layout'
+import TextAreaForm from '../../../components/TextAreaForm'
 
+// cookies instantiation
 const cookies = new Cookies()
 
+// fetcher function
 const fetcher = async (url: string) => {
   try {
     const res = await axios.get(url, {
@@ -32,7 +36,9 @@ const fetcher = async (url: string) => {
   }
 }
 
+// EditRoadmap components
 const EditRoadmap = () => {
+  // states
   const [order, setOrder] = useState<number>()
   const [title, setTitle] = useState<string>()
   const [type, setType] = useState<string>()
@@ -45,13 +51,19 @@ const EditRoadmap = () => {
   const [accepted, setAccepted] = useState<boolean>()
   const [isChanged, setIsChanged] = useState<boolean>(false)
 
+  // router hooks
   const router = useRouter()
+
+  // get id from query
   const { id } = router.query
+
+  // fetch data
   const { data, error, mutate } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${id}`,
     fetcher
   )
 
+  // life cycle
   useEffect(() => {
     if (error) {
       switch (error.status) {
@@ -96,6 +108,7 @@ const EditRoadmap = () => {
     }
   })
 
+  // submit event handler
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     Alert.fire({
@@ -107,7 +120,6 @@ const EditRoadmap = () => {
         Alert.showLoading()
       },
     })
-
     axios
       .patch(
         `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${data.data._id}`,
@@ -164,9 +176,13 @@ const EditRoadmap = () => {
       })
   }
 
+  // color handler
   const handleColor = (e: string) => setColor(e)
+
+  // intensity handler
   const handleIntensity = (e: number) => setIntensity(e)
 
+  // loading
   if (!data) return <Loading title='Edit Data | Full Stack Roadmap' />
 
   return (
@@ -282,7 +298,6 @@ const EditRoadmap = () => {
                   </div>
                 </div>
               </div>
-
               <FormButton color='sky-400'>Edit</FormButton>
             </form>
           </div>
