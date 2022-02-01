@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import Cookies from 'universal-cookie'
+import Cookies from 'js-cookie'
+// import Cookies from 'universal-cookie'
 import Head from 'next/head'
 import Link from 'next/link'
 import useSWR from 'swr'
-// import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 import { Alert } from '../../config'
 import { SWRTypes } from '../../types/swr'
@@ -17,13 +18,13 @@ import Layout from '../../components/Layout'
 import LazyShow from '../../components/LazyShow'
 import BackToTop from '../../components/BackToTop'
 
-const cookies = new Cookies()
+// const cookies = new Cookies()
 
 const fetcher = async (url: string) => {
   try {
     const res = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${cookies.get('token')}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
     return res.data
@@ -64,8 +65,8 @@ const Dashboard = () => {
     })
 
     if (res.isConfirmed) {
-      cookies.remove('token', { path: '/' })
-      /*toast.success(`Logout berhasil!`, {
+      Cookies.remove('token')
+      toast.success(`Logout berhasil!`, {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: false,
@@ -74,8 +75,8 @@ const Dashboard = () => {
         draggable: true,
         progress: undefined,
         theme: 'colored',
-        })*/
-      router.push('/auth/login')
+      })
+      router.replace('/auth/login')
     }
   }
 
