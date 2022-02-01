@@ -39,7 +39,7 @@ const Home = () => {
 
   return (
     <>
-      <ProgressBar bgcolor='#fcd34d' />
+      <ProgressBar bgcolor='#ffffff' />
       <Layout>
         <Head>
           <title>{Config.title}</title>
