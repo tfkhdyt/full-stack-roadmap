@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie'
 import Head from 'next/head'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 
 import { Alert } from '../../config'
 import { SWRTypes } from '../../types/swr'
@@ -65,7 +65,7 @@ const Dashboard = () => {
 
     if (res.isConfirmed) {
       cookies.remove('token', { path: '/' })
-      toast.success(`Logout berhasil!`, {
+      /*toast.success(`Logout berhasil!`, {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: false,
@@ -74,7 +74,7 @@ const Dashboard = () => {
         draggable: true,
         progress: undefined,
         theme: 'colored',
-      })
+        })*/
       router.push('/auth/login')
     }
   }

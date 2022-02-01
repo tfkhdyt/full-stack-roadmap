@@ -7,6 +7,7 @@ type InputFormProps = {
   placeholder?: string
   order?: number
   value?: string | number
+  ref?: any
 }
 
 const InputForm = ({ label, id, onChange, ...rest }: InputFormProps) => {

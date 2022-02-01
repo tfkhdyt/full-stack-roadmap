@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 
 import FormButton from '../../components/FormButton'
 import InputForm from '../../components/InputForm'
@@ -40,7 +40,7 @@ const Login = () => {
         maxAge: 3000000,
       })
       Alert.close()
-      toast.success(`Login berhasil!`, {
+      /*toast.success(`Login berhasil!`, {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: false,
@@ -49,7 +49,7 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         theme: 'colored',
-      })
+        })*/
       router.push('/dashboard')
     } catch (err: any) {
       Alert.close()
