@@ -4,10 +4,11 @@ import Head from 'next/head'
 import Link from 'next/link'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
+// import { toast } from 'react-toastify'
 
 import FormButton from '../../components/FormButton'
 import InputForm from '../../components/InputForm'
-import { Alert, Toast } from '../../config'
+import { Alert } from '../../config'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 
@@ -34,14 +35,21 @@ const Login = () => {
         email,
         password,
       })
-      Alert.close()
-      Toast.fire({
-        title: 'Login success!',
-      })
       cookie.set('token', res.data.accessToken, {
         path: '/',
         maxAge: 3000000,
       })
+      Alert.close()
+      /*toast.success(`Login berhasil!`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        })*/
       router.push('/dashboard')
     } catch (err: any) {
       Alert.close()

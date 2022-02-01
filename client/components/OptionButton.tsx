@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
+import { toast } from 'react-toastify'
 
-import { Alert, Toast } from '../config'
+import { Alert } from '../config'
 import { Data } from '../types/data'
 import Link from 'next/link'
 import deleteData from '../utils/deleteData'
@@ -72,8 +73,15 @@ const OptionButton = ({ data, role, mutate }: OptionButtonProps) => {
       )
       refreshData()
       Alert.close()
-      Toast.fire({
-        title: 'Ubah status berhasil!',
+      toast.success(`Ubah status berhasil!`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
       })
     } catch (err: any) {
       // console.log(err)
@@ -123,8 +131,15 @@ const OptionButton = ({ data, role, mutate }: OptionButtonProps) => {
       await deleteData(id)
       Alert.close()
       refreshData()
-      Toast.fire({
-        title: 'Data berhasil dihapus!',
+      toast.success(`Data berhasil dihapus!`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
       })
     } catch (err) {
       switch (err) {

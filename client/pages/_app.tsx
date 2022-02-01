@@ -1,5 +1,5 @@
 import type { AppProps /*, AppContext */ } from 'next/app'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, Slide } from 'react-toastify'
 import Script from 'next/script'
 import { AnimatePresence } from 'framer-motion'
 
@@ -31,6 +31,7 @@ const App = ({ Component, pageProps }: AppProps) => (
       draggable
       pauseOnHover
       bodyClassName='font-semibold'
+      transition={Slide}
     />
     <AnimatePresence
       exitBeforeEnter
