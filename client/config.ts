@@ -42,6 +42,9 @@ export default {
     'Developer',
     'Programmer',
     'Roadmap',
+    'Full Stack Roadmap Taufik',
+    'Full Stack JavaScript Roadmap',
+    'Full Stack JS Roadmap'
   ],
   API_URL:
     process.env.NODE_ENV === 'development'
