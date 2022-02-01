@@ -3,8 +3,9 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import axios from 'axios'
-import Cookies from 'universal-cookie'
-// import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
+// import Cookies from 'universal-cookie'
+import { toast } from 'react-toastify'
 
 import FormButton from '../../components/FormButton'
 import InputForm from '../../components/InputForm'
@@ -16,7 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState<string>()
   const [password, setPassword] = useState<string>()
   const router = useRouter()
-  const cookie = new Cookies()
+  // const cookie = new Cookies()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -35,12 +36,11 @@ const Login = () => {
         email,
         password,
       })
-      cookie.set('token', res.data.accessToken, {
-        path: '/',
-        maxAge: 3000000,
+      Cookies.set('token', res.data.accessToken, {
+        expires: 30,
       })
       Alert.close()
-      /*toast.success(`Login berhasil!`, {
+      toast.success(`Login berhasil!`, {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: false,
@@ -49,8 +49,8 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         theme: 'colored',
-        })*/
-      router.push('/dashboard')
+      })
+      router.replace('/dashboard')
     } catch (err: any) {
       Alert.close()
       switch (err.response.status) {
