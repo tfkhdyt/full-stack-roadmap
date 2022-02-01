@@ -35,6 +35,10 @@ const Login = () => {
         email,
         password,
       })
+      cookie.set('token', res.data.accessToken, {
+        path: '/',
+        maxAge: 3000000,
+      })
       Alert.close()
       toast.success(`Login berhasil!`, {
         position: 'top-right',
@@ -45,10 +49,6 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         theme: 'colored',
-      })
-      cookie.set('token', res.data.accessToken, {
-        path: '/',
-        maxAge: 3000000,
       })
       router.push('/dashboard')
     } catch (err: any) {

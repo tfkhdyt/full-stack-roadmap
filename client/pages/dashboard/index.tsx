@@ -64,6 +64,7 @@ const Dashboard = () => {
     })
 
     if (res.isConfirmed) {
+      cookies.remove('token', { path: '/' })
       toast.success(`Logout berhasil!`, {
         position: 'top-right',
         autoClose: 2500,
@@ -74,7 +75,6 @@ const Dashboard = () => {
         progress: undefined,
         theme: 'colored',
       })
-      cookies.remove('token', { path: '/' })
       router.push('/auth/login')
     }
   }
