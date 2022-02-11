@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import { config } from 'dotenv'
+import compression from 'compression'
+import helmet from 'helmet'
 
 import routes from './routes/route'
 import postTrimmer from './middlewares/postTrimmer'
@@ -21,10 +23,6 @@ try {
   throw error.message
 }
 
-process.on('unhandledRejection', (error: any) => {
-  console.log('unhandledRejection', error.message)
-})
-
 // parse requests of content-type - application/json
 app.use(express.json())
 
@@ -43,6 +41,9 @@ app.use(
     methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   })
 )
+
+app.use(compression())
+app.use(helmet())
 
 //using routes
 app.use(routes)

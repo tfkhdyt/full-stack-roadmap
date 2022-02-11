@@ -46,9 +46,12 @@ const Home = () => {
         </Head>
         <div className='flex flex-col space-y-3 p-4'>
           <Header>
-            <span className='cursor-text text-xl font-extrabold leading-none lg:text-4xl'>
-              {Config.header}
-            </span>
+            <div className='flex flex-col'>
+              <div className='text-right leading-none text-[0.5rem] font-bold -mb-1.5 mr-0.5 tracking-wider'>TFKHDYT</div>
+              <div className='cursor-text text-2xl font-extrabold leading-none lg:text-4xl'>
+                Full Stack Roadmap
+              </div>
+            </div>
             <span className='flex items-center justify-center space-x-3'>
               <Nav
                 link='https://github.com/tfkhdyt/full-stack-roadmap'
