@@ -97,7 +97,7 @@ const Header = ({ children }: Children) => {
   return (
     chosen && (
       <div
-        className={`flex flex-col space-y-3 bg-gradient-to-br text-center selection:bg-sky-600 selection:text-gray-800 from-${chosen.from}-300 via-${chosen.via}-600 to-${chosen.to}-800 mx-auto w-fit animate-gradient-x bg-clip-text text-transparent`}
+        className={`flex flex-col space-y-1 bg-gradient-to-br text-center selection:bg-sky-600 selection:text-gray-800 from-${chosen.from}-300 via-${chosen.via}-600 to-${chosen.to}-800 mx-auto w-fit animate-gradient-x bg-clip-text text-transparent`}
       >
         {children}
       </div>
