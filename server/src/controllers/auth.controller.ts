@@ -38,7 +38,7 @@ export const signup = (req: Request, res: Response) => {
 }
 
 export const signin = (req: Request, res: Response) => {
-  const API_SECRET: Secret = process.env.$API_SECRET as Secret
+  const API_SECRET: Secret = process.env.API_SECRET as Secret
   User.findOne({
     email: req.body.email,
   }).exec((err: any, user) => {
