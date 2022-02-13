@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "prettier -cw src && eslint --fix src",
     "dev": "tsnd --debug --rs src/app.ts",
-    "postinstall": "tsc"
+    "postinstall": "npm i && tsc"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
