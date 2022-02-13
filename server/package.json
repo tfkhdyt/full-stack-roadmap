@@ -22,7 +22,8 @@
   "scripts": {
     "lint": "prettier -cw src && eslint --fix src",
     "dev": "tsnd --debug --rs src/app.ts",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "postinstall": "tsc"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
