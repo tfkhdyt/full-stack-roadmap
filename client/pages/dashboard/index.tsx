@@ -4,7 +4,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 // import Cookies from 'universal-cookie'
 import Head from 'next/head'
-import Link from 'next/link'
+// import Link from 'next/link'
 import useSWR from 'swr'
 import { toast } from 'react-toastify'
 
@@ -13,7 +13,7 @@ import { SWRTypes } from '../../types/swr'
 import { Data } from '../../types/data'
 import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
-import Header from '../../components/Header'
+import Header, { Nav } from '../../components/Header'
 import Layout from '../../components/Layout'
 import LazyShow from '../../components/LazyShow'
 import BackToTop from '../../components/BackToTop'
@@ -76,7 +76,11 @@ const Dashboard = () => {
         progress: undefined,
         theme: 'colored',
       })
-      router.replace('/auth/login')
+      try {
+        router.replace('/auth/login')
+      } catch (err) {
+        router.reload()
+      }
     }
   }
 
@@ -96,35 +100,29 @@ const Dashboard = () => {
         <Head>
           <title>Dashboard | Full Stack Roadmap</title>
         </Head>
-        <div className='space-y-3 px-6 py-3 text-gray-200 md:px-56 lg:px-64'>
+        <div className='relative space-y-3 px-6 py-3 text-gray-200 md:px-56 lg:px-64'>
           <Header>
-            <p className='flex justify-center text-2xl font-extrabold'>
-              Dashboard
-            </p>
+            <div className='flex flex-col'>
+              <div className='cursor-text text-2xl font-extrabold leading-none lg:text-4xl'>
+                Dashboard
+              </div>
+            </div>
+            <span className='flex items-center justify-center space-x-3'>
+              <Nav link='/dashboard/add-roadmap' label='Add Data' />
+              <Nav link='#' label='Edit Profile' />
+              <Nav link='/' label='Back To Home' />
+              <div className='group text-sm'>
+                <button
+                  className='flex items-center space-x-1 transition duration-200 ease-in-out group-hover:text-sky-600'
+                  onClick={handleLogOut}
+                >
+                  <span className='font-semibold'>Logout</span>
+                </button>
+              </div>
+            </span>
           </Header>
-          <div className='flex flex-wrap justify-center gap-2 text-sm'>
-            <Link href='/dashboard/add-roadmap' scroll={false}>
-              <a className='rounded bg-sky-600 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-sky-600/50 transition duration-500 ease-in-out hover:bg-sky-700'>
-                Add Data
-              </a>
-            </Link>
-            <button className='rounded bg-purple-500 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-purple-500/50 transition duration-500 ease-in-out hover:bg-purple-600'>
-              Edit Profile
-            </button>
-            <Link href='/' scroll={false}>
-              <a className='rounded bg-teal-700 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-emerald-700/50 transition duration-500 ease-in-out hover:bg-emerald-800'>
-                Go To Home
-              </a>
-            </Link>
-            <button
-              className='rounded bg-red-400 px-1.5 py-1 font-semibold text-gray-200 shadow-md shadow-red-400/50 transition duration-500 ease-in-out hover:bg-red-500'
-              onClick={handleLogOut}
-            >
-              Logout
-            </button>
-          </div>
-          <div>
-            <div className='mt-10 mb-4 flex items-center justify-start space-x-2 text-sm'>
+          <div className='pt-10'>
+            <div className='mb-4 flex items-center justify-start space-x-2 text-sm'>
               <div className='font-semibold'>Filter : </div>
               <button
                 onClick={handleStatus}
