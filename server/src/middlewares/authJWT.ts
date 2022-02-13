@@ -12,7 +12,7 @@ const verifyToken = (req: Request, res: Response, next: any) => {
   ) {
     jwt.verify(
       req.headers.authorization.split(' ')[1],
-      process.env.API_SECRET as Secret,
+      process.env.$API_SECRET as Secret,
       (err: any, decode: { id: string } | any) => {
         if (err) {
           req.user = undefined
