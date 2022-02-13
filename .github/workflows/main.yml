@@ -4,12 +4,15 @@ on:
     paths:
       - server/**
 
+defaults:
+  run:
+    working-directory: server
+
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
   deploy:
       name: Deploy app
-      working-directory: ./server
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
