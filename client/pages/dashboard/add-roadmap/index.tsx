@@ -101,13 +101,13 @@ Intensity: ${intensity}`)*/
         <Head>
           <title>Add Data | Full Stack Roadmap</title>
         </Head>
-        <div className='space-y-3 px-6 py-3 pb-12 text-gray-200 md:px-56 lg:px-96'>
+        <div className='relative space-y-3 px-6 py-3 pb-12 text-gray-200 md:px-56 lg:px-96'>
           <Header>
             <p className='flex justify-center text-2xl font-extrabold'>
               Add Roadmap
             </p>
           </Header>
-          <div>
+          <div className='pt-2'>
             <BackToDashboard />
             <form className='space-y-3' onSubmit={handleSubmit}>
               <InputForm

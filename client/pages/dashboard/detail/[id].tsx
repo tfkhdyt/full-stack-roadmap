@@ -206,7 +206,7 @@ const Detail = () => {
               Detail
             </p>
           </Header>
-          <div>
+          <div className='pt-2'>
             <BackToDashboard />
             {data && (
               <div

@@ -96,10 +96,12 @@ const Header = ({ children }: Children) => {
 
   return (
     chosen && (
-      <div
-        className={`flex flex-col space-y-1 bg-gradient-to-br text-center selection:bg-sky-600 selection:text-gray-800 from-${chosen.from}-300 via-${chosen.via}-600 to-${chosen.to}-800 mx-auto w-fit animate-gradient-x bg-clip-text text-transparent`}
-      >
-        {children}
+      <div className='fixed inset-x-0 top-0 z-[100] w-screen bg-gray-800/80 backdrop-blur-md'>
+        <div
+          className={`flex flex-col space-y-1 bg-gradient-to-br text-center selection:bg-sky-600 selection:text-gray-800 from-${chosen.from}-300 via-${chosen.via}-600 to-${chosen.to}-800 mx-auto w-fit animate-gradient-x bg-clip-text py-1 text-transparent`}
+        >
+          {children}
+        </div>
       </div>
     )
   )

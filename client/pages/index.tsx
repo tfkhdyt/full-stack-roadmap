@@ -2,7 +2,7 @@ import Cookies from 'universal-cookie'
 import Head from 'next/head'
 import axios from 'axios'
 import useSWR from 'swr'
-import ProgressBar from 'react-scroll-progress-bar'
+// import ProgressBar from 'react-scroll-progress-bar'
 
 import { Nav } from '../components/Header'
 import BackToTop from '../components/BackToTop'
@@ -39,15 +39,17 @@ const Home = () => {
 
   return (
     <>
-      <ProgressBar bgcolor='#ffffff' />
+      {/*<ProgressBar bgcolor='#ffffff' />*/}
       <Layout>
         <Head>
           <title>{Config.title}</title>
         </Head>
-        <div className='flex flex-col space-y-3 p-4'>
+        <div className='relative flex flex-col space-y-3 p-4'>
           <Header>
             <div className='flex flex-col'>
-              <div className='text-right leading-none text-[0.5rem] font-bold -mb-1.5 mr-0.5 tracking-wider'>TFKHDYT</div>
+              <div className='-mb-1.5 mr-0.5 text-right text-[0.5rem] font-bold leading-none tracking-wider'>
+                TFKHDYT
+              </div>
               <div className='cursor-text text-2xl font-extrabold leading-none lg:text-4xl'>
                 Full Stack Roadmap
               </div>
