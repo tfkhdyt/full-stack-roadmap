@@ -1,0 +1,48 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const roadmapSchema = new mongoose_1.Schema({
+    order: {
+        type: Number,
+        unique: [true, 'Nomor order telah digunakan'],
+        default: Date.now,
+    },
+    title: {
+        type: String,
+        required: [true, 'Tolong masukkan title'],
+        unique: [true, 'Title telah digunakan'],
+    },
+    type: {
+        type: String,
+        required: [true, 'Tolong masukkan type'],
+    },
+    description: {
+        type: String,
+        required: [true, 'Tolong masukkan deskripsi'],
+    },
+    icon: {
+        type: String,
+    },
+    color: {
+        type: String,
+        required: [true, 'Tolong masukkan warna utama'],
+    },
+    linkVideo: {
+        type: String,
+        required: [true, 'Tolong masukkan link video'],
+    },
+    linkDocs: {
+        type: String,
+        required: [true, 'Tolong masukkan type'],
+    },
+    accepted: {
+        type: Boolean,
+        required: [true, 'Tolong masukkan status'],
+    },
+    userId: {
+        type: String,
+        required: [true, 'Tolong masukkan user id'],
+    },
+});
+const Roadmap = (0, mongoose_1.model)('Roadmap', roadmapSchema);
+exports.default = Roadmap;

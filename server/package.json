@@ -1,7 +1,7 @@
 {
   "name": "full-stack-roadmap-backend",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "dist/app.js",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -21,8 +21,7 @@
   },
   "scripts": {
     "lint": "prettier -cw src && eslint --fix src",
-    "dev": "tsnd --debug --rs src/app.ts",
-    "postinstall": "tsc"
+    "dev": "tsnd --debug --rs src/app.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
