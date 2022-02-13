@@ -16,8 +16,6 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
-        - name: Open server folder
-          run: cd ./server
         - uses: superfly/flyctl-actions@1.3
           with:
-            args: "deploy"
+            args: "deploy -c server/fly.toml"
