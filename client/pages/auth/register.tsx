@@ -73,7 +73,7 @@ const Register = () => {
         <div className='flex flex-col space-y-3 p-3 md:mx-48 md:grid md:min-h-screen md:place-items-center lg:mx-96'>
           <div className='lg:flex lg:flex-col'>
             <div className='flex justify-center'>
-              <Header>
+              <Header noBlur={true}>
                 <p className='text-2xl font-bold'>Registration</p>
               </Header>
             </div>

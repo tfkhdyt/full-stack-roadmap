@@ -76,7 +76,11 @@ const Dashboard = () => {
         progress: undefined,
         theme: 'colored',
       })
-      router.replace('/auth/login')
+      try {
+        router.replace('/auth/login')
+      } catch (err) {
+        router.reload()
+      }
     }
   }
 
@@ -117,7 +121,7 @@ const Dashboard = () => {
               </div>
             </span>
           </Header>
-          <div className='pt-8'>
+          <div className='pt-10'>
             <div className='mb-4 flex items-center justify-start space-x-2 text-sm'>
               <div className='font-semibold'>Filter : </div>
               <button
