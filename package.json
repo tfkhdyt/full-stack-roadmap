@@ -14,5 +14,10 @@
     "server": "cd server && npm run dev",
     "dev": "concurrently --kill-others -n client,server 'npm run client' 'npm run server'",
     "start": "node server/dist/app.js"
-  }
+  }, 
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ]
 }
