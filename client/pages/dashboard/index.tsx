@@ -137,7 +137,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div
-            className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
+            className={`grid grid-cols-1 gap-4 ${
               data &&
               data.data.filter((e) => e.accepted == accepted).length !== 0 &&
               'md:grid-cols-2'
