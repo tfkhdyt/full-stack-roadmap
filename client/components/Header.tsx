@@ -32,11 +32,6 @@ const Header = ({ children, noBlur = false }: IHeader) => {
     'red',
     'green',
     'blue',
-    'slate',
-    'gray',
-    'zinc',
-    'neutral',
-    'stone',
     'orange',
     'amber',
     'yellow',
@@ -107,7 +102,7 @@ const Header = ({ children, noBlur = false }: IHeader) => {
         }
       >
         <div
-          className={`flex flex-col space-y-1 bg-gradient-to-br text-center selection:bg-sky-600 selection:text-gray-800 from-${chosen.from}-300 via-${chosen.via}-600 to-${chosen.to}-800 mx-auto w-fit animate-gradient-x bg-clip-text py-1 text-transparent`}
+          className={`flex flex-col space-y-1 bg-gradient-to-br text-center selection:bg-sky-600 selection:text-gray-800 from-${chosen.from}-400 via-${chosen.via}-500 to-${chosen.to}-700 mx-auto w-fit animate-gradient-x bg-clip-text py-1 text-transparent`}
         >
           {children}
         </div>
