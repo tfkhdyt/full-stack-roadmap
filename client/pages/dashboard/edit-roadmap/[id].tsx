@@ -93,7 +93,6 @@ const EditRoadmap = () => {
 
   useEffect(() => {
     if (data && !isChanged) {
-      mutate()
       setIsChanged(true)
       setOrder(data.data.order)
       setTitle(data.data.title)
@@ -107,6 +106,10 @@ const EditRoadmap = () => {
       setAccepted(data.data.accepted)
     }
   })
+
+  useEffect(() => {
+    mutate()
+  }, [])
 
   // submit event handler
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
