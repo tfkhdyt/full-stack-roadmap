@@ -33,7 +33,7 @@ export default {
   link: 'https://roadmap.tfkhdyt.my.id',
   deskripsi:
     'Pengen jadi Full Stack Developer tapi masih bingung harus mulai dari mana?',
-  thumbnail: '/images/thumbnail.jpg',
+  thumbnail: '/images/thumbnail2.jpg',
   keywords: [
     'Full Stack Developer Roadmap',
     'Full Stack',
