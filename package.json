@@ -18,6 +18,7 @@
   "private": true,
   "workspaces": [
     "client",
-    "server"
+    "server",
+    "server-nest"
   ]
 }
