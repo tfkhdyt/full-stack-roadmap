@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common'
 import { CreateUserDto } from './dto/create-user.dto'
 import { User } from './users.entity'
@@ -37,5 +38,28 @@ export class UsersService {
     } catch (err) {
       throw new InternalServerErrorException(err.message)
     }
+  }
+
+  async findOne(query: object) {
+    try {
+      const user = await this.userModel.findOne(query)
+      // console.log(user)
+      if (!user) throw new NotFoundException('User tidak ditemukan')
+      return user
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+  }
+
+  async findById(id: string) {
+    let user: any
+    try {
+      user = await this.userModel.findById(id)
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+
+    if (!user) throw new NotFoundException('User tidak ditemukan')
+    return user
   }
 }
