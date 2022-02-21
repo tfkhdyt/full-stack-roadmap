@@ -4,16 +4,18 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
+import { hash } from 'bcrypt'
+
 import { CreateUserDto } from './dto/create-user.dto'
 import { User } from './users.entity'
-import { Model } from 'mongoose'
-import { InjectModel } from '@nestjs/mongoose'
-import { hash } from 'bcrypt'
 
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
+  // create user
   async createUser(body: CreateUserDto) {
     const { fullName, email, password, role } = body
 
@@ -40,13 +42,14 @@ export class UsersService {
     }
   }
 
+  // find one
   async findOne(query: object) {
     const user = await this.userModel.findOne(query)
-    // console.log(user)
     if (!user) throw new NotFoundException('User tidak ditemukan')
     return user
   }
 
+  // find by id
   async findById(id: string) {
     let user: any
     try {
