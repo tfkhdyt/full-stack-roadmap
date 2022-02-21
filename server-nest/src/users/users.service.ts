@@ -41,14 +41,10 @@ export class UsersService {
   }
 
   async findOne(query: object) {
-    try {
-      const user = await this.userModel.findOne(query)
-      // console.log(user)
-      if (!user) throw new NotFoundException('User tidak ditemukan')
-      return user
-    } catch (err) {
-      throw new InternalServerErrorException(err.message)
-    }
+    const user = await this.userModel.findOne(query)
+    // console.log(user)
+    if (!user) throw new NotFoundException('User tidak ditemukan')
+    return user
   }
 
   async findById(id: string) {

@@ -1,58 +1,39 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { UsersService } from 'src/users/users.service'
 import { RegisterDto } from './dto/register.dto'
-import { Secret } from 'jsonwebtoken'
 import { compare } from 'bcrypt'
 import { User } from '../users/users.entity'
-import { sign } from 'jsonwebtoken'
 import { LoginDto } from './dto/login.dto'
+import { JwtService } from '@nestjs/jwt'
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   // register
   register(body: RegisterDto) {
     return this.usersService.createUser(body)
   }
 
-  // login
-  async login(loginDto: LoginDto) {
-    const API_SECRET: Secret = process.env.API_SECRET as Secret
+  async validateUser(loginDto: LoginDto) {
     const { email, password } = loginDto
+    const user: User = await this.usersService.findOne({ email })
 
-    let user: User
-    try {
-      user = await this.usersService.findOne({ email })
+    const passwordIsValid = await compare(password, user.password)
+    if (!passwordIsValid) throw new UnauthorizedException('Password is wrong')
 
-      if (!user) throw new NotFoundException('User not found!')
-    } catch (err) {
-      throw new InternalServerErrorException(err.message)
+    return user
+  }
+
+  async login(loginDto: LoginDto) {
+    const user = await this.validateUser(loginDto)
+    const payload = {
+      id: user._id,
+      role: user.role,
     }
-
-    try {
-      const passwordIsValid: boolean = await compare(password, user.password)
-      if (!passwordIsValid) throw new UnauthorizedException('Password salah!')
-    } catch (err) {
-      throw new InternalServerErrorException(err.message)
-    }
-
-    const token = sign({ id: user._id }, API_SECRET, { expiresIn: '30d' })
-
-    return {
-      user: {
-        id: user._id,
-        email: user.email,
-        fullName: user.fullName,
-        role: user.role,
-      },
-      message: 'Login success',
-      accessToken: token,
-    }
+    return { token: this.jwtService.sign(payload) }
   }
 }
