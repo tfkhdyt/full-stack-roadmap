@@ -16,18 +16,27 @@ export class RoadmapsService {
   async getRoadmaps(query?: object) {
     try {
       const roadmaps = await this.roadmapModel.find(query).sort('order')
-      if (!roadmaps) throw new NotFoundException('Roadmaps not found')
+      if (roadmaps.length == 0)
+        throw new NotFoundException('Roadmaps not found')
       return roadmaps
     } catch (err) {
       throw new BadRequestException(err.message)
     }
   }
 
-  async getMyRoadmaps(userId: string, role: string) {
+  getMyRoadmaps(userId: string, role: string) {
     if (role == 'admin') {
       return this.getRoadmaps()
     } else {
       return this.getRoadmaps({ userId })
+    }
+  }
+
+  getRoadmap(role: string, roadmapId: string, userId: string) {
+    if (role == 'admin') {
+      return this.getRoadmaps({ _id: roadmapId })
+    } else {
+      return this.getRoadmaps({ _id: roadmapId, userId })
     }
   }
 }

@@ -1,7 +1,13 @@
-import { Controller, Get, HttpCode, UseGuards, Req } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  HttpCode,
+  UseGuards,
+  Req,
+  Param,
+} from '@nestjs/common'
 import { RoadmapsService } from './roadmaps.service'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
-import { User } from 'src/users/users.entity'
 
 @Controller('roadmaps')
 export class RoadmapsController {
@@ -16,8 +22,16 @@ export class RoadmapsController {
   @Get()
   @HttpCode(200)
   @UseGuards(JwtAuthGuard)
-  getRoadmaps(@Req() req: Request) {
+  getRoadmaps(@Req() req: any) {
     const { id, role } = req.user
     return this.roadmapsService.getMyRoadmaps(id, role)
+  }
+
+  @Get(':id')
+  @HttpCode(200)
+  @UseGuards(JwtAuthGuard)
+  getRoadmap(@Req() req: any, @Param('id') roadmapId: string) {
+    const { id, role } = req.user
+    return this.roadmapsService.getRoadmap(role, roadmapId, id)
   }
 }

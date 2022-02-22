@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { compare } from 'bcrypt'
+import { compare, compareSync } from 'bcrypt'
 
 import { UsersService } from 'src/users/users.service'
 import { RegisterDto } from './dto/register.dto'
@@ -23,7 +23,6 @@ export class AuthService {
   async validateUser(loginDto: LoginDto) {
     const { email, password } = loginDto
     const user: User = await this.usersService.findOne({ email })
-
     const passwordIsValid = await compare(password, user.password)
     if (!passwordIsValid) throw new UnauthorizedException('Password is wrong')
 
