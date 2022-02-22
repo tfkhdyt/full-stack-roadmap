@@ -1,4 +1,4 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common'
+import { Controller, Get, Req, UseGuards, Param } from '@nestjs/common'
 import { Request } from 'express'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 
@@ -9,5 +9,19 @@ export class UsersController {
   getUsers(@Req() req: Request) {
     console.log(req.user)
     return 'Auth success!'
+  }
+
+  @Get('all')
+  getAllRoadmaps() {
+    return [
+      {
+        hello: 'world!',
+      },
+    ]
+  }
+
+  @Get(':id')
+  getRoadmap(@Param('id') id: string) {
+    return id
   }
 }

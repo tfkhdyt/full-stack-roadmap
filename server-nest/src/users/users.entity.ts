@@ -4,6 +4,6 @@ export class User extends Document {
   fullName: string
   email: string
   password: string
-  role: 'normal' | 'admin'
+  role: 'normal' | 'admin' | string
   created: Date
 }
