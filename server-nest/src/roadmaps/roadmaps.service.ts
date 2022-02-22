@@ -1,11 +1,8 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
-import { Roadmap } from './roadmaps.entity'
 import { Model } from 'mongoose'
+
+import { Roadmap } from './roadmaps.entity'
 
 @Injectable()
 export class RoadmapsService {
@@ -20,7 +17,7 @@ export class RoadmapsService {
         throw new NotFoundException('Roadmaps not found')
       return roadmaps
     } catch (err) {
-      throw new BadRequestException(err.message)
+      throw new NotFoundException(err.message)
     }
   }
 

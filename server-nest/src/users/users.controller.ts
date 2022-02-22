@@ -1,14 +1,24 @@
-import { Controller, Get, Req, UseGuards, Param } from '@nestjs/common'
-import { Request } from 'express'
+import {
+  Controller,
+  Get,
+  Req,
+  UseGuards,
+  Param,
+  UnauthorizedException,
+} from '@nestjs/common'
+
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
+import { UsersService } from './users.service'
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   @UseGuards(JwtAuthGuard)
   @Get()
-  getUsers(@Req() req: Request) {
-    console.log(req.user)
-    return 'Auth success!'
+  getUsers(@Req() req: any) {
+    if (req.user.role == 'admin') return this.usersService.findAll()
+    throw new UnauthorizedException()
   }
 
   @Get('all')

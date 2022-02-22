@@ -42,6 +42,12 @@ export class UsersService {
     }
   }
 
+  async findAll() {
+    const users = await this.userModel.find()
+    if (users.length == 0) throw new NotFoundException('User tidak ditemukan')
+    return users
+  }
+
   // find one
   async findOne(query: object) {
     const user = await this.userModel.findOne(query)
