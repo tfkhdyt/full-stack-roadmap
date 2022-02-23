@@ -8,9 +8,10 @@ import {
   Post,
   Body,
 } from '@nestjs/common'
-import { RoadmapsService } from './roadmaps.service'
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
+
+import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { AddRoadmapDto } from './dto/add-roadmap.dto'
+import { RoadmapsService } from './roadmaps.service'
 
 @Controller('roadmaps')
 export class RoadmapsController {
