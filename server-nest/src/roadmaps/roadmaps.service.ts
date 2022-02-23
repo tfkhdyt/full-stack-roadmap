@@ -24,19 +24,13 @@ export class RoadmapsService {
   }
 
   getMyRoadmaps(userId: string, role: string) {
-    if (role == 'admin') {
-      return this.getRoadmaps()
-    } else {
-      return this.getRoadmaps({ userId })
-    }
+    if (role == 'admin') return this.getRoadmaps()
+    return this.getRoadmaps({ userId })
   }
 
   getRoadmap(role: string, roadmapId: string, userId: string) {
-    if (role == 'admin') {
-      return this.getRoadmaps({ _id: roadmapId })
-    } else {
-      return this.getRoadmaps({ _id: roadmapId, userId })
-    }
+    if (role == 'admin') return this.getRoadmaps({ _id: roadmapId })
+    return this.getRoadmaps({ _id: roadmapId, userId })
   }
 
   async addRoadmap(addRoadmapDto: AddRoadmapDto, user: User) {
