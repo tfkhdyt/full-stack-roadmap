@@ -43,5 +43,6 @@ export const RoadmapsSchema: Schema = new Schema<Roadmap>({
   userId: {
     type: String,
     required: [true, 'Tolong masukkan user id'],
+    ref: 'User',
   },
 })
