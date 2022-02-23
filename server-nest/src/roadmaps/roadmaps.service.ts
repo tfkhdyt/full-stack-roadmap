@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  NotFoundException,
-  BadRequestException,
-} from '@nestjs/common'
+import { Injectable, BadRequestException } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { User } from 'src/users/users.entity'
@@ -17,17 +13,14 @@ export class RoadmapsService {
   ) {}
 
   async getRoadmaps(query?: object) {
-    try {
-      const roadmaps = await this.roadmapModel
-        .find(query)
-        .sort('order')
-        .populate('userId')
-      if (roadmaps.length == 0)
-        throw new NotFoundException('Roadmaps not found')
-      return roadmaps
-    } catch (err) {
-      throw new NotFoundException(err.message)
-    }
+    const roadmaps = await this.roadmapModel
+      .find(query)
+      .sort('order')
+      .populate('userId')
+      .catch((err) => {
+        throw new BadRequestException(err.message)
+      })
+    return roadmaps
   }
 
   getMyRoadmaps(userId: string, role: string) {
@@ -47,18 +40,18 @@ export class RoadmapsService {
   }
 
   async addRoadmap(addRoadmapDto: AddRoadmapDto, user: User) {
-    try {
-      const roadmap = await this.roadmapModel.create({
+    const roadmap = await this.roadmapModel
+      .create({
         ...addRoadmapDto,
         accepted: user.role == 'admin' ? true : false,
         userId: user.id,
       })
-      return {
-        message: 'Input data berhasil!',
-        data: roadmap,
-      }
-    } catch (err) {
-      throw new BadRequestException(err.message)
+      .catch((err) => {
+        throw new BadRequestException(err.message)
+      })
+    return {
+      message: 'Input data berhasil!',
+      data: roadmap,
     }
   }
 }
