@@ -48,4 +48,20 @@ export class RoadmapsService {
       data: roadmap,
     }
   }
+
+  async updateRoadmap(req: any, roadmapId: string) {
+    const data = req.body
+    if (req.user.role !== 'admin' && data.accepted) delete data.accepted
+
+    const result = await this.roadmapModel
+      .findByIdAndUpdate(roadmapId, data)
+      .catch((err) => {
+        throw new BadRequestException(err.message)
+      })
+
+    return {
+      message: 'Ubah data berhasil!',
+      data: result,
+    }
+  }
 }

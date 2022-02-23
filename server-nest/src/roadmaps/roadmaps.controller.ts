@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Body,
+  Patch,
 } from '@nestjs/common'
 
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
@@ -43,5 +44,11 @@ export class RoadmapsController {
   @UseGuards(JwtAuthGuard)
   addRoadmap(@Body() addRoadmapDto: AddRoadmapDto, @Req() req: any) {
     return this.roadmapsService.addRoadmap(addRoadmapDto, req.user)
+  }
+
+  @Patch(':id')
+  @UseGuards(JwtAuthGuard)
+  updateRoadmap(@Req() req: any, @Param('id') roadmapId: string) {
+    return this.roadmapsService.updateRoadmap(req, roadmapId)
   }
 }
