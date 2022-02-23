@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common'
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 
@@ -50,6 +54,10 @@ export class RoadmapsService {
   }
 
   async updateRoadmap(req: any, roadmapId: string) {
+    const roadmap = await this.getRoadmaps({ _id: roadmapId })
+    if (roadmap.length == 0)
+      throw new NotFoundException('Data yang ingin anda ubah tidak ditemukan')
+
     const data = req.body
     if (req.user.role !== 'admin' && data.accepted) delete data.accepted
 
