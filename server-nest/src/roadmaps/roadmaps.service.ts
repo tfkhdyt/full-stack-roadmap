@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
+import { Request } from 'express'
 
 import { AddRoadmapDto } from './dto/add-roadmap.dto'
 import { User } from '../users/users.entity'
@@ -33,8 +34,11 @@ export class RoadmapsService {
   }
 
   async getRoadmap(role: string, roadmapId: string, userId: string) {
-    if (role == 'admin') return this.getRoadmaps({ _id: roadmapId })
-    const roadmap = await this.getRoadmaps({ _id: roadmapId, userId })
+    let roadmap: any
+    if (role == 'admin') roadmap = await this.getRoadmaps({ _id: roadmapId })
+    else roadmap = await this.getRoadmaps({ _id: roadmapId, userId })
+    if (roadmap.length === 0)
+      throw new NotFoundException('Data tidak ditemukan!')
     return roadmap[0]
   }
 
@@ -54,8 +58,13 @@ export class RoadmapsService {
     }
   }
 
-  async updateRoadmap(req: any, roadmapId: string) {
-    const roadmap = await this.getRoadmaps({ _id: roadmapId })
+  async updateRoadmap(req: Request, roadmapId: string) {
+    const { id, role } = req.user
+    let roadmap: any
+
+    if (role === 'admin') roadmap = await this.getRoadmaps({ _id: roadmapId })
+    else roadmap = await this.getRoadmaps({ _id: roadmapId, userId: id })
+
     if (roadmap.length == 0)
       throw new NotFoundException('Data yang ingin anda ubah tidak ditemukan')
 
@@ -70,6 +79,28 @@ export class RoadmapsService {
 
     return {
       message: 'Ubah data berhasil!',
+      data: result,
+    }
+  }
+
+  async deleteRoadmap(req: Request, roadmapId: string) {
+    const { id, role } = req.user
+    let roadmap: any
+
+    if (role === 'admin') roadmap = await this.getRoadmaps({ _id: roadmapId })
+    else roadmap = await this.getRoadmaps({ _id: roadmapId, userId: id })
+
+    if (roadmap.length == 0)
+      throw new NotFoundException('Data yang ingin anda hapus tidak ditemukan')
+
+    const result = await this.roadmapModel
+      .findByIdAndDelete(roadmapId)
+      .catch((err) => {
+        throw new BadRequestException(err.message)
+      })
+
+    return {
+      message: 'Data berhasil dihapus!',
       data: result,
     }
   }

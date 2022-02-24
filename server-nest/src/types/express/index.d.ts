@@ -1,4 +1,4 @@
-declare global {
+/*declare global {
   namespace Express {
     interface Request {
       user: {
@@ -6,5 +6,17 @@ declare global {
         role: string
       }
     }
+  }
+}*/
+
+declare namespace Express {
+  export interface Request {
+    user: {
+      id: string
+      role: string
+    }
+  }
+  export interface Response {
+    user: any
   }
 }
