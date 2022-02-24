@@ -32,9 +32,10 @@ export class RoadmapsService {
     return this.getRoadmaps({ userId })
   }
 
-  getRoadmap(role: string, roadmapId: string, userId: string) {
+  async getRoadmap(role: string, roadmapId: string, userId: string) {
     if (role == 'admin') return this.getRoadmaps({ _id: roadmapId })
-    return this.getRoadmaps({ _id: roadmapId, userId })
+    const roadmap = await this.getRoadmaps({ _id: roadmapId, userId })
+    return roadmap[0]
   }
 
   async addRoadmap(addRoadmapDto: AddRoadmapDto, user: User) {
