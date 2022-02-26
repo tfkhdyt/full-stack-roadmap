@@ -9,7 +9,7 @@ import useSWR from 'swr'
 import { toast } from 'react-toastify'
 
 import { Alert } from '../../config'
-import { SWRTypes } from '../../types/swr'
+// import { SWRTypes } from '../../types/swr'
 import { Data } from '../../types/data'
 import Loading from '../../components/Loading'
 import OptionButton from '../../components/OptionButton'
@@ -43,7 +43,10 @@ const Dashboard = () => {
     `${process.env.NEXT_PUBLIC_API_URL}/roadmaps`,
     fetcher
   )
-  const user = useSWR<string>(`${process.env.NEXT_PUBLIC_API_URL}/users/role`, fetcher)
+  const user = useSWR<string>(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/role`,
+    fetcher
+  )
 
   useEffect(() => {
     if (error) {
@@ -152,7 +155,8 @@ const Dashboard = () => {
                 Data kosong
               </LazyShow>
             )}
-            {data && user &&
+            {data &&
+              user &&
               data
                 .filter((e) => e.accepted == accepted)
                 .map((e: Data, i: number) => {

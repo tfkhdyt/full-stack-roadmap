@@ -38,7 +38,10 @@ const Detail = () => {
     `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/${id}`,
     fetcher
   )
-  const { data: userRole } = useSWR<string>(`${process.env.NEXT_PUBLIC_API_URL}/users/role`, fetcher)
+  const { data: userRole } = useSWR<string>(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/role`,
+    fetcher
+  )
 
   useEffect(() => {
     if (error) {
@@ -223,9 +226,7 @@ const Detail = () => {
                     <img
                       src={data.icon}
                       alt={`Icon ${data.icon}`}
-                      className={`${
-                        data.title == 'Express' ? 'w-5' : 'h-5'
-                      }`}
+                      className={`${data.title == 'Express' ? 'w-5' : 'h-5'}`}
                     />
                     <p>{data.title}</p>
                   </div>
@@ -272,9 +273,7 @@ const Detail = () => {
                 </div>
                 <div className='mb-4'>
                   <span className='font-bold'>Status:</span>{' '}
-                  <span>
-                    {data.accepted == true ? 'Accepted' : 'Pending'}
-                  </span>
+                  <span>{data.accepted == true ? 'Accepted' : 'Pending'}</span>
                 </div>
                 <div className='flex flex-wrap gap-2'>
                   {userRole === 'admin' && (

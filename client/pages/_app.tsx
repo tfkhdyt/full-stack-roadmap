@@ -26,7 +26,7 @@ const App = ({ Component, pageProps }: AppProps) => (
       exitBeforeEnter
       initial={false}
       onExitComplete={() => window.scrollTo(0, 0)}
-      >
+    >
       <Component {...pageProps} />
     </AnimatePresence>
     {/* Global site tag (gtag.js) - Google Analytics */}

@@ -29,7 +29,7 @@ export class RoadmapsService {
   }
 
   getMyRoadmaps(userId: string, role: string) {
-    console.log(`My role: ${role}`)
+    // console.log(`My role: ${role}`)
     if (role == 'admin') return this.getRoadmaps()
     return this.getRoadmaps({ userId })
   }
