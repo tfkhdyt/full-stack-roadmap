@@ -10,6 +10,6 @@ async function bootstrap() {
   app.use(compression())
   app.enableCors()
   app.useGlobalPipes(new ValidationPipe())
-  await app.listen(4000)
+  await app.listen(process.env.PORT || 4000)
 }
 bootstrap()
