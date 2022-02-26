@@ -17,27 +17,28 @@ import Layout from '../../../components/Layout'
 const cookies = new Cookies()
 
 const fetcher = async (url: string) => {
-  try {
-    const res = await axios.get(url, {
+  const res = await axios
+    .get(url, {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`,
       },
     })
-    return res.data
-  } catch (err: any) {
-    const error: { error: number } | any = new Error(err.message)
-    error.status = err.response.status
-    throw error
-  }
+    .catch((err) => {
+      const error: { error: number } | any = new Error(err.message)
+      error.status = err.response.status
+      throw error
+    })
+  return res.data
 }
 
 const Detail = () => {
   const router = useRouter()
   const { id } = router.query
   const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/${id}`,
     fetcher
   )
+  const { data: userRole } = useSWR<string>(`${process.env.NEXT_PUBLIC_API_URL}/users/role`, fetcher)
 
   useEffect(() => {
     if (error) {
@@ -79,9 +80,9 @@ const Detail = () => {
         },
       })
       await axios.patch(
-        `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${data.data._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/${data._id}`,
         {
-          accepted: !data.data.accepted,
+          accepted: !data.accepted,
         },
         {
           headers: {
@@ -189,7 +190,7 @@ const Detail = () => {
   }
 
   if (!data) return <Loading title='Detail | Full Stack Roadmap' />
-  const baseColor = data.data.color
+  const baseColor = data.color
   let shadeColor = baseColor.split('-')
   shadeColor[1] = Number(shadeColor[1]) + 200
   shadeColor = shadeColor.join('-')
@@ -198,7 +199,7 @@ const Detail = () => {
     <Layout>
       <div>
         <Head>
-          <title>{data.data.title} | Full Stack Roadmap</title>
+          <title>{data.title} | Full Stack Roadmap</title>
         </Head>{' '}
         <div className='space-y-3 px-6 py-3 text-gray-200 md:px-56 lg:px-80'>
           <Header>
@@ -214,88 +215,88 @@ const Detail = () => {
               >
                 <div>
                   <span className='font-bold'>Order:</span>{' '}
-                  <span>{data.data.order}</span>
+                  <span>{data.order}</span>
                 </div>
                 <div className='flex items-center space-x-1'>
                   <span className='font-bold'>Title:</span>{' '}
                   <div className='flex items-center space-x-1'>
                     <img
-                      src={data.data.icon}
-                      alt={`Icon ${data.data.icon}`}
+                      src={data.icon}
+                      alt={`Icon ${data.icon}`}
                       className={`${
-                        data.data.title == 'Express' ? 'w-5' : 'h-5'
+                        data.title == 'Express' ? 'w-5' : 'h-5'
                       }`}
                     />
-                    <p>{data.data.title}</p>
+                    <p>{data.title}</p>
                   </div>
                 </div>
                 <div>
                   <span className='font-bold'>Type:</span>{' '}
-                  <span>{data.data.type}</span>
+                  <span>{data.type}</span>
                 </div>
                 <div>
                   <p className='font-bold'>Description:</p>{' '}
                   <p className='text-justify text-sm leading-snug'>
-                    {data.data.description}
+                    {data.description}
                   </p>
                 </div>
                 <div>
                   <span className='font-bold'>Color:</span>{' '}
-                  <span>{data.data.color}</span>
+                  <span>{data.color}</span>
                 </div>
                 <div>
                   <p className='font-bold'>Video's Link:</p>{' '}
-                  <Link href={data.data.linkVideo}>
+                  <Link href={data.linkVideo}>
                     <a
                       className='break-all text-sm leading-snug underline underline-offset-1'
                       target='_blank'
                     >
-                      {data.data.linkVideo}
+                      {data.linkVideo}
                     </a>
                   </Link>
                 </div>
                 <div>
                   <p className='font-bold'>Documentation's Link:</p>{' '}
-                  <Link href={data.data.linkDocs}>
+                  <Link href={data.linkDocs}>
                     <a
                       className='break-all text-sm leading-snug underline underline-offset-1'
                       target='_blank'
                     >
-                      {data.data.linkDocs}
+                      {data.linkDocs}
                     </a>
                   </Link>
                 </div>
                 <div>
                   <span className='font-bold'>Submitted By:</span>{' '}
-                  <span>{data.submitter}</span>
+                  <span>{data.userId.fullName}</span>
                 </div>
                 <div className='mb-4'>
                   <span className='font-bold'>Status:</span>{' '}
                   <span>
-                    {data.data.accepted == true ? 'Accepted' : 'Pending'}
+                    {data.accepted == true ? 'Accepted' : 'Pending'}
                   </span>
                 </div>
                 <div className='flex flex-wrap gap-2'>
-                  {data.role === 'admin' && (
+                  {userRole === 'admin' && (
                     <button
                       className={`w-20 px-3 py-2 ${
-                        !data.data.accepted
+                        !data.accepted
                           ? 'bg-green-600 shadow-green-800 hover:bg-green-700'
                           : 'bg-zinc-500 shadow-zinc-600/50 hover:bg-zinc-600'
                       } rounded-md font-semibold text-gray-200 shadow-md transition duration-500`}
                       onClick={changeStatus}
                     >
-                      {!data.data.accepted ? 'Accept' : 'Pend'}
+                      {!data.accepted ? 'Accept' : 'Pend'}
                     </button>
                   )}
-                  <Link href={`/dashboard/edit-roadmap/${data.data._id}`}>
+                  <Link href={`/dashboard/edit-roadmap/${data._id}`}>
                     <a className='flex w-20 justify-center rounded-md bg-sky-600 p-2 font-semibold text-gray-200 shadow-md shadow-sky-700/50 transition duration-500 hover:bg-sky-700'>
                       Edit
                     </a>
                   </Link>
                   <button
                     className='rounded-md bg-rose-500 px-3 py-2 font-semibold text-gray-200 shadow-md shadow-rose-600/50 transition duration-500 hover:bg-rose-600'
-                    onClick={() => handleDelete(data.data._id)}
+                    onClick={() => handleDelete(data._id)}
                   >
                     Delete
                   </button>

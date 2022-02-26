@@ -32,11 +32,11 @@ const Login = () => {
     })
 
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         email,
         password,
       })
-      Cookies.set('token', res.data.accessToken, {
+      Cookies.set('token', res.data.token, {
         expires: 30,
       })
       Alert.close()

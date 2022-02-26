@@ -3,9 +3,9 @@ import {
   Get,
   Req,
   UseGuards,
-  Param,
   UnauthorizedException,
 } from '@nestjs/common'
+import { Request } from 'express'
 
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 import { UsersService } from './users.service'
@@ -14,24 +14,17 @@ import { UsersService } from './users.service'
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get('role')
+  @UseGuards(JwtAuthGuard)
+  getMyRole(@Req() req: Request) {
+    const { role } = req.user
+    return role
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get()
   getUsers(@Req() req: any) {
     if (req.user.role == 'admin') return this.usersService.findAll()
     throw new UnauthorizedException()
-  }
-
-  @Get('all')
-  getAllRoadmaps() {
-    return [
-      {
-        hello: 'world!',
-      },
-    ]
-  }
-
-  @Get(':id')
-  getRoadmap(@Param('id') id: string) {
-    return id
   }
 }

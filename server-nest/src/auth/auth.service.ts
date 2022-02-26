@@ -2,11 +2,12 @@ import {
   Injectable,
   UnauthorizedException,
   BadRequestException,
+  NotFoundException
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { compare } from 'bcrypt'
 
-import { UsersService } from 'src/users/users.service'
+import { UsersService } from '../users/users.service'
 import { RegisterDto } from './dto/register.dto'
 import { User } from '../users/users.entity'
 import { LoginDto } from './dto/login.dto'
@@ -27,6 +28,7 @@ export class AuthService {
   async validateUser(loginDto: LoginDto) {
     const { email, password } = loginDto
     const user: User = await this.usersService.findOne({ email })
+    if (!user) throw new NotFoundException('User tidak ditemukan')
     const passwordIsValid = await compare(password, user.password).catch(
       (err) => {
         throw new BadRequestException(err.message)

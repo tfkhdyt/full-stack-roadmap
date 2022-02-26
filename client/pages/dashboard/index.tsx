@@ -21,34 +21,35 @@ import BackToTop from '../../components/BackToTop'
 // const cookies = new Cookies()
 
 const fetcher = async (url: string) => {
-  try {
-    const res = await axios.get(url, {
+  const res = await axios
+    .get(url, {
       headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
-    return res.data
-  } catch (err: any) {
-    const error: { status: number } | any = new Error(err.message)
-    error.status = err.response.status
-    throw error
-  }
+    .catch((err: any) => {
+      const error: { status: number } | any = new Error(err.message)
+      error.status = err.response.status
+      throw error
+    })
+  return res.data
 }
 
 const Dashboard = () => {
   const router = useRouter()
   const [accepted, setAccepted] = useState(true)
 
-  const { data, error, mutate } = useSWR<SWRTypes, any>(
-    `${process.env.NEXT_PUBLIC_API_URL}/roadmap`,
+  const { data, error, mutate } = useSWR<any[]>(
+    `${process.env.NEXT_PUBLIC_API_URL}/roadmaps`,
     fetcher
   )
+  const user = useSWR<string>(`${process.env.NEXT_PUBLIC_API_URL}/users/role`, fetcher)
 
   useEffect(() => {
     if (error) {
       if (error.status === 401) {
         router.push('/auth/login')
-      } else if (error.status === 500) {
+      } else if (error.status >= 400) {
         Alert.fire({
           icon: 'error',
           title: 'Data fetching failed!',
@@ -139,21 +140,20 @@ const Dashboard = () => {
           <div
             className={`grid grid-cols-1 gap-4 ${
               data &&
-              data.data.filter((e) => e.accepted == accepted).length !== 0 &&
+              data.filter((e) => e.accepted == accepted).length !== 0 &&
               'md:grid-cols-2'
             }`}
           >
-            {data &&
-              data.data.filter((e) => e.accepted == accepted).length == 0 && (
-                <LazyShow
-                  className='text-center text-lg font-semibold text-gray-200'
-                  align='top'
-                >
-                  Data kosong
-                </LazyShow>
-              )}
-            {data &&
-              data.data
+            {data && data.filter((e) => e.accepted == accepted).length == 0 && (
+              <LazyShow
+                className='text-center text-lg font-semibold text-gray-200'
+                align='top'
+              >
+                Data kosong
+              </LazyShow>
+            )}
+            {data && user &&
+              data
                 .filter((e) => e.accepted == accepted)
                 .map((e: Data, i: number) => {
                   let align: string
@@ -187,7 +187,7 @@ const Dashboard = () => {
                         {/* option button */}
                         <OptionButton
                           data={e}
-                          role={data.role}
+                          role={user.data!}
                           mutate={mutate}
                         />
                         {/* ---------- */}

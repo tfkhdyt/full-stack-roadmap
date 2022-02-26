@@ -7,9 +7,28 @@ import React from 'react'
 import '../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.min.css'
 
-React.useLayoutEffect = React.useEffect
 const App = ({ Component, pageProps }: AppProps) => (
   <>
+    <ToastContainer
+      position='top-right'
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      bodyClassName='font-semibold'
+      transition={Slide}
+    />
+    <AnimatePresence
+      exitBeforeEnter
+      initial={false}
+      onExitComplete={() => window.scrollTo(0, 0)}
+      >
+      <Component {...pageProps} />
+    </AnimatePresence>
     {/* Global site tag (gtag.js) - Google Analytics */}
     <Script
       src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -22,26 +41,6 @@ const App = ({ Component, pageProps }: AppProps) => (
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
         `}
     </Script>
-    <AnimatePresence
-      exitBeforeEnter
-      initial={false}
-      onExitComplete={() => window.scrollTo(0, 0)}
-    >
-      <ToastContainer
-        position='top-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        bodyClassName='font-semibold'
-        transition={Slide}
-      />
-      <Component {...pageProps} />
-    </AnimatePresence>
   </>
 )
 
