@@ -2,7 +2,7 @@ import {
   Injectable,
   UnauthorizedException,
   BadRequestException,
-  NotFoundException
+  NotFoundException,
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { compare } from 'bcrypt'
