@@ -61,7 +61,7 @@ const OptionButton = ({ data, role, mutate }: OptionButtonProps) => {
         },
       })
       await axios.patch(
-        `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${data._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/${data._id}`,
         {
           accepted: !data.accepted,
         },

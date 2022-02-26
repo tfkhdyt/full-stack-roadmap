@@ -7,7 +7,7 @@ const deleteData = (id: string) => {
   return new Promise(async (resolve, reject) => {
     try {
       const result = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/${id}`,
         {
           headers: {
             Authorization: `Bearer ${cookies.get('token')}`,

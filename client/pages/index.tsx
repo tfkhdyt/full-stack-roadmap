@@ -15,23 +15,38 @@ import Layout from '../components/Layout'
 const cookies = new Cookies()
 
 const fetcher = async (url: string) => {
+  const result = await axios
+    .get(url, {
+      headers: {
+        Authorization: `Bearer ${cookies.get('token')}`,
+      },
+    })
+    .catch((err) => {
+      const error: { status: boolean } | any = new Error(err.message)
+      error.status = err.response.status
+      throw error
+    })
+  return result.data
+}
+
+/*const legacyFetcher = async (url: string) => {
   try {
     const result = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`,
       },
     })
-    return result.data.data
+    return result.data
   } catch (err: any) {
     const error: { status: boolean } | any = new Error(err.message)
     error.status = err.response.status
     throw error
   }
-}
+  }*/
 
 const Home = () => {
   const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/roadmaps`,
+    `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/public`,
     fetcher
   )
 

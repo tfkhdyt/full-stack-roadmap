@@ -22,18 +22,18 @@ const cookies = new Cookies()
 
 // fetcher function
 const fetcher = async (url: string) => {
-  try {
-    const res = await axios.get(url, {
+  const res = await axios
+    .get(url, {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`,
       },
     })
-    return res.data
-  } catch (err: any) {
-    const error: { status: number } | any = new Error(err.message)
-    error.status = err.response.status
-    throw error
-  }
+    .catch((err: any) => {
+      const error: { status: number } | any = new Error(err.message)
+      error.status = err.response.status
+      throw error
+    })
+  return res.data
 }
 
 // EditRoadmap components
@@ -59,7 +59,12 @@ const EditRoadmap = () => {
 
   // fetch data
   const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/${id}`,
+    fetcher
+  )
+
+  const { data: userRole } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/role`,
     fetcher
   )
 
@@ -93,20 +98,23 @@ const EditRoadmap = () => {
 
   useEffect(() => {
     if (data && !isChanged) {
-      mutate()
       setIsChanged(true)
-      setOrder(data.data.order)
-      setTitle(data.data.title)
-      setType(data.data.type)
-      setDescription(data.data.description)
-      setIcon(data.data.icon)
-      setColor(data.data.color.split('-')[0])
-      setIntensity(data.data.color.split('-')[1])
-      setLinkVideo(data.data.linkVideo)
-      setLinkDocs(data.data.linkDocs)
-      setAccepted(data.data.accepted)
+      setOrder(data.order)
+      setTitle(data.title)
+      setType(data.type)
+      setDescription(data.description)
+      setIcon(data.icon)
+      setColor(data.color.split('-')[0])
+      setIntensity(data.color.split('-')[1])
+      setLinkVideo(data.linkVideo)
+      setLinkDocs(data.linkDocs)
+      setAccepted(data.accepted)
     }
   })
+
+  useEffect(() => {
+    mutate()
+  }, [])
 
   // submit event handler
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -122,7 +130,7 @@ const EditRoadmap = () => {
     })
     axios
       .patch(
-        `${process.env.NEXT_PUBLIC_API_URL}/roadmap/${data.data._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/roadmaps/${data._id}`,
         {
           order,
           title,
@@ -189,7 +197,7 @@ const EditRoadmap = () => {
     <Layout>
       <div>
         <Head>
-          <title>Edit {data.data.title} | Full Stack Roadmap</title>
+          <title>Edit {data.title} | Full Stack Roadmap</title>
         </Head>
         <div className='space-y-3 px-6 py-3 pb-12 text-gray-200 md:px-56 lg:px-96'>
           <Header>
@@ -200,7 +208,7 @@ const EditRoadmap = () => {
           <div className='pt-2'>
             <BackToDashboard />
             <form className='space-y-3' onSubmit={handleSubmit}>
-              <div className={`${data.role !== 'admin' && 'hidden'}`}>
+              <div className={`${userRole !== 'admin' && 'hidden'}`}>
                 {' '}
                 <InputForm
                   label='Order'
@@ -251,8 +259,8 @@ const EditRoadmap = () => {
                 id='color'
                 handleColor={handleColor}
                 handleIntensity={handleIntensity}
-                defaultColor={data.data.color.split('-')[0]}
-                defaultIntensity={data.data.color.split('-')[1]}
+                defaultColor={data.color.split('-')[0]}
+                defaultIntensity={data.color.split('-')[1]}
               />
               <InputForm
                 label="Video's Link"
@@ -268,7 +276,7 @@ const EditRoadmap = () => {
                 placeholder='Example: https://.../..'
                 value={linkDocs}
               />
-              <div className={`${data.role !== 'admin' && 'hidden'}`}>
+              <div className={`${userRole !== 'admin' && 'hidden'}`}>
                 {' '}
                 <label htmlFor='accepted' className='font-medium text-gray-200'>
                   Status

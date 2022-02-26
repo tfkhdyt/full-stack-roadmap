@@ -41,7 +41,7 @@ Intensity: ${intensity}`)*/
     })
 
     Axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/roadmap`,
+      `${process.env.NEXT_PUBLIC_API_URL}/roadmaps`,
       {
         title,
         type,
