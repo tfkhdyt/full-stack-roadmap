@@ -4,7 +4,9 @@ const Middleware = (req: NextRequest) => {
   const { token } = req.cookies
 
   if (!token) {
-    return NextResponse.redirect('/auth/login')
+    const url = req.nextUrl.clone()
+    url.pathname = '/auth/login'
+    return NextResponse.redirect(url)
   }
 }
 
