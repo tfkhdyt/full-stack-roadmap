@@ -17,7 +17,7 @@ const Buttons = ({ linkVideo, linkDocs, title, shade }: ButtonsProps) => {
       <Link href={linkVideo}>
         <a
           target='_blank'
-          className={`flex w-1/2 items-center justify-center space-x-0.5 rounded-md bg-transparent py-2 font-semibold text-gray-800 ring-1 ring-gray-800 transition duration-500 ease-in-out hover:bg-gray-800/25 hover:brightness-75`}
+          className={`flex w-1/2 items-center justify-center space-x-0.5 rounded-md bg-transparent py-2 font-semibold text-gray-800 ring-1 ring-gray-800 transition duration-500 ease-in-out hover:bg-gray-800/25 hover:brightness-75 umami--click--${title.replaceAll(' ', '-')}-videos`}
           id={`Playlist ${title}`}
         >
           <svg
@@ -38,7 +38,7 @@ const Buttons = ({ linkVideo, linkDocs, title, shade }: ButtonsProps) => {
       <Link href={linkDocs}>
         <a
           target='_blank'
-          className={`w-1/2 bg-gray-800 py-2 text-${shade} flex items-center justify-center space-x-0.5 rounded-md font-semibold transition duration-500 ease-in-out hover:brightness-75`}
+          className={`w-1/2 bg-gray-800 py-2 text-${shade} flex items-center justify-center space-x-0.5 rounded-md font-semibold transition duration-500 ease-in-out hover:brightness-75 umami--click--${title.replaceAll(' ', '-')}-docs`}
           id={`Dokumentasi ${title}`}
         >
           <svg
