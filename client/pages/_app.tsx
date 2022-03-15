@@ -30,7 +30,7 @@ const App = ({ Component, pageProps }: AppProps) => (
       <Component {...pageProps} />
     </AnimatePresence>
     {/* Global site tag (gtag.js) - Google Analytics */}
-    <Script
+    {/* <Script
       src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
     />
     <Script>
@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }: AppProps) => (
           gtag('js', new Date())
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
         `}
-    </Script>
+        </Script> */}
   </>
 )
 

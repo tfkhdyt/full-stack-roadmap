@@ -20,6 +20,7 @@ export default class MyDocument extends Document {
       <Html className='scroll-smooth'>
         <Head>
           <MetaTags />
+          <script async defer data-website-id="62b224e8-942f-4343-a9c8-45e5cb6ea1aa" src="https://umami.tfkhdyt.my.id/umami.js" />
           <meta name='theme-color' content='#1F2937' />
           <link rel='preconnect' href='https://fontbit.io' />
           <link
