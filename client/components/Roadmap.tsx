@@ -42,7 +42,7 @@ const Roadmap = ({ data, error }: RoadmapProps) => {
   })
 
   return (
-    <div className='flex flex-col justify-center pt-4'>
+    <div className='flex flex-col justify-center pt-8'>
       <div className='mx-3 md:mx-16 lg:mx-56 xl:mx-64'>
         <div className='mx-auto flex grid-cols-9 flex-col p-2 text-blue-50 md:grid'>
           {data.map((e: any, i: number) => (
